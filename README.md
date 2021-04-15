@@ -11,24 +11,43 @@ Vorgaben:
 
 Folgende Aufgabengebiete müssen enthalten sein:
 1.	Datenbanken 
-a.	Entwurf 
-b.	SQL
+
+  a.	Entwurf 
+  
+  b.	SQL
+  
 2.	Programmierung 
-a.	Prozedurale Grundlagen 
-b.	Objektorientierte Grundlagen
-c.	Testen
-d.	Weitere Theorie, wie z.B. Datenstrukturen, Phasenmodelle der Softwareentwicklung, Software-Ergonomie, Versionskontrolle, Datensicherheit, Datenschutz…
+
+  a.	Prozedurale Grundlagen 
+  
+  b.	Objektorientierte Grundlagen
+  
+  c.	Testen
+  
+  d.	Weitere Theorie, wie z.B. Datenstrukturen, Phasenmodelle der Softwareentwicklung, Software-Ergonomie, Versionskontrolle, Datensicherheit, Datenschutz…
 
 Must-Haves:
+
 •	Das Programm soll die Eingaben der Spieler überprüfen und Rückmeldungen zur Korrektheit geben! 
+
 •	Zu jedem Aufgabengebiet müssen mindestens 10 Aufgaben bewältigt werden, bevor man im Spiel weiterkommt.
+
 •	Jede richtige Antwort soll positiv bewertet werden, damit der Schüler motiviert bleibt. 
+
 •	Es soll eine Möglichkeit geben, neue Fragen/Aufgaben hinzuzufügen, bestehende zu verändern und schlechte zu löschen.
+
 •	Gestaltet die Software so, dass sie durch andere Lernfelder/Fächer leicht ergänzt werden kann.
+
 •	Dokumentation als Klassendiagramm und Javadocs.
+
 •	UnitTests.
 
+
 Nice-To-Haves:
+
 •	Die Fragen sollen zufällig je Kategorie und Schwierigkeit ausgewählt werden und Fragen sollen in einem Durchlauf nicht doppelt gestellt werden.
+
 •	Das Programm soll am Schluss eine Bewertung des Spielers vornehmen und speichern. 
+
 •	Spielt ein Spieler mehrmals, soll ihm sein Lernerfolg angezeigt werden.
+
