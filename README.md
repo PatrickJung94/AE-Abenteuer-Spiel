@@ -1,6 +1,4 @@
 # AE-Abenteuer-Spiel
-von Christian, Markus, Patrick, Max, Till, Omar, Johannes
-
 
 Das AE-Abenteuer-Spiel
 Mit Hilfe dieses Lernspiels werden für die Abschlussprüfung im Fach Anwendungsentwicklung alle Kompetenzen wiederholt. 
@@ -12,47 +10,51 @@ Vorgaben:
 Folgende Aufgabengebiete müssen enthalten sein:
 1.	Datenbanken 
 
-  a.	Entwurf 
+    * Entwurf 
   
-  b.	SQL
+    *	SQL
   
 2.	Programmierung 
 
-  a.	Prozedurale Grundlagen 
+    *	Prozedurale Grundlagen 
   
-  b.	Objektorientierte Grundlagen
+    *	Objektorientierte Grundlagen
   
-  c.	Testen
+    *	Testen
   
-  d.	Weitere Theorie, wie z.B. Datenstrukturen, Phasenmodelle der Softwareentwicklung, Software-Ergonomie, Versionskontrolle, Datensicherheit, Datenschutz…
+    *	Weitere Theorie, wie z.B. Datenstrukturen, Phasenmodelle der Softwareentwicklung, Software-Ergonomie, Versionskontrolle, Datensicherheit, Datenschutz…
 
 Must-Haves:
 
-•	Das Programm soll die Eingaben der Spieler überprüfen und Rückmeldungen zur Korrektheit geben! 
+* Das Programm soll die Eingaben der Spieler überprüfen und Rückmeldungen zur Korrektheit geben! 
 
-•	Zu jedem Aufgabengebiet müssen mindestens 10 Aufgaben bewältigt werden, bevor man im Spiel weiterkommt.
+* Zu jedem Aufgabengebiet müssen mindestens 10 Aufgaben bewältigt werden, bevor man im Spiel weiterkommt.
 
-•	Jede richtige Antwort soll positiv bewertet werden, damit der Schüler motiviert bleibt. 
+* Jede richtige Antwort soll positiv bewertet werden, damit der Schüler motiviert bleibt. 
 
-•	Es soll eine Möglichkeit geben, neue Fragen/Aufgaben hinzuzufügen, bestehende zu verändern und schlechte zu löschen.
+* Es soll eine Möglichkeit geben, neue Fragen/Aufgaben hinzuzufügen, bestehende zu verändern und schlechte zu löschen.
 
-•	Gestaltet die Software so, dass sie durch andere Lernfelder/Fächer leicht ergänzt werden kann.
+* Gestaltet die Software so, dass sie durch andere Lernfelder/Fächer leicht ergänzt werden kann.
 
-•	Dokumentation als Klassendiagramm und Javadocs.
+* Dokumentation als Klassendiagramm und Javadocs.
 
-•	UnitTests.
+* UnitTests.
 
 
 Nice-To-Haves:
 
-•	Die Fragen sollen zufällig je Kategorie und Schwierigkeit ausgewählt werden und Fragen sollen in einem Durchlauf nicht doppelt gestellt werden.
+* Die Fragen sollen zufällig je Kategorie und Schwierigkeit ausgewählt werden und Fragen sollen in einem Durchlauf nicht doppelt gestellt werden.
 
-•	Das Programm soll am Schluss eine Bewertung des Spielers vornehmen und speichern. 
+* Das Programm soll am Schluss eine Bewertung des Spielers vornehmen und speichern. 
 
-•	Spielt ein Spieler mehrmals, soll ihm sein Lernerfolg angezeigt werden.
+* Spielt ein Spieler mehrmals, soll ihm sein Lernerfolg angezeigt werden.
 
+# Klassendiagram
 
 Unser Klassendiagramm
 
 https://drive.google.com/file/d/13dwi1nQUwPN4eJpYzeAu6P-TuHJw0jh6/view?usp=sharing
 
+
+
+###### von Christian, Markus, Patrick, Max, Till, Omar, Johannes
