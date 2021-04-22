@@ -1,10 +1,17 @@
 TODO:
 
-- create way to save questions and other data - database or local files?
+- create way to save questions and other data - database or local files? - Use local files
 
 - Question pool categorized by difficulty
 
 - Create new questions in app or import new bundle via file
 
+- create bundle creator with export option (Optional - really nice to have)
+
 - have sound effects depending on answered question, start up jingle, positiv sound and lose sound
 
+- highscore list for competitiveness
+
+- add jokers - 50/50, Audience joker
+
+- add timer for difficulty
