@@ -51,3 +51,8 @@ Nice-To-Haves:
 
 •	Spielt ein Spieler mehrmals, soll ihm sein Lernerfolg angezeigt werden.
 
+
+Unser Klassendiagramm
+
+https://drive.google.com/file/d/13dwi1nQUwPN4eJpYzeAu6P-TuHJw0jh6/view?usp=sharing
+
