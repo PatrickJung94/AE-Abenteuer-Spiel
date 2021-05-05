@@ -3,6 +3,7 @@ package wwae;
 import javax.swing.*;
 
 public class AellionaerGame {
+	private CreateQuestion createQuestion;
 	public static void main(String[] args) {
 		new AellionaerGame();
 	}
@@ -12,8 +13,11 @@ public class AellionaerGame {
 	}
 	
 	private void init() {
-		JFrame window = new JFrame("Wer wird AEllionär");
+		JFrame window = new JFrame("Wer wird AEllionï¿½r");
 		window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		createQuestion = new CreateQuestion();
+		createQuestion.showForm();
+		
 		
 		window.setSize(1280, 720);
 		window.setVisible(true);
