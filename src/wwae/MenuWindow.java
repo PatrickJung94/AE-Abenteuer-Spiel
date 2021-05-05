@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 
 import javax.swing.*;
+import javax.swing.border.AbstractBorder;
 
 public class MenuWindow extends JFrame {
 	
@@ -16,6 +17,7 @@ public class MenuWindow extends JFrame {
 	
 	private void createLayout() {
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
 		
 		Container pane = this.getContentPane();
 		
@@ -28,8 +30,11 @@ public class MenuWindow extends JFrame {
 		JPanel menuBlockBottom = new JPanel();
 		
 		JButton startBtn = new JButton("Start");
+		startBtn.setBorder(border);
 		JButton settingsBtn = new JButton("Einstellungen");
+		settingsBtn.setBorder(border);
 		JButton exitBtn = new JButton("Beenden");
+		exitBtn.setBorder(border);
 		
 		startBtn.setPreferredSize(new Dimension(460, 35));
 		settingsBtn.setPreferredSize(new Dimension(460, 35));
@@ -53,13 +58,23 @@ public class MenuWindow extends JFrame {
 		right.setPreferredSize(new Dimension(400, 400));
 		
 		JPanel optionBar = new JPanel();
+		Color optionPanelColor = new Color(220,220,220);
+		optionBar.setBorder(BorderFactory.createMatteBorder(18, 0, 0, 0, optionPanelColor));
 		optionBar.setPreferredSize(new Dimension(getSize().width, 75));
-		optionBar.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 25));
+		optionBar.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 0));
 		JButton highscore = new JButton("Highscore anzeigen");
+		highscore.setPreferredSize(new Dimension(highscore.getPreferredSize().width + 30, 40));
+		highscore.setBorder(border);
 		JButton addQuestions = new JButton("Fragen anlegen");
+		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
+		addQuestions.setBorder(border);
 		JButton chooseSubject = new JButton("Fach auswählen");
+		chooseSubject.setPreferredSize(new Dimension(chooseSubject.getPreferredSize().width + 30, 40));
+		chooseSubject.setBorder(border);
 		JButton difficulty = new JButton("Schwierigkeitsgrad");
-		optionBar.setBackground(new Color(220,220,220));
+		difficulty.setPreferredSize(new Dimension(difficulty.getPreferredSize().width + 30, 40));
+		difficulty.setBorder(border);
+		optionBar.setBackground(optionPanelColor);
 		
 		optionBar.add(highscore);
 		optionBar.add(addQuestions);
