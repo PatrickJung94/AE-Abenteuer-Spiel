@@ -11,7 +11,7 @@ public class CreateQuestion extends JFrame{
 	Question newQuestion = new Question();
 	
 	public CreateQuestion() {
-		super("Frage erstellen/bearbeiten - Wer wird AEllionär");
+		super("Frage erstellen/bearbeiten - Wer wird AEllionï¿½r");
 		createForm();
 	}
 	
@@ -41,17 +41,40 @@ public class CreateQuestion extends JFrame{
 		right.setBackground(new Color(0,255,0));
 		
 		
-		JLabel time = new JLabel("Zeit");
+		JLabel time = new JLabel("Zeit in Sekunden");
+		time.setPreferredSize(new Dimension(150, 75));
+		JTextField timeInput = new JTextField();
+		timeInput.setPreferredSize(new Dimension(150, 75));
 		menuPanel.add(time);
-		JLabel text = new JLabel("Wie heißt die 2. Schicht des Osi-Modells");
+		menuPanel.add(timeInput);
+
+		JLabel text = new JLabel("Wie heiï¿½t die 2. Schicht des Osi-Modells");
+		text.setPreferredSize(new Dimension(150, 75));
+		JTextField textInput = new JTextField();
+		textInput.setPreferredSize(new Dimension(150, 75));
 		menuPanel.add(text);
+		menuPanel.add(textInput);
+
 		JLabel correctIndex = new JLabel("Richtige Antowrt Index");
+		correctIndex.setPreferredSize(new Dimension(150, 75));
+		JTextField correctIndexInput = new JTextField();
+		correctIndexInput.setPreferredSize(new Dimension(150, 75));
 		menuPanel.add(correctIndex);
+		menuPanel.add(correctIndexInput);
+
 		JLabel antworten = new JLabel("Antworten");
+		antworten.setPreferredSize(new Dimension(150, 75));
+		JTextField antwortenInput = new JTextField();
+		antwortenInput.setPreferredSize(new Dimension(150, 75));
 		menuPanel.add(antworten);
-		JLabel textForPhoneJoker = new JLabel("Ja also ich denke das antwort B richtig ist. Davon habe ich schonmal gehört");
+		menuPanel.add(antwortenInput);
+
+		JLabel textForPhoneJoker = new JLabel("Ja also ich denke das antwort B richtig ist. Davon habe ich schonmal gehï¿½rt");
+		textForPhoneJoker.setPreferredSize(new Dimension(150, 75));
+		JTextField textForPhoneJokerInput = new JTextField();
+		textForPhoneJokerInput.setPreferredSize(new Dimension(150, 75));
 		menuPanel.add(textForPhoneJoker);
-		menuPanel.add(new JButton("test"));
+		menuPanel.add(textForPhoneJokerInput);
 		
 		pane.add(BorderLayout.WEST, left);
 		pane.add(BorderLayout.CENTER, menuPanel);
