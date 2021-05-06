@@ -1,12 +1,12 @@
 package wwae;
 
 import java.awt.*;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import javax.swing.*;
 
 import wwae.Question;
 
-public class CreateQuestion extends JFrame{
+public class CreateQuestion extends JFrame {
 	// add import of file
 	Question newQuestion = new Question();
 	
@@ -32,6 +32,9 @@ public class CreateQuestion extends JFrame{
 //		menuBlockBottom.setLayout(new GridBagLayout());
 		menuBlockBottom.setBackground(new Color(255,0,0));
 		menuBlockBottom.setPreferredSize(new Dimension(400, 75));
+		JButton saveButton = new JButton("Speichern");
+		menuBlockBottom.add(saveButton);
+		
 		
 		JPanel left = new JPanel();
 		left.setPreferredSize(new Dimension(200, 400));
@@ -45,10 +48,33 @@ public class CreateQuestion extends JFrame{
 		time.setPreferredSize(new Dimension(150, 75));
 		JTextField timeInput = new JTextField();
 		timeInput.setPreferredSize(new Dimension(150, 75));
+		// timeInput.addKeyListener(new KeyListener() {
+
+		// 	@Override
+		// 	public void keyTyped(KeyEvent e) {
+		// 		// TODO Auto-generated method stub
+		// 		newQuestion.setTime(e.getKeyChar());
+		// 		System.out.println(newQuestion.getTime());
+		// 	}
+
+		// 	@Override
+		// 	public void keyPressed(KeyEvent e) {
+		// 		// TODO Auto-generated method stub
+				
+		// 	}
+
+		// 	@Override
+		// 	public void keyReleased(KeyEvent e) {
+		// 		// TODO Auto-generated method stub
+				
+		// 	}
+
+		// });
+		
 		menuPanel.add(time);
 		menuPanel.add(timeInput);
 
-		JLabel text = new JLabel("Wie hei�t die 2. Schicht des Osi-Modells");
+		JLabel text = new JLabel("Frage: ");
 		text.setPreferredSize(new Dimension(150, 75));
 		JTextField textInput = new JTextField();
 		textInput.setPreferredSize(new Dimension(150, 75));
@@ -75,6 +101,23 @@ public class CreateQuestion extends JFrame{
 		textForPhoneJokerInput.setPreferredSize(new Dimension(150, 75));
 		menuPanel.add(textForPhoneJoker);
 		menuPanel.add(textForPhoneJokerInput);
+
+		saveButton.addActionListener((event) -> {
+			newQuestion.setTime(Double.parseDouble(timeInput.getText()));
+			newQuestion.setText(textInput.getText());
+			newQuestion.setCorrectIndex(Integer.parseInt(correctIndexInput.getText()));
+			String[] temp = {antwortenInput.getText()};
+			newQuestion.setAnswers(temp);
+			newQuestion.setTextForPhoneJoker(textForPhoneJokerInput.getText());
+			System.out.println(newQuestion.getCorrectIndex());
+			System.out.println(newQuestion.getTime());
+			System.out.println(newQuestion.getText());
+			System.out.println(newQuestion.getTextForPhoneJoker());
+			for (int i = 0; i < newQuestion.getAnswers().length; i++) {
+				System.out.println(newQuestion.getAnswers()[i]);
+			}
+		});
+		
 		
 		pane.add(BorderLayout.WEST, left);
 		pane.add(BorderLayout.CENTER, menuPanel);

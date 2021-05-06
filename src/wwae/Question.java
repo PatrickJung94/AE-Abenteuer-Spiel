@@ -30,11 +30,51 @@ public class Question {
 	    return percentages;
 	}
 	
+	public String getTextForPhoneJoker() {
+		return textForPhoneJoker;
+	}
+
+	public void setTextForPhoneJoker(String textForPhoneJoker) {
+		this.textForPhoneJoker = textForPhoneJoker;
+	}
+
+	public int getCorrectIndex() {
+		return correctIndex;
+	}
+
+	public void setCorrectIndex(int correctIndex) {
+		this.correctIndex = correctIndex;
+	}
+
+	public String[] getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(String[] answers) {
+		this.answers = answers;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public double getTime() {
+		return time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+
 	public Question() {
-		this.time = 0.0;
-		this.text = "";
-		this.textForPhoneJoker = "";
-		this.correctIndex = 0;
-		this.answers = new String[4];
+		this.setTime(0.0);
+		this.setText("");
+		this.setTextForPhoneJoker("");
+		this.setCorrectIndex(0);
+		this.setAnswers(new String[4]);
 	}
 }
