@@ -22,19 +22,15 @@ public class Question {
 	    	percentages[i] = rand.nextDouble();
 	        sum += percentages[i];
 	    }
-
-	    for (int i = 0; i < percentages.length; i++) {
-	    	percentages[i] = Math.round(percentages[i] / sum * 100);
-	    }
-
 			double max = 0;
 			int indexOfMaxValue = 0;
-			for (int i = 0; i < percentages.length; i++) {
+	    for (int i = 0; i < percentages.length; i++) {
+	    	percentages[i] = Math.round(percentages[i] / sum * 100);
 				if (percentages[i] > max) {
 					max = percentages[i];
 					indexOfMaxValue = i;
 				}
-			}
+	    }
 
 			if (correctIndex != indexOfMaxValue) {
 				double tempPercentage = percentages[question.correctIndex];
