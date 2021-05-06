@@ -4,20 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-public class SpielPanel {
+public class SpielPanel extends JFrame {
 
-	JFrame window = new JFrame("Wer wird AEllionär");
 
+	private static final long serialVersionUID = 1L;
 	JPanel answers = new JPanel();
 	JPanel infoPanel = new JPanel();
 	JLabel questionLabel = new JLabel();
 	JPanel listenPanel = new JPanel();
 	JPanel jokerPanel = new JPanel();
 	JPanel leiterPanel = new JPanel();
-
+	
 	String[] answerPossibilities = new String[4];
 	String question = new String();
 
@@ -25,6 +26,7 @@ public class SpielPanel {
 	BoxLayout boxLayout = new BoxLayout(listenPanel, BoxLayout.Y_AXIS);
 	GridLayout boxLayoutJoker = new GridLayout(4, 1);
 	GridLayout boxLayoutLeiter = new GridLayout(10, 1);
+	
 	JButton joker50 = new JButton("50/50");
 	JButton jokerTelefon = new JButton("Telefonjoker");
 	JButton jokerPublikum = new JButton("Publikumsjoker");
@@ -32,9 +34,8 @@ public class SpielPanel {
 	
 	
 	
-	
-
 	public SpielPanel() {
+		super("Menü- Wer wird AEllionär");
 		init();
 	}
 
@@ -78,12 +79,9 @@ public class SpielPanel {
 		listenPanel.add(infoPanel);
 		listenPanel.add(answers);
 
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.getContentPane().add(listenPanel);
-		window.setSize(1920, 1080);
-		window.setVisible(true);
-		window.setResizable(false);
-		joker50.setPreferredSize(new Dimension(1000, 1000));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().add(listenPanel);
+		this.setPreferredSize(new Dimension(1000, 1000));
 	}
 
 	public void setAnswerPossibilities() {
@@ -101,9 +99,21 @@ public class SpielPanel {
 		this.question = "                               Wie lautet die zweite Schicht des OSI-Models ? ";
 		this.questionLabel.setText(question);
 	}
+	
+	public void showGamePanel() {
+        this.setSize(1920, 1080);
+        this.setVisible(true);
+        this.setResizable(false);
+    }
 
-	public static void main(String[] args) {
-		SpielPanel spielpanel = new SpielPanel();
-	}
+    public void hideGamePanel() {
+        this.setVisible(false);
+    }
+
+    public void close() {
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
+
+	
 
 }
