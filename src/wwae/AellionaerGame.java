@@ -1,7 +1,5 @@
 package wwae;
 
-import javax.swing.*;
-
 public class AellionaerGame {
 	
 	private SpielPanel spielPanel;
@@ -10,11 +8,10 @@ public class AellionaerGame {
 	public static void main(String[] args) {
 		new AellionaerGame();
 	}
+	
+	private MenuWindow menu;
 
 	public AellionaerGame() {
-		spielPanel = new SpielPanel();
-		spielPanel.showGamePanel();
-		
 	}
 	
 }
