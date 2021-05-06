@@ -57,4 +57,4 @@ https://drive.google.com/file/d/13dwi1nQUwPN4eJpYzeAu6P-TuHJw0jh6/view?usp=shari
 
 
 
-###### von Christian, Markus, Patrick, Max, Till, Omar, Johannes
+###### von Christian, Markus, Patrick, Max, Till, Omar
