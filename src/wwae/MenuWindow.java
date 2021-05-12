@@ -9,9 +9,11 @@ import javax.swing.border.AbstractBorder;
 public class MenuWindow extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
+	private AellionaerGame gameContext;
 
-	public MenuWindow() {
+	public MenuWindow(AellionaerGame _gameContext) {
 		super("Menü - Wer wird AEllionär");
+		gameContext = _gameContext;
 		createLayout();
 	}
 	
@@ -51,6 +53,10 @@ public class MenuWindow extends JFrame {
 		menuBlockButtons.add(startBtn);
 		menuBlockButtons.add(settingsBtn);
 		menuBlockButtons.add(exitBtn);
+		
+		startBtn.addActionListener(event -> {
+			gameContext.menuToGamePanel();
+		});
 		
 		JPanel left = new JPanel();
 		left.setPreferredSize(new Dimension(400, 400));
