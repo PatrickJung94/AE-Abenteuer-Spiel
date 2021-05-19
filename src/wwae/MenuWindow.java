@@ -11,6 +11,7 @@ public class MenuWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private AellionaerGame gameContext;
 	private CreateQuestion createQuestion;
+	private HighScorePopup highScorePopup;
 
 	public MenuWindow(AellionaerGame _gameContext) {
 		super("Men� - Wer wird AEllion�r");
@@ -91,6 +92,23 @@ public class MenuWindow extends JFrame {
 		addQuestions.addActionListener(event -> {
 			createQuestion = new CreateQuestion();
 			createQuestion.showForm();
+		});
+		highscore.addActionListener(event -> {
+			int x= 500;
+			int y= 450;
+			int locationX=this.getX() + (this.getWidth() / 2) - (x / 2);
+			int locationY=this.getY() + (this.getHeight() / 2) - (y / 2);
+			String data[] = { "omss  ssss sar1aas", "10098222830", "2021-10-10 13:30", "omar2", "200", "2021-10-10 13:30",
+					"omar3", "300", "2021-10-10 13:30", "omar4", "400", "2021-10-10 13:30", "omar5", "500",
+					"2021-10-10 12:30", "omar6", "600", "2021-10-10 12:30", "omar7", "700", "2021-10-10 12:30", "omar8",
+					"800", "2021-10-10 12:30", "omar9", "900", "2021-10-10 12:30", "omar10", "1000", "2021-10-12 10:30",
+					"omar1", "1000", "2021-10-12 10:30", "omar2", "200", "2021-10-12 10:30", "omar3", "300",
+					"2021-10-12 10:30", "omar4", "400", "2021-10-12 10:30", "omar5", "500", "2021-10-12 10:30", "omar6",
+					"600", "2021-10-12 10:30", "omar7", "700", "2021-10-12 10:30", "omar8", "800", "2021-10-12 10:30",
+					"omar9", "900", "2021-10-12 10:30", "omar10", "1000", "2021-10-12 10:30" };
+			highScorePopup = new HighScorePopup(data,x,y,locationX,locationY);
+			highScorePopup.setVisible(true);
+		
 		});
 		
 		
