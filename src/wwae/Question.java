@@ -11,6 +11,7 @@ public class Question {
 	// Joker related
 	private int correctIndex;
 	private String textForPhoneJoker;
+	private String textForAdditionalJoker;
 	
 	// TODO: place the highest number where correctIndex is located in the array
 	public double[] generateAudiencePercentage(Question question) {
