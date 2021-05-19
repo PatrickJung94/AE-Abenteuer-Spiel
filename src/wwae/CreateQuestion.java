@@ -21,7 +21,7 @@ public class CreateQuestion extends JFrame {
 	}
 	
 	private void createForm() {
-		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 
 		Container pane = this.getContentPane();
 
