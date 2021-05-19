@@ -10,9 +10,10 @@ public class MenuWindow extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private AellionaerGame gameContext;
+	private CreateQuestion createQuestion;
 
 	public MenuWindow(AellionaerGame _gameContext) {
-		super("Menü - Wer wird AEllionär");
+		super("Menï¿½ - Wer wird AEllionï¿½r");
 		gameContext = _gameContext;
 		createLayout();
 	}
@@ -46,7 +47,7 @@ public class MenuWindow extends JFrame {
 		menuPanel.add(menuBlockButtons);
 		menuPanel.add(menuBlockBottom);
 		
-		JLabel header = new JLabel("Wer wird AEllionär");
+		JLabel header = new JLabel("Wer wird AEllionï¿½r");
 		header.setFont(new Font(header.getFont().getName(), Font.PLAIN, 36));
 		menuBlockTop.add(header);
 		
@@ -74,7 +75,7 @@ public class MenuWindow extends JFrame {
 		JButton addQuestions = new JButton("Fragen anlegen");
 		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
 		addQuestions.setBorder(border);
-		JButton chooseSubject = new JButton("Fach auswählen");
+		JButton chooseSubject = new JButton("Fach auswï¿½hlen");
 		chooseSubject.setPreferredSize(new Dimension(chooseSubject.getPreferredSize().width + 30, 40));
 		chooseSubject.setBorder(border);
 		JButton difficulty = new JButton("Schwierigkeitsgrad");
@@ -86,6 +87,11 @@ public class MenuWindow extends JFrame {
 		optionBar.add(addQuestions);
 		optionBar.add(chooseSubject);
 		optionBar.add(difficulty);
+
+		addQuestions.addActionListener(event -> {
+			createQuestion = new CreateQuestion();
+			createQuestion.showForm();
+		});
 		
 		
 		pane.add(BorderLayout.WEST, left);
