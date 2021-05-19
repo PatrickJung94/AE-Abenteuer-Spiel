@@ -75,7 +75,7 @@ public class HighScorePopup extends JFrame {
 				_this.dispatchEvent(new WindowEvent(_this, WindowEvent.WINDOW_CLOSING));
 			}
 		});
-		/* Array ausfüllen */
+		/* Array ausfï¿½llen */
 		// add column to Array
 		model.addColumn("Rang");
 		model.addColumn("Name");
@@ -135,26 +135,6 @@ public class HighScorePopup extends JFrame {
 
 			return this;
 		}
-
-	}
-
-	public static void main(String[] args) {
-		int x= 450;
-		int y= 400;
-		int locationX=450;
-		int locationY=150;
-		String data[] = { "omss  ssss sar1aas", "10098222830", "2021-10-10 13:30", "omar2", "200", "2021-10-10 13:30",
-				"omar3", "300", "2021-10-10 13:30", "omar4", "400", "2021-10-10 13:30", "omar5", "500",
-				"2021-10-10 12:30", "omar6", "600", "2021-10-10 12:30", "omar7", "700", "2021-10-10 12:30", "omar8",
-				"800", "2021-10-10 12:30", "omar9", "900", "2021-10-10 12:30", "omar10", "1000", "2021-10-12 10:30",
-				"omar1", "1000", "2021-10-12 10:30", "omar2", "200", "2021-10-12 10:30", "omar3", "300",
-				"2021-10-12 10:30", "omar4", "400", "2021-10-12 10:30", "omar5", "500", "2021-10-12 10:30", "omar6",
-				"600", "2021-10-12 10:30", "omar7", "700", "2021-10-12 10:30", "omar8", "800", "2021-10-12 10:30",
-				"omar9", "900", "2021-10-12 10:30", "omar10", "1000", "2021-10-12 10:30" };
-		HighScorePopup highScore = new HighScorePopup(data,x,y,locationX,locationY);
-		highScore.setVisible(true);
-		
-	
 
 	}
 
