@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class SpielPanel extends JFrame {
 
-
+	private AellionaerGame gameContext;
 	private static final long serialVersionUID = 1L;
 	JPanel answers = new JPanel();
 	JPanel infoPanel = new JPanel();
@@ -32,10 +32,9 @@ public class SpielPanel extends JFrame {
 	JButton jokerPublikum = new JButton("Publikumsjoker");
 	JButton jokerZusatz = new JButton("Zusatzjoker");
 	
-	
-	
-	public SpielPanel() {
+	public SpielPanel(AellionaerGame _gameContext) {
 		super("Menü- Wer wird AEllionär");
+		gameContext = _gameContext;
 		init();
 	}
 
