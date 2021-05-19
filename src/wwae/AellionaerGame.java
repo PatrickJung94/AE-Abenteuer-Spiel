@@ -1,26 +1,25 @@
 package wwae;
 
-import javax.swing.*;
-
 public class AellionaerGame {
-	private CreateQuestion createQuestion;
+	private MenuWindow menu = new MenuWindow(this);
+	private SpielPanel gp = new SpielPanel(this);
+	
 	public static void main(String[] args) {
 		new AellionaerGame();
 	}
 
 	public AellionaerGame() {
-		init();
+		menu.showMenu();
 	}
 	
-	private void init() {
-		JFrame window = new JFrame("Wer wird AEllion�r");
-		window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		createQuestion = new CreateQuestion();
-		createQuestion.showForm();
-		
-		
-		window.setSize(1280, 720);
-		window.setVisible(true);
-		window.setResizable(false);
+	public void gamePanelToMenu() {
+		gp.hideGamePanel();
+		menu.showMenu();
 	}
+	
+	public void menuToGamePanel() {
+		menu.hideMenu();
+		gp.showGamePanel();
+	}
+	
 }
