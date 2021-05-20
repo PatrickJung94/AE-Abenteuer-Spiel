@@ -26,8 +26,6 @@ public class FileSystem {
      * Class constructor
      */
     public FileSystem() {
-        this.addQuestionToBundle("test");
-        // this.editBundleFile("test");
     }
 
     /**
@@ -91,37 +89,5 @@ public class FileSystem {
             e.printStackTrace();
         }
     }
-
-    // public void editBundleFile(String bundleName/* , Question questionObj */) {
-    //     JSONArray jFileArray = new JSONArray();
-
-    //     JSONObject jQuestionObj = new JSONObject();
-    //     ArrayList<String> jQuestionArray = new ArrayList<String>();
-        
-    //     jQuestionArray.add("Frage 1");
-    //     jQuestionArray.add("Frage 2");
-    //     jQuestionArray.add("Frage 3");
-    //     jQuestionArray.add("Frage 4");
-
-    //     jQuestionObj.put("Antworten", jQuestionArray);
-    //     jQuestionObj.put("Fragentext", "Fragentext");
-    //     jQuestionObj.put("Time", (double) 30.00);
-        
-    //     jFileArray.add(jQuestionObj);
-        
-        
-    //     Path jFileObjPath = Paths.get("data/output.json");
-    //     byte jObjData[] = jFileArray.toJSONString().getBytes();
-        
-    //     try (OutputStream out = new BufferedOutputStream(Files.newOutputStream(jFileObjPath, APPEND))) {
-    //         out.write(jObjData, 0, jObjData.length);
-    //         out.close();
-    //     }
-    //     catch (IOException e) {
-    //         System.out.println("An error occurred.");
-    //         e.printStackTrace();
-    //     }
-    //     System.out.println("JSON file created: "+jFileArray.toJSONString());
-    // }
 }
 //Gruß an Markus :D
