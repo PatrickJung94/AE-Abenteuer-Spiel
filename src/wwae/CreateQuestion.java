@@ -11,12 +11,6 @@ public class CreateQuestion extends JFrame {
 	Question newQuestion = new Question();
 	public CreateQuestion() {
 		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
-		// For Testing generateAudiencePercentage
-		// double[] percentages = newQuestion.generateAudiencePercentage(newQuestion);
-		// System.out.println(percentages);
-		// for (int i = 0; i < percentages.length; i++) {
-		// 	System.out.print(percentages[i] + ", ");
-		// }
 		createForm();
 	}
 	
