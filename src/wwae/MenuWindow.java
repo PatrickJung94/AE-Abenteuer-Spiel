@@ -13,7 +13,22 @@ public class MenuWindow extends JFrame {
 	private CreateQuestion createQuestion;
 	private HighScorePopup highScorePopup;
 	private int numberHiscorePopup = 0;
-
+	
+	private JPanel menuPanel = new JPanel();
+	private JPanel menuBlockTop = new JPanel();
+	private JPanel menuBlockButtons = new JPanel();
+	private JPanel menuBlockBottom = new JPanel();
+	private JPanel left = new JPanel();
+	private JPanel right = new JPanel();
+	private JPanel optionBar = new JPanel();
+	private JButton startBtn = new JButton("Start");
+	private JButton settingsBtn = new JButton("Einstellungen");
+	private JButton exitBtn = new JButton("Beenden");
+	private JButton highscore = new JButton("Highscore anzeigen");
+	private JButton addQuestions = new JButton("Fragen anlegen");
+	private JButton chooseSubject = new JButton("Fach auswählen");
+	private JButton difficulty = new JButton("Schwierigkeitsgrad");
+	
 	public MenuWindow(AellionaerGame _gameContext) {
 		super("Menü - Wer wird AEllionär");
 		gameContext = _gameContext;
@@ -26,19 +41,19 @@ public class MenuWindow extends JFrame {
 		
 		Container pane = this.getContentPane();
 		
-		JPanel menuPanel = new JPanel();
-		menuPanel.setLayout(new GridLayout(3, 1));
-		JPanel menuBlockTop = new JPanel();
-		menuBlockTop.setLayout(new GridBagLayout());
-		JPanel menuBlockButtons = new JPanel();
-		menuBlockButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
-		JPanel menuBlockBottom = new JPanel();
 		
-		JButton startBtn = new JButton("Start");
+		menuPanel.setLayout(new GridLayout(3, 1));
+		
+		menuBlockTop.setLayout(new GridBagLayout());
+		
+		menuBlockButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
+		
+		
+		
 		startBtn.setBorder(border);
-		JButton settingsBtn = new JButton("Einstellungen");
+		
 		settingsBtn.setBorder(border);
-		JButton exitBtn = new JButton("Beenden");
+		
 		exitBtn.setBorder(border);
 		
 		startBtn.setPreferredSize(new Dimension(460, 35));
@@ -52,7 +67,6 @@ public class MenuWindow extends JFrame {
 		JLabel header = new JLabel(ouml);
 		header.setFont(new Font(header.getFont().getName(), Font.PLAIN, 36));
 		menuBlockTop.add(header);
-		
 		menuBlockButtons.add(startBtn);
 		menuBlockButtons.add(settingsBtn);
 		menuBlockButtons.add(exitBtn);
@@ -61,26 +75,24 @@ public class MenuWindow extends JFrame {
 			gameContext.menuToGamePanel();
 		});
 		
-		JPanel left = new JPanel();
 		left.setPreferredSize(new Dimension(400, 400));
-		JPanel right = new JPanel();
 		right.setPreferredSize(new Dimension(400, 400));
 		
-		JPanel optionBar = new JPanel();
 		Color optionPanelColor = new Color(220,220,220);
+		
 		optionBar.setBorder(BorderFactory.createMatteBorder(18, 0, 0, 0, optionPanelColor));
 		optionBar.setPreferredSize(new Dimension(getSize().width, 75));
 		optionBar.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 0));
-		JButton highscore = new JButton("Highscore anzeigen");
+		
 		highscore.setPreferredSize(new Dimension(highscore.getPreferredSize().width + 30, 40));
 		highscore.setBorder(border);
-		JButton addQuestions = new JButton("Fragen anlegen");
+		
 		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
 		addQuestions.setBorder(border);
-		JButton chooseSubject = new JButton("Fach auswählen");
+		
 		chooseSubject.setPreferredSize(new Dimension(chooseSubject.getPreferredSize().width + 30, 40));
 		chooseSubject.setBorder(border);
-		JButton difficulty = new JButton("Schwierigkeitsgrad");
+		
 		difficulty.setPreferredSize(new Dimension(difficulty.getPreferredSize().width + 30, 40));
 		difficulty.setBorder(border);
 		optionBar.setBackground(optionPanelColor);
@@ -118,7 +130,7 @@ public class MenuWindow extends JFrame {
 	public void createpopup() {
 		numberHiscorePopup = 0;
 		int x= 500;
-		int y= 450;
+		int y= 420;
 		int locationX=this.getX() + (this.getWidth() / 2) - (x / 2);
 		int locationY=this.getY() + (this.getHeight() / 2) - (y / 2);
 		 String data[] = { "omss  ssss sar1aas", "10098222830", "2021-10-10 13:30", "omar2", "200", "2021-10-10 13:30",
@@ -137,6 +149,7 @@ public class MenuWindow extends JFrame {
 		this.setVisible(true);
 		this.setResizable(false);
 		//createpopup();
+		System.out.println(this.chooseSubject.getWidth());	
 		
 	}
 	
