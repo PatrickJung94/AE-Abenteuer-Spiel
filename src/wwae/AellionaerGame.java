@@ -6,7 +6,6 @@ public class AellionaerGame {
 	
 	public static void main(String[] args) {
 		new AellionaerGame();
-		new FileSystem();
 	}
 
 	public AellionaerGame() {

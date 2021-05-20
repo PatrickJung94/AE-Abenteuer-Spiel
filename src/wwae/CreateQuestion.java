@@ -9,6 +9,7 @@ import wwae.Question;
 public class CreateQuestion extends JFrame {
 	// add import of file
 	Question newQuestion = new Question();
+	FileSystem fileSystem = new FileSystem();
 	public CreateQuestion() {
 		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
 		// For Testing generateAudiencePercentage
@@ -204,6 +205,8 @@ public class CreateQuestion extends JFrame {
 			for (int i = 0; i < newQuestion.getAnswers().length; i++) {
 				System.out.println(newQuestion.getAnswers()[i]);
 			}
+
+			fileSystem.addQuestionToBundle("questiontest", newQuestion);
 		});
 		
 		
