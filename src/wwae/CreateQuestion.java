@@ -11,12 +11,6 @@ public class CreateQuestion extends JFrame {
 	Question newQuestion = new Question();
 	public CreateQuestion() {
 		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
-		// For Testing generateAudiencePercentage
-		// double[] percentages = newQuestion.generateAudiencePercentage(newQuestion);
-		// System.out.println(percentages);
-		// for (int i = 0; i < percentages.length; i++) {
-		// 	System.out.print(percentages[i] + ", ");
-		// }
 		createForm();
 	}
 	
@@ -26,7 +20,7 @@ public class CreateQuestion extends JFrame {
 		Container pane = this.getContentPane();
 
 		JPanel menuPanel = new JPanel();
-		menuPanel.setLayout(new GridLayout(5, 2));
+		menuPanel.setLayout(new GridLayout(6, 2));
 		
 		JPanel menuBlockTop = new JPanel();
 		menuBlockTop.setBackground(new Color(220,220,220));
@@ -181,6 +175,21 @@ public class CreateQuestion extends JFrame {
 		textForPhoneJokerInputPanel.add(textForPhoneJokerInput);
 		menuPanel.add(textForPhoneJokerPanel);
 		menuPanel.add(textForPhoneJokerInputPanel);
+
+		// ---------- Create Row for telephon joker Input -----------
+
+		JPanel textForAdditionalJokerPanel = new JPanel();
+		JLabel textForAdditionalJoker = new JLabel("Text für den Zusatz Joker");
+		textForAdditionalJoker.setPreferredSize(new Dimension(150, 40));
+
+		JPanel textForAdditionalJokerInputPanel = new JPanel();
+		JTextField textForAdditionalJokerInput = new JTextField();
+		textForAdditionalJokerInput.setPreferredSize(new Dimension(300, 40));
+
+		textForAdditionalJokerPanel.add(textForAdditionalJoker);
+		textForAdditionalJokerInputPanel.add(textForAdditionalJokerInput);
+		menuPanel.add(textForAdditionalJokerPanel);
+		menuPanel.add(textForAdditionalJokerInputPanel);
 
 		// ---------- Create save button action -----------
 
