@@ -27,7 +27,7 @@ public class CreateQuestion extends JFrame {
 		Container pane = this.getContentPane();
 
 		JPanel menuPanel = new JPanel();
-		menuPanel.setLayout(new GridLayout(5, 2));
+		menuPanel.setLayout(new GridLayout(6, 2));
 		
 		JPanel menuBlockTop = new JPanel();
 		menuBlockTop.setBackground(new Color(220,220,220));
@@ -59,7 +59,22 @@ public class CreateQuestion extends JFrame {
 		JPanel right = new JPanel();
 		right.setPreferredSize(new Dimension(200, 400));
 		right.setBackground(new Color(220,220,220));
-		
+
+		// ---------- Create Row for time Input -----------
+
+		JPanel bundleNamePanel = new JPanel();
+		JLabel bundleName = new JLabel("Name des Fragen-Bundles");
+		bundleName.setPreferredSize(new Dimension(150, 40));
+
+		JPanel bundleNameInputPanel = new JPanel();
+		JTextField bundleNameInput = new JTextField();
+		bundleNameInput.setPreferredSize(new Dimension(300, 40));
+
+		bundleNamePanel.add(bundleName);
+		bundleNameInputPanel.add(bundleNameInput);
+		menuPanel.add(bundleNamePanel);
+		menuPanel.add(bundleNameInputPanel);
+
 		// ---------- Create Row for time Input -----------
 
 		JPanel timePanel = new JPanel();
@@ -206,7 +221,7 @@ public class CreateQuestion extends JFrame {
 				System.out.println(newQuestion.getAnswers()[i]);
 			}
 
-			fileSystem.addQuestionToBundle("questiontest", newQuestion);
+			fileSystem.addQuestionToBundle(bundleNameInput.getText(), newQuestion);
 		});
 		
 		
