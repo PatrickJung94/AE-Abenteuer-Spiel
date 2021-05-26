@@ -1,10 +1,13 @@
 package wwae;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
+import javax.swing.border.AbstractBorder;
+
 
 import javax.swing.*;
 
@@ -33,7 +36,7 @@ public class SpielPanel extends JFrame {
 	JButton jokerZusatz = new JButton("Zusatzjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
-		super("Menü- Wer wird AEllionär");
+		super("Menï¿½- Wer wird AEllionï¿½r");
 		gameContext = _gameContext;
 		init();
 	}
@@ -42,12 +45,28 @@ public class SpielPanel extends JFrame {
 
 		setAnswerPossibilities();
 		setQuestion();
+		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
+
+		joker50.setBorder(border);
+		jokerTelefon.setBorder(border);
+		jokerPublikum.setBorder(border);
+		jokerZusatz.setBorder(border);
+		
+
 
 		answers.setLayout(new GridLayout(2, 2));
 		answers.setPreferredSize(new Dimension(1280, 220));
+		JButton[] buttons = new JButton[4];
+		
 		for (int i = 0; i < 4; i++) {
-			answers.add(new JButton(answerPossibilities[i]));
+			buttons[i] = new JButton(answerPossibilities[i]);
+			answers.add(buttons[i]);
 		}
+
+		buttons[0].setBorder(border);
+		buttons[1].setBorder(border);
+		buttons[2].setBorder(border);
+		buttons[3].setBorder(border);
 		
 		
 		questionLabel.setFont(f);
@@ -59,11 +78,17 @@ public class SpielPanel extends JFrame {
 
 		leiterPanel.setLayout(boxLayoutLeiter);
 		
-		int i=1000;
+		int i=10;
+		JButton[] labels = new JButton[11];  
 		while (i>0) {
-			leiterPanel.add(new JLabel(String.valueOf(i)));
-			i=i-100;
+			labels[i] = new JButton(String.valueOf(i*10));
+			leiterPanel.add(labels[i]);
+			labels[i].setBorder(border);
+			System.out.println(i);
+			i=i-1;
 		}
+
+
 		
 
 		jokerPanel.setLayout(boxLayoutJoker);
@@ -84,16 +109,16 @@ public class SpielPanel extends JFrame {
 	}
 
 	public void setAnswerPossibilities() {
-		// später an DB anbinden, aktuell noch Mockdaten
+		// spï¿½ter an DB anbinden, aktuell noch Mockdaten
 
 		answerPossibilities[0] = "A: Anwendungsschicht";
 		answerPossibilities[1] = "B: Sicherungsschicht";
-		answerPossibilities[2] = "C: Bitübertragungsshicht";
+		answerPossibilities[2] = "C: Bitï¿½bertragungsshicht";
 		answerPossibilities[3] = "D: Transportschicht";
 	}
 
 	public void setQuestion() {
-		// später an DB anbinden, aktuell noch Mockdaten
+		// spï¿½ter an DB anbinden, aktuell noch Mockdaten
 
 		this.question = "                               Wie lautet die zweite Schicht des OSI-Models ? ";
 		this.questionLabel.setText(question);
