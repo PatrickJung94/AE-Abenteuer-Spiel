@@ -52,13 +52,9 @@ public class Question {
 		int[] outcomes = new int[2];
 		int otherIndex = -1;
 
-		System.out.println("correct index = " + question.correctIndex);
-
 		do {
-			System.out.println("loop otherindex = " + otherIndex);
 			otherIndex = rand.nextInt(4);
 		} while (otherIndex == question.correctIndex && otherIndex > -1 );
-		System.out.println("result otherindex = " + otherIndex);
 
 		outcomes[0] = correctIndex;
 		outcomes[1] = otherIndex;

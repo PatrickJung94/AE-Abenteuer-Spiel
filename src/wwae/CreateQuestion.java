@@ -11,7 +11,6 @@ public class CreateQuestion extends JFrame {
 	Question newQuestion = new Question();
 	public CreateQuestion() {
 		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
-		newQuestion.generateBargraphForAudienceJoker(newQuestion);
 		createForm();
 	}
 	
