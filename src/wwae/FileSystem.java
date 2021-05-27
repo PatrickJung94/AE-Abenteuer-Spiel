@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -118,6 +119,7 @@ public class FileSystem {
 
         jRankObj.put("name", rank.getName());
         jRankObj.put("score", rank.getScore());
+        jRankObj.put("ts", rank.getTimestamp());
 
         jFileArray.add(jRankObj);
 
@@ -147,7 +149,14 @@ public class FileSystem {
                 for (int i = 0; i < jFileArray.size(); i++ ) {
                     String name = ((JSONObject)jFileArray.get(i)).get("name").toString();
                     int score = Integer.parseInt(((JSONObject)jFileArray.get(i)).get("score").toString());
-                    rankings.add(new Rank(name, score));
+
+                    try {
+                        Date date = new SimpleDateFormat("dd.MM.yyyy HH:mm").parse(((JSONObject)jFileArray.get(i)).get("ts").toString());
+                        rankings.add(new Rank(name, score, date));
+                    } catch (java.text.ParseException e) {
+                        System.out.println("RANK: Couldnt parse the Timestamp");
+                        e.printStackTrace();
+                    }
                 }
             } 
             catch (FileNotFoundException e) {

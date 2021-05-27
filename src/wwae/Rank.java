@@ -1,13 +1,24 @@
 package wwae;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Rank {
 
     private String name;
     private int score;
+    private Date timestamp;
+
+    public Rank (String _name, int _score, Date _timestamp) {
+        this.setName(_name);
+        this.setScore(_score);
+        this.setTimestamp(_timestamp);
+    }
 
     public Rank (String _name, int _score) {
         this.setName(_name);
         this.setScore(_score);
+        this.setTimestamp(new Date());
     }
 
     public void increaseScore(int amount) {
@@ -24,21 +35,31 @@ public class Rank {
         return this.name.equalsIgnoreCase(_name);
     }
 
-    public String getName() {
-        return name;
+    public String getTimestamp() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        
+        return formatter.format(this.timestamp);
     }
 
-    private void setName(String name) {
-        this.name = name;
+    public void setTimestamp(Date _timestamp) {
+        this.timestamp = _timestamp;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    private void setName(String _name) {
+        this.name = _name;
     }
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 
-    private void setScore(int score) {
+    private void setScore(int _score) {
         if(score >= 0) {
-            this.score = score;
+            this.score = _score;
         } else {
             this.score = 0;
         }
