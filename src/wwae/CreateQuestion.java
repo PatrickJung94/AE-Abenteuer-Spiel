@@ -12,12 +12,6 @@ public class CreateQuestion extends JFrame {
 	FileSystem fileSystem = new FileSystem();
 	public CreateQuestion() {
 		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
-		// For Testing generateAudiencePercentage
-		// double[] percentages = newQuestion.generateAudiencePercentage(newQuestion);
-		// System.out.println(percentages);
-		// for (int i = 0; i < percentages.length; i++) {
-		// 	System.out.print(percentages[i] + ", ");
-		// }
 		createForm();
 	}
 	
@@ -197,6 +191,21 @@ public class CreateQuestion extends JFrame {
 		textForPhoneJokerInputPanel.add(textForPhoneJokerInput);
 		menuPanel.add(textForPhoneJokerPanel);
 		menuPanel.add(textForPhoneJokerInputPanel);
+
+		// ---------- Create Row for telephon joker Input -----------
+
+		JPanel textForAdditionalJokerPanel = new JPanel();
+		JLabel textForAdditionalJoker = new JLabel("Text für den Zusatz Joker");
+		textForAdditionalJoker.setPreferredSize(new Dimension(150, 40));
+
+		JPanel textForAdditionalJokerInputPanel = new JPanel();
+		JTextField textForAdditionalJokerInput = new JTextField();
+		textForAdditionalJokerInput.setPreferredSize(new Dimension(300, 40));
+
+		textForAdditionalJokerPanel.add(textForAdditionalJoker);
+		textForAdditionalJokerInputPanel.add(textForAdditionalJokerInput);
+		menuPanel.add(textForAdditionalJokerPanel);
+		menuPanel.add(textForAdditionalJokerInputPanel);
 
 		// ---------- Create save button action -----------
 
