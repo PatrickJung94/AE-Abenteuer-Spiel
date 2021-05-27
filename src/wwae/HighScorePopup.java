@@ -17,10 +17,6 @@ public class HighScorePopup extends JFrame {
 		setUndecorated(true);
 		setLocation(locationX, locationY);
 
-		//for (Rank r : data) {
-		//	System.out.println(r.getName() + " " + r.getTimestamp());
-		//}
-		
 		JLabel titel = new JLabel("Highscore", SwingConstants.CENTER);
 		JScrollPane scrollPane = new JScrollPane();
 		JPanel titlePanel = new JPanel();
@@ -89,7 +85,6 @@ public class HighScorePopup extends JFrame {
 		
 		// add Element to Array List
 		for (int i = 0; i < data.size(); i++) {
-			System.out.println(data.get(i).getName());
 			model.addRow(new Object[0]);
 			model.setValueAt(i + 1, i, 0);
 			model.setValueAt(data.get(i).getName(), i, 1);
