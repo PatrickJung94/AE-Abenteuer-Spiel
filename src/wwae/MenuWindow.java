@@ -39,14 +39,11 @@ public class MenuWindow extends JFrame {
 		
 		JButton startBtn = new JButton("Start");
 		startBtn.setBorder(border);
-		JButton settingsBtn = new JButton("Einstellungen");
-		settingsBtn.setBorder(border);
 		JButton exitBtn = new JButton("Beenden");
 		exitBtn.setBorder(border);
 		
-		startBtn.setPreferredSize(new Dimension(460, 35));
-		settingsBtn.setPreferredSize(new Dimension(460, 35));
-		exitBtn.setPreferredSize(new Dimension(460, 35));
+		startBtn.setPreferredSize(new Dimension(460, 40));
+		exitBtn.setPreferredSize(new Dimension(460, 40));
 		
 		menuPanel.add(menuBlockTop);
 		menuPanel.add(menuBlockButtons);
@@ -57,7 +54,6 @@ public class MenuWindow extends JFrame {
 		menuBlockTop.add(header);
 		
 		menuBlockButtons.add(startBtn);
-		menuBlockButtons.add(settingsBtn);
 		menuBlockButtons.add(exitBtn);
 		
 		startBtn.addActionListener(event -> {
