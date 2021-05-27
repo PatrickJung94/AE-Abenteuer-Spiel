@@ -35,7 +35,7 @@ public class FileSystem {
      * @throws IOException
      * @throws ParseException
      */
-    public void addQuestionToBundle(String bundleName/* , Question questionObj */) {
+    public void addQuestionToBundle(String bundleName, Question questionObj) {
         JSONArray jFileArray = new JSONArray();
         JSONObject jQuestionObj = new JSONObject();
 
@@ -64,17 +64,20 @@ public class FileSystem {
                 e.printStackTrace();
             }
         }
+
+        jQuestionObj.put("time", questionObj.getTime());
+        jQuestionObj.put("text", questionObj.getText());
         
-        jQuestionArray.add("Frage 1");
-        jQuestionArray.add("Frage 2");
-        jQuestionArray.add("Frage 3");
-        jQuestionArray.add("Frage 4");
+        jQuestionArray.add(questionObj.getAnswers()[0]);
+        jQuestionArray.add(questionObj.getAnswers()[1]);
+        jQuestionArray.add(questionObj.getAnswers()[2]);
+        jQuestionArray.add(questionObj.getAnswers()[3]);
+        jQuestionObj.put("answers", jQuestionArray);
     
-        jQuestionObj.put("Antworten", jQuestionArray);
-        jQuestionObj.put("Index", 1);
-        jQuestionObj.put("Fragentext", "Fragentext");
-        jQuestionObj.put("Time", (double) 30.00);
-    
+        jQuestionObj.put("correctIndex", questionObj.getCorrectIndex());
+
+        jQuestionObj.put("textForPhoneJoker", questionObj.getTextForPhoneJoker());
+
         jFileArray.add(jQuestionObj);
 
         byte jObjData[] = jFileArray.toJSONString().getBytes();

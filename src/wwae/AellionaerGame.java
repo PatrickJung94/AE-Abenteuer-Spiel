@@ -7,7 +7,7 @@ public class AellionaerGame {
 	public static void main(String[] args) {
 		new AellionaerGame();
 	}
- 
+
 	public AellionaerGame() {
 		menu.showMenu();
 	}
