@@ -27,7 +27,7 @@ public class CreateQuestion extends JFrame {
 		Container pane = this.getContentPane();
 
 		JPanel menuPanel = new JPanel();
-		menuPanel.setLayout(new GridLayout(6, 2));
+		menuPanel.setLayout(new GridLayout(7, 2));
 		
 		JPanel menuBlockTop = new JPanel();
 		menuBlockTop.setBackground(new Color(220,220,220));
