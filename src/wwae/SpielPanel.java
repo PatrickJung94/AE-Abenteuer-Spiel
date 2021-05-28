@@ -33,7 +33,7 @@ public class SpielPanel extends JFrame {
 	JButton jokerZusatz = new JButton("Zusatzjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
-		super("Menü- Wer wird AEllionär");
+		super("Men\u00fc- Wer wird AEllion\u00e4r");
 		gameContext = _gameContext;
 		init();
 	}
@@ -84,16 +84,16 @@ public class SpielPanel extends JFrame {
 	}
 
 	public void setAnswerPossibilities() {
-		// später an DB anbinden, aktuell noch Mockdaten
+		// spï¿½ter an DB anbinden, aktuell noch Mockdaten
 
 		answerPossibilities[0] = "A: Anwendungsschicht";
 		answerPossibilities[1] = "B: Sicherungsschicht";
-		answerPossibilities[2] = "C: Bitübertragungsshicht";
+		answerPossibilities[2] = "C: Bit\u00fcbertragungsshicht";
 		answerPossibilities[3] = "D: Transportschicht";
 	}
 
 	public void setQuestion() {
-		// später an DB anbinden, aktuell noch Mockdaten
+		// spï¿½ter an DB anbinden, aktuell noch Mockdaten
 
 		this.question = "                               Wie lautet die zweite Schicht des OSI-Models ? ";
 		this.questionLabel.setText(question);
