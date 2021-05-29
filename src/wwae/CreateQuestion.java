@@ -12,6 +12,7 @@ public class CreateQuestion extends JFrame {
 	FileSystem fileSystem = new FileSystem();
 	public CreateQuestion() {
 		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
+		newQuestion.generateAudiencePercentage(new Question());
 		createForm();
 	}
 	

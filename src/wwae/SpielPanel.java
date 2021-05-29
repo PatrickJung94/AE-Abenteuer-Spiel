@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import javax.swing.border.AbstractBorder;
+import java.awt.FlowLayout;
+
 
 
 import javax.swing.*;
@@ -21,14 +23,17 @@ public class SpielPanel extends JFrame {
 	JPanel listenPanel = new JPanel();
 	JPanel jokerPanel = new JPanel();
 	JPanel leiterPanel = new JPanel();
+	JPanel menuePanel = new JPanel();
+	JPanel eventAlert = new JPanel();
 	
 	String[] answerPossibilities = new String[4];
 	String question = new String();
 
 	Font f = new Font(Font.SERIF, Font.BOLD, 50);
 	BoxLayout boxLayout = new BoxLayout(listenPanel, BoxLayout.Y_AXIS);
-	GridLayout boxLayoutJoker = new GridLayout(4, 1);
-	GridLayout boxLayoutLeiter = new GridLayout(10, 1);
+	FlowLayout flowLayoutJoker = new FlowLayout(); 
+	FlowLayout flowLayoutLeiter = new FlowLayout();
+	FlowLayout flowLayoutMenue = new FlowLayout();
 	
 	JButton joker50 = new JButton("50/50");
 	JButton jokerTelefon = new JButton("Telefonjoker");
@@ -51,6 +56,11 @@ public class SpielPanel extends JFrame {
 		jokerTelefon.setBorder(border);
 		jokerPublikum.setBorder(border);
 		jokerZusatz.setBorder(border);
+
+		jokerTelefon.setPreferredSize(new Dimension(300,100));
+		joker50.setPreferredSize(new Dimension(300,100));
+		jokerPublikum.setPreferredSize(new Dimension(300,100));
+		jokerZusatz.setPreferredSize(new Dimension(300,100));
 		
 
 
@@ -67,21 +77,37 @@ public class SpielPanel extends JFrame {
 		buttons[1].setBorder(border);
 		buttons[2].setBorder(border);
 		buttons[3].setBorder(border);
+
+		
+		flowLayoutMenue.setHgap(500);
+		menuePanel.setLayout(flowLayoutMenue);
+		
+		JButton zurueckButton = new JButton("Zurück");
+		JButton beendenButton = new JButton("Beenden");
+		JProgressBar timerProgressBar = new JProgressBar();
+
+		menuePanel.add(zurueckButton);
+		menuePanel.add(timerProgressBar);
+		menuePanel.add(beendenButton);
 		
 		
 		questionLabel.setFont(f);
 		infoPanel.setLayout(new BorderLayout());
-
+		infoPanel.add(menuePanel, BorderLayout.NORTH);
 		infoPanel.add(jokerPanel, BorderLayout.WEST);
 		infoPanel.add(leiterPanel, BorderLayout.EAST);
 		infoPanel.add(questionLabel, BorderLayout.SOUTH);
+		infoPanel.add(eventAlert, BorderLayout.CENTER);
 
-		leiterPanel.setLayout(boxLayoutLeiter);
+		leiterPanel.setLayout(flowLayoutLeiter);
+		leiterPanel.setPreferredSize(new Dimension(400,500));
+		leiterPanel.setBackground(new Color(255,0,0));
 		
 		int i=10;
 		JButton[] labels = new JButton[11];  
 		while (i>0) {
 			labels[i] = new JButton(String.valueOf(i*10));
+			labels[i].setPreferredSize(new Dimension(300,70));
 			leiterPanel.add(labels[i]);
 			labels[i].setBorder(border);
 			System.out.println(i);
@@ -90,12 +116,15 @@ public class SpielPanel extends JFrame {
 
 
 		
-
-		jokerPanel.setLayout(boxLayoutJoker);
+		jokerPanel.setPreferredSize(new Dimension(400,500));
+		jokerPanel.setBackground(new Color(255,0,0));
+		jokerPanel.setLayout(flowLayoutJoker);
 		jokerPanel.add(joker50);
 		jokerPanel.add(jokerTelefon);
 		jokerPanel.add(jokerPublikum);
 		jokerPanel.add(jokerZusatz);
+
+	
 		
 		
 		listenPanel.setLayout(boxLayout);
