@@ -98,6 +98,11 @@ public class MenuWindow extends JFrame {
 		optionBar.add(chooseSubject);
 		optionBar.add(difficulty);
 
+		addQuestions.addActionListener(event -> {
+			createQuestion = new CreateQuestion();
+			createQuestion.showForm();
+		});
+
 		difficulty.addActionListener(event -> {
 			if (!diffWindowOpen) {
 				ds.showDifficultySelection();
