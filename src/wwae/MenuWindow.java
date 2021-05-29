@@ -2,6 +2,8 @@ package wwae;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
@@ -13,9 +15,10 @@ public class MenuWindow extends JFrame {
 	private CreateQuestion createQuestion;
 	private HighScorePopup highScorePopup;
 	private int numberHiscorePopup = 0;
+	private FileSystem fs = new FileSystem();
 
 	public MenuWindow(AellionaerGame _gameContext) {
-		super("Menü - Wer wird AEllionär");
+		super("Menï¿½ - Wer wird AEllionï¿½r");
 		gameContext = _gameContext;
 		createLayout();
 	}
@@ -36,14 +39,11 @@ public class MenuWindow extends JFrame {
 		
 		JButton startBtn = new JButton("Start");
 		startBtn.setBorder(border);
-		JButton settingsBtn = new JButton("Einstellungen");
-		settingsBtn.setBorder(border);
 		JButton exitBtn = new JButton("Beenden");
 		exitBtn.setBorder(border);
 		
-		startBtn.setPreferredSize(new Dimension(460, 35));
-		settingsBtn.setPreferredSize(new Dimension(460, 35));
-		exitBtn.setPreferredSize(new Dimension(460, 35));
+		startBtn.setPreferredSize(new Dimension(460, 40));
+		exitBtn.setPreferredSize(new Dimension(460, 40));
 		
 		menuPanel.add(menuBlockTop);
 		menuPanel.add(menuBlockButtons);
@@ -54,7 +54,6 @@ public class MenuWindow extends JFrame {
 		menuBlockTop.add(header);
 		
 		menuBlockButtons.add(startBtn);
-		menuBlockButtons.add(settingsBtn);
 		menuBlockButtons.add(exitBtn);
 		
 		startBtn.addActionListener(event -> {
@@ -77,7 +76,7 @@ public class MenuWindow extends JFrame {
 		JButton addQuestions = new JButton("Fragen anlegen");
 		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
 		addQuestions.setBorder(border);
-		JButton chooseSubject = new JButton("Fach auswählen");
+		JButton chooseSubject = new JButton("Fach auswï¿½hlen");
 		chooseSubject.setPreferredSize(new Dimension(chooseSubject.getPreferredSize().width + 30, 40));
 		chooseSubject.setBorder(border);
 		JButton difficulty = new JButton("Schwierigkeitsgrad");
@@ -121,15 +120,8 @@ public class MenuWindow extends JFrame {
 		int y= 450;
 		int locationX=this.getX() + (this.getWidth() / 2) - (x / 2);
 		int locationY=this.getY() + (this.getHeight() / 2) - (y / 2);
-		 String data[] = { "omss  ssss sar1aas", "10098222830", "2021-10-10 13:30", "omar2", "200", "2021-10-10 13:30",
-				"omar3", "300", "2021-10-10 13:30", "omar4", "400", "2021-10-10 13:30", "omar5", "500",
-				"2021-10-10 12:30", "omar6", "600", "2021-10-10 12:30", "omar7", "700", "2021-10-10 12:30", "omar8",
-				"800", "2021-10-10 12:30", "omar9", "900", "2021-10-10 12:30", "omar10", "1000", "2021-10-12 10:30",
-				"omar1", "1000", "2021-10-12 10:30", "omar2", "200", "2021-10-12 10:30", "omar3", "300",
-				"2021-10-12 10:30", "omar4", "400", "2021-10-12 10:30", "omar5", "500", "2021-10-12 10:30", "omar6",
-				"600", "2021-10-12 10:30", "omar7", "700", "2021-10-12 10:30", "omar8", "800", "2021-10-12 10:30",
-				"om ar22", "900", "2021-10-12 10:30", "omar10", "1000", "2021-10-12 10:30"};
-		highScorePopup = new HighScorePopup(data,x,y,locationX,locationY);
+		
+		highScorePopup = new HighScorePopup(fs.getRankingsSortedByScore(), x, y, locationX, locationY);
 		highScorePopup.setVisible(true);
 	}
 	public void showMenu() {

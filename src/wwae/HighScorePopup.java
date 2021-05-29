@@ -8,26 +8,27 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
 public class HighScorePopup extends JFrame {
 	
-	public HighScorePopup(String data[],int x, int y, int locationX , int locationY) {
+	public HighScorePopup(ArrayList<Rank> data,int x, int y, int locationX , int locationY) {
 		super("HighScorePopup");
 		setSize(x, y);
 		setUndecorated(true);
 		setLocation(locationX, locationY);
-		
-		JLabel titel = new JLabel("TOP 20 SCORES", SwingConstants.CENTER);
+
+		JLabel titel = new JLabel("Highscore", SwingConstants.CENTER);
 		JScrollPane scrollPane = new JScrollPane();
 		JPanel titlePanel = new JPanel();
 		JLabel iconLabel= new JLabel();
 		JPanel scrollPanel = new JPanel();
 		JTable personTable = new JTable();
 		MyRenderer cellRenderer = new MyRenderer();
-		Font titleFont = new Font("Comic Sans MS", Font.BOLD,(int) (getWidth()/15));
-		Font tableFont = new Font("Microsoft YaHei", Font.BOLD, (int) (getWidth()/41.5));
-		Color backgroundColor = new Color(0, 165, 147);
-		Color schriftColor = new Color(0, 91, 127);
-		Color arrayColor = new Color(202, 234, 172);
+		Font titleFont = new Font("Arial", Font.BOLD,(int) (getWidth()/15));
+		Font tableFont = new Font("Consolas", Font.BOLD, (int) (getWidth()/41.5));
+		Color backgroundColor = new Color(220,220,220);
+		Color fontColor = new Color(0, 0, 0);
+		Color arrayColor = new Color(131, 150, 247);
 		String dir = System.getProperty("user.dir");
 		ImageIcon closeIcon = new ImageIcon(dir+"\\src\\images\\close.PNG");
 		Image image = closeIcon.getImage(); // transform it 
@@ -45,7 +46,7 @@ public class HighScorePopup extends JFrame {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
+				setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
 			}
 		});
 
@@ -54,7 +55,7 @@ public class HighScorePopup extends JFrame {
 		
 		titlePanel.setBackground(backgroundColor);
 		scrollPanel.setBackground(backgroundColor);
-		titel.setForeground(schriftColor);
+		titel.setForeground(fontColor);
 		titel.setFont(titleFont);
 		personTable.setModel(model);
 		personTable.setFont(tableFont);
@@ -81,17 +82,14 @@ public class HighScorePopup extends JFrame {
 		model.addColumn("Name");
 		model.addColumn("Punkte");
 		model.addColumn("Datum");
+		
 		// add Element to Array List
-		int j = 0;
-		for (int i = 0; i < data.length; i++) {
+		for (int i = 0; i < data.size(); i++) {
 			model.addRow(new Object[0]);
-			model.setValueAt(j + 1, j, 0);
-			model.setValueAt(data[i], j, 1);
-			model.setValueAt(data[i + 1], j, 2);
-			model.setValueAt(data[i + 2], j, 3);
-
-			i = i + 2;
-			j++;
+			model.setValueAt(i + 1, i, 0);
+			model.setValueAt(data.get(i).getName(), i, 1);
+			model.setValueAt(data.get(i).getScore(), i, 2);
+			model.setValueAt(data.get(i).getTimestamp(), i, 3);
 		}
 
 		// add Table to scroll Panel
@@ -130,7 +128,7 @@ public class HighScorePopup extends JFrame {
 				int row, int column) {
 			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			setBorder(noFocusBorder);
-			Color arrayColor = new Color(202, 234, 172);
+			Color arrayColor = new Color(194, 207, 255);
 			setBackground(arrayColor);
 
 			return this;
