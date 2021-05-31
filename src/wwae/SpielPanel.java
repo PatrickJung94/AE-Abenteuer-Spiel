@@ -19,6 +19,7 @@ public class SpielPanel extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JPanel answers = new JPanel();
 	JPanel infoPanel = new JPanel();
+	JPanel questionPanel = new JPanel();
 	JLabel questionLabel = new JLabel();
 	JPanel listenPanel = new JPanel();
 	JPanel jokerPanel = new JPanel();
@@ -47,6 +48,8 @@ public class SpielPanel extends JFrame {
 	}
 
 	private void init() {
+
+		infoPanel.setBackground(new Color(0,0,139));
 
 		setAnswerPossibilities();
 		setQuestion();
@@ -96,18 +99,17 @@ public class SpielPanel extends JFrame {
 		infoPanel.add(menuePanel, BorderLayout.NORTH);
 		infoPanel.add(jokerPanel, BorderLayout.WEST);
 		infoPanel.add(leiterPanel, BorderLayout.EAST);
-		infoPanel.add(questionLabel, BorderLayout.SOUTH);
+		infoPanel.add(questionPanel, BorderLayout.SOUTH);
 		infoPanel.add(eventAlert, BorderLayout.CENTER);
 
 		leiterPanel.setLayout(flowLayoutLeiter);
 		leiterPanel.setPreferredSize(new Dimension(400,500));
-		leiterPanel.setBackground(new Color(255,0,0));
 		
 		int i=10;
 		JButton[] labels = new JButton[11];  
 		while (i>0) {
 			labels[i] = new JButton(String.valueOf(i*10));
-			labels[i].setPreferredSize(new Dimension(300,70));
+			labels[i].setPreferredSize(new Dimension(300,60));
 			leiterPanel.add(labels[i]);
 			labels[i].setBorder(border);
 			System.out.println(i);
@@ -117,12 +119,13 @@ public class SpielPanel extends JFrame {
 
 		
 		jokerPanel.setPreferredSize(new Dimension(400,500));
-		jokerPanel.setBackground(new Color(255,0,0));
 		jokerPanel.setLayout(flowLayoutJoker);
 		jokerPanel.add(joker50);
 		jokerPanel.add(jokerTelefon);
 		jokerPanel.add(jokerPublikum);
 		jokerPanel.add(jokerZusatz);
+
+		questionPanel.add(questionLabel);
 
 	
 		
@@ -149,7 +152,8 @@ public class SpielPanel extends JFrame {
 	public void setQuestion() {
 		// sp�ter an DB anbinden, aktuell noch Mockdaten
 
-		this.question = "                               Wie lautet die zweite Schicht des OSI-Models ? ";
+		this.question = "Wie lautet die zweite Schicht des OSI-Models ? ";
+		this.questionLabel = new JLabel(this.question,SwingConstants.CENTER);
 		this.questionLabel.setText(question);
 	}
 	
