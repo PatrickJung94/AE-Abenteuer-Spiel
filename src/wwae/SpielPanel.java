@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
-
+import java.util.Date;
 import javax.swing.*;
 
 public class SpielPanel extends JFrame {
@@ -49,6 +49,13 @@ public class SpielPanel extends JFrame {
 			answers.add(new JButton(answerPossibilities[i]));
 		}
 		
+		long startTime = System.currentTimeMillis();
+		long elapsedTime = 0L;
+
+		while (elapsedTime < 2*60*1000) {
+				//perform check for timeout and refresh timer when answered correctly
+    elapsedTime = (new Date()).getTime() - startTime;
+}
 		
 		questionLabel.setFont(f);
 		infoPanel.setLayout(new BorderLayout());
