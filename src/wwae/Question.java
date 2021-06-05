@@ -47,14 +47,14 @@ public class Question {
 	    return percentages;
 	}
 
-	public int[] generateFiftyFiftyOutcome (Question question) {
+	public int[] generateFiftyFiftyOutcome () {
 		Random rand = new Random();
 		int[] outcomes = new int[2];
 		int otherIndex = -1;
 
 		do {
 			otherIndex = rand.nextInt(4);
-		} while (otherIndex == question.correctIndex && otherIndex > -1 );
+		} while (otherIndex == this.correctIndex && otherIndex > -1 );
 
 		outcomes[0] = correctIndex;
 		outcomes[1] = otherIndex;
