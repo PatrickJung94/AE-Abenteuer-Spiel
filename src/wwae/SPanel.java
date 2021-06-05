@@ -20,21 +20,6 @@ public class SPanel {
 
 	private JFrame frame;
 
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SPanel window = new SPanel();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
 	public SPanel() {
 		initialize();
 	}
@@ -45,7 +30,7 @@ public class SPanel {
 		frame.setBounds(100, 100, 1600, 850);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JButton stufe10_3 = new JButton("Zurück");
+		JButton stufe10_3 = new JButton("Zurï¿½ck");
 		JButton stufe10_3_1 = new JButton("Beenden");
 		
 		JButton stufe10_1 = new JButton("50/50 ");
