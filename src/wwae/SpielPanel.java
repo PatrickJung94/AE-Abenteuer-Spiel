@@ -273,8 +273,7 @@ public class SpielPanel extends JFrame {
 		if(this.questionsBundleArray.get(questionActiveIndex).getCorrectIndex() == index){
 			this.nextQuestion();
 		}else{
-			System.out.println("Looser");
-			System.exit(0);
+			gameContext.showSaveScore(this.score);
 		}
 	} 
 
@@ -302,6 +301,7 @@ public class SpielPanel extends JFrame {
 
 		}else{
 			ladderButtons[10].setBackground(new Color(89,255,106));
+			gameContext.showSaveScore(this.score);
 			System.out.println("Du bist ein ganz toller Typ Weißenbach ist stolz auf dich!");
 		}
 
@@ -336,8 +336,6 @@ public class SpielPanel extends JFrame {
 		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
 		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
 		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
-		System.out.println("Size: "+ questionsBundleArray.get(questionActiveIndex).getText());
-		System.out.println("Size: "+ questionsBundleArray.get(questionActiveIndex).getAnswers()[0].toString());
     }
 
 	// private void loadQuestions(){
