@@ -37,7 +37,7 @@ public class DifficultySelection extends JFrame {
         buttons.add(hard, BorderLayout.SOUTH);
 
         low.addActionListener(event -> {
-			gameContext.changeDifficulty(Difficulty.LOW);;
+			gameContext.changeDifficulty(Difficulty.LOW);
             this.hideDifficultySelection();
 		});
 
