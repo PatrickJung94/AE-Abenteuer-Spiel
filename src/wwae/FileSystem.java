@@ -25,7 +25,7 @@ public class FileSystem {
     private final Path RANKING_PATH = Paths.get("ranking.json");
 
     public FileSystem() {
-        getAllQuestionsFromBundle("output");
+        //getAllQuestionsFromBundle("output");
     }
 
     // ============================================================
@@ -51,11 +51,11 @@ public class FileSystem {
             {        
                 if(!reader.toString().isEmpty()) {
                     Object obj = jParser.parse(reader);
+                    jFileArray = (JSONArray) obj;
                 }
+                
+               
 
-                jFileArray = (JSONArray) obj;
-
-                System.out.println(jFileArray);
             } 
             catch (FileNotFoundException e) {
                 System.out.println("File not Found.");
@@ -129,7 +129,7 @@ public class FileSystem {
                 e.printStackTrace();
             }
         }
-
+        System.out.println("in Filesystem:"+questionList );
         return questionList;
     }
 

@@ -4,6 +4,7 @@ public class AellionaerGame {
 	private MenuWindow menu = new MenuWindow(this);
 	private SpielPanel gp = new SpielPanel(this);
 	private Difficulty d = Difficulty.LOW;
+	private String bundle = "output";
 	
 	public static void main(String[] args) {
 		new AellionaerGame();
@@ -20,7 +21,7 @@ public class AellionaerGame {
 	
 	public void menuToGamePanel() {
 		menu.hideMenu();
-		gp.showGamePanel();
+		gp.showGamePanel(this.bundle);
 	}
 
 	public void changeDifficulty(Difficulty _d) {

@@ -113,9 +113,6 @@ public class MenuWindow extends JFrame {
 			}
 		});
 
-		startBtn.addActionListener(event -> {
-			gameContext.menuToGamePanel();
-		});
 		
 		highscore.addActionListener(event -> {
 			if (numberHiscorePopup == 0) {
