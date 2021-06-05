@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Timer;
-
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 
@@ -30,7 +29,9 @@ public class SpielPanel extends JFrame {
 	JPanel menuePanel = new JPanel();
 	JPanel eventAlert = new JPanel();
 	JLabel selectedJokerLabel = new JLabel();
-	
+	int questionActiveIndex = 0; 
+	JButton[] ladderButtons = new JButton[11]; 
+	int score = 0; 
 	
 
 
@@ -39,6 +40,7 @@ public class SpielPanel extends JFrame {
 	private ArrayList<Question> questionsBundleArray; 
 	private boolean joker50Used = false; 
 	private boolean jokerTelefonUsed = false; 
+	private boolean jokerPublikumUsed = false; 
 	
 	String question = new String();
 	JButton[] buttons = new JButton[4];
@@ -138,14 +140,16 @@ public class SpielPanel extends JFrame {
 		leiterPanel.setPreferredSize(new Dimension(400,500));
 		
 		int i=10;
-		JButton[] labels = new JButton[11];  
+		
 		while (i>0) {
-			labels[i] = new JButton(String.valueOf(i*10));
-			labels[i].setPreferredSize(new Dimension(300,60));
-			leiterPanel.add(labels[i]);
-			labels[i].setBorder(border);
+			ladderButtons[i] = new JButton(String.valueOf(i*10));
+			ladderButtons[i].setPreferredSize(new Dimension(300,60));
+			leiterPanel.add(ladderButtons[i]);
+			ladderButtons[i].setBorder(border);
 			i=i-1;
 		}
+
+		
 
 
 		
@@ -173,7 +177,7 @@ public class SpielPanel extends JFrame {
 
 
 			if(!joker50Used){
-				int[] correctIndexes = questionsBundleArray.get(0).generateFiftyFiftyOutcome();
+				int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
 				System.out.println(correctIndexes[0]);
 				System.out.println(correctIndexes[1]);
 
@@ -206,25 +210,115 @@ public class SpielPanel extends JFrame {
 
 		});
 
-		jokerTelefon.addActionListener((event2)->{
+		jokerTelefon.addActionListener((event)->{
 
 			if(!jokerTelefonUsed){
-				String telefonJoker = this.questionsBundleArray.get(0).getTextForPhoneJoker();
+				eventAlert.removeAll();
+				String telefonJoker = this.questionsBundleArray.get(questionActiveIndex).getTextForPhoneJoker();
+				JLabel jokerLabel = new JLabel();
+				jokerLabel.setText(telefonJoker);
+				eventAlert.add(jokerLabel);
 				System.out.println("Telefonjoker: "+telefonJoker);
-				this.selectedJokerLabel.setText(telefonJoker);
+				
+				eventAlert.revalidate();
+				eventAlert.repaint();
 				jokerTelefonUsed = true; 
 			}
 				
 
 		});
+
+		jokerPublikum.addActionListener((event)->{
+			if(!jokerPublikumUsed){
+				eventAlert.removeAll();
+				eventAlert.add(this.questionsBundleArray.get(questionActiveIndex).generateBargraphForAudienceJoker());
+				eventAlert.revalidate();
+				eventAlert.repaint();
+				jokerPublikumUsed = true;
+			}
+		});
+
+
+		buttons[0].addActionListener((event)->{
+
+			this.checkAnswer(0);
+			
+
+
+		});
+
+		buttons[1].addActionListener((event)->{
+
+			this.checkAnswer(1);
+
+		});
+
+		buttons[2].addActionListener((event)->{
+
+			this.checkAnswer(2);
+
+		});
+
+		buttons[3].addActionListener((event)->{
+
+			this.checkAnswer(3);
+		});
+
+
+	
+
 	}
+
+	private void checkAnswer(int index){
+		if(this.questionsBundleArray.get(questionActiveIndex).getCorrectIndex() == index){
+			this.nextQuestion();
+		}else{
+			System.out.println("Looser");
+			System.exit(0);
+		}
+	} 
+
+	private void nextQuestion(){
+
+		if (questionActiveIndex < questionsBundleArray.size()-1) {
+			this.questionActiveIndex++;
+			ladderButtons[questionActiveIndex].setBackground(new Color(89,255,106));
+			ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
+			Question newQuestion = questionsBundleArray.get(questionActiveIndex);
+	
+			setQuestion(newQuestion.getText());
+			setAnswerPossibilities(newQuestion.getAnswers());
+
+			this.eventAlert.removeAll();
+			this.eventAlert.revalidate();
+			this.eventAlert.repaint();
+
+			for(int t=0; t<4;t++ ){
+				buttons[t].show();
+			}
+
+			this.score += this.questionActiveIndex*10;
+			System.out.println("Aktueller Score: "+ this.score); 
+
+		}else{
+			ladderButtons[10].setBackground(new Color(89,255,106));
+			System.out.println("Du bist ein ganz toller Typ Weißenbach ist stolz auf dich!");
+		}
+
+	}
+
 
 	public void setAnswerPossibilities(String [] answers) {
 	
-		buttons[0].setText(answers[0]);
-		buttons[1].setText(answers[1]);
-		buttons[2].setText(answers[2]);
-		buttons[3].setText(answers[3]);
+		buttons[0].setText("A: "+answers[0]);
+		buttons[1].setText("B: "+answers[1]);
+		buttons[2].setText("C: "+answers[2]);
+		buttons[3].setText("D: "+answers[3]);
+
+		buttons[0].setHorizontalAlignment(SwingConstants.LEFT);
+		buttons[1].setHorizontalAlignment(SwingConstants.LEFT);
+		buttons[2].setHorizontalAlignment(SwingConstants.LEFT);
+		buttons[3].setHorizontalAlignment(SwingConstants.LEFT);
 
 	}
 
@@ -239,10 +333,11 @@ public class SpielPanel extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 		this.questionsBundleArray = fs.getAllQuestionsFromBundle(bundleName);
-		this.setQuestion(questionsBundleArray.get(0).getText());
-		this.setAnswerPossibilities(questionsBundleArray.get(0).getAnswers());
-		System.out.println("Size: "+ questionsBundleArray.get(0).getText());
-		System.out.println("Size: "+ questionsBundleArray.get(0).getAnswers()[0].toString());
+		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
+		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
+		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
+		System.out.println("Size: "+ questionsBundleArray.get(questionActiveIndex).getText());
+		System.out.println("Size: "+ questionsBundleArray.get(questionActiveIndex).getAnswers()[0].toString());
     }
 
 	// private void loadQuestions(){
