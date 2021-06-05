@@ -11,8 +11,7 @@ public class CreateQuestion extends JFrame {
 	Question newQuestion = new Question();
 	FileSystem fileSystem = new FileSystem();
 	public CreateQuestion() {
-		super("Frage erstellen/bearbeiten - Wer wird AEllion�r");
-		newQuestion.generateAudiencePercentage(new Question());
+		super("Frage erstellen/bearbeiten - Wer wird AEllion\u00e4r");
 		createForm();
 	}
 	
@@ -28,7 +27,7 @@ public class CreateQuestion extends JFrame {
 		menuBlockTop.setBackground(new Color(220,220,220));
 		menuBlockTop.setPreferredSize(new Dimension(400, 75));
 
-		JLabel title = new JLabel("Erstellen sie eine Frage");
+		JLabel title = new JLabel("Erstellen Sie eine Frage");
 		Font currentFont = title.getFont();
 		title.setFont(
 			new Font(currentFont.getName(),
@@ -103,7 +102,7 @@ public class CreateQuestion extends JFrame {
 		// ---------- Create Row for correct answer index Input -----------
 
 		JPanel correctIndexPanel = new JPanel();
-		JLabel correctIndex = new JLabel("Richtige Antowrt Index");
+		JLabel correctIndex = new JLabel("Richtige Antowort Index");
 		correctIndex.setPreferredSize(new Dimension(150, 30));
 		
 		JPanel correctIndexInputPanel = new JPanel();

@@ -18,7 +18,7 @@ public class MenuWindow extends JFrame {
 	private FileSystem fs = new FileSystem();
 
 	public MenuWindow(AellionaerGame _gameContext) {
-		super("Men� - Wer wird AEllion�r");
+		super("Men\u00fc - Wer wird AEllion\u00e4r");
 		gameContext = _gameContext;
 		createLayout();
 	}
@@ -76,7 +76,7 @@ public class MenuWindow extends JFrame {
 		JButton addQuestions = new JButton("Fragen anlegen");
 		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
 		addQuestions.setBorder(border);
-		JButton chooseSubject = new JButton("Fach ausw�hlen");
+		JButton chooseSubject = new JButton("Fach ausw\u00e4hlen");
 		chooseSubject.setPreferredSize(new Dimension(chooseSubject.getPreferredSize().width + 30, 40));
 		chooseSubject.setBorder(border);
 		JButton difficulty = new JButton("Schwierigkeitsgrad");

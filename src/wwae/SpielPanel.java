@@ -42,7 +42,7 @@ public class SpielPanel extends JFrame {
 	JButton jokerZusatz = new JButton("Zusatzjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
-		super("Men�- Wer wird AEllion�r");
+		super("Men\u00fc- Wer wird AEllion\u00e4r");
 		gameContext = _gameContext;
 		init();
 	}
@@ -145,7 +145,7 @@ public class SpielPanel extends JFrame {
 
 		answerPossibilities[0] = "A: Anwendungsschicht";
 		answerPossibilities[1] = "B: Sicherungsschicht";
-		answerPossibilities[2] = "C: Bit�bertragungsshicht";
+		answerPossibilities[2] = "C: Bit\u00fcbertragungsshicht";
 		answerPossibilities[3] = "D: Transportschicht";
 	}
 
