@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
+import java.util.Timer;
+
 import javax.swing.border.AbstractBorder;
 import java.awt.FlowLayout;
 
@@ -26,6 +28,8 @@ public class SpielPanel extends JFrame {
 	JPanel leiterPanel = new JPanel();
 	JPanel menuePanel = new JPanel();
 	JPanel eventAlert = new JPanel();
+	Timer timer = new Timer();
+	
 	
 	String[] answerPossibilities = new String[4];
 	String question = new String();
@@ -92,6 +96,17 @@ public class SpielPanel extends JFrame {
 		menuePanel.add(zurueckButton);
 		menuePanel.add(timerProgressBar);
 		menuePanel.add(beendenButton);
+
+		zurueckButton.addActionListener(event -> {
+			gameContext.gamePanelToMenu();
+		});
+
+		beendenButton.addActionListener(event -> {
+			System.exit(0);
+		});
+
+		
+
 		
 		
 		questionLabel.setFont(f);
@@ -112,7 +127,6 @@ public class SpielPanel extends JFrame {
 			labels[i].setPreferredSize(new Dimension(300,60));
 			leiterPanel.add(labels[i]);
 			labels[i].setBorder(border);
-			System.out.println(i);
 			i=i-1;
 		}
 
@@ -170,7 +184,4 @@ public class SpielPanel extends JFrame {
     public void close() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
-
-	
-
 }
