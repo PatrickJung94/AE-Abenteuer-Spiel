@@ -71,7 +71,6 @@ public class FileSystem {
             }
         }
 
-        jQuestionObj.put("time", questionObj.getTime());
         jQuestionObj.put("text", questionObj.getText());
         
         jQuestionArray.add(questionObj.getAnswers()[0]);
@@ -83,8 +82,6 @@ public class FileSystem {
         jQuestionObj.put("correctIndex", questionObj.getCorrectIndex());
 
         jQuestionObj.put("textForPhoneJoker", questionObj.getTextForPhoneJoker());
-
-        jQuestionObj.put("textForAdditionalJoker", questionObj.getTextForAdditionalJoker());
 
         jFileArray.add(jQuestionObj);
 
@@ -146,13 +143,11 @@ public class FileSystem {
     public Question parseQuestion(JSONObject jquestion){
         Question question = new Question();
 
-        question.setTime((double) jquestion.get("time"));
         question.setText((String) jquestion.get("text"));
         question.setAnswers(parseAnswers((JSONArray) jquestion.get("answers")));
         Long temp = (long) jquestion.get("correctIndex");
         question.setCorrectIndex(temp.intValue());
         question.setTextForPhoneJoker((String) jquestion.get("textForPhoneJoker"));
-        question.setTextForAdditionalJoker((String) jquestion.get("textForAdditionalJoker"));
 
         return question;
     }
