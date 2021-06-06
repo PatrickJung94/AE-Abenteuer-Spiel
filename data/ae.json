@@ -110,11 +110,11 @@
       "Enthalten stets eine Gleitkommazahl",
       "Werden während des Compilierens des Programms ignoriert",
       "Können zur Laufzeit des Programms verändert werden",
-      "Lönnen während der Entwicklung des Programms verändert werden"
+      "Können während der Entwicklung des Programms verändert werden"
     ],
     "time":30.0,
     "text":"Welche der folgenden Beschreibungen trifft auf Konstanten zu?",
-    "correctIndex":1
+    "correctIndex":3
   },
   {
     "textForPhoneJoker":"Erst planen, dann erstellen, danach testen und am Ende wird das Programm an den Kunden geschickt",

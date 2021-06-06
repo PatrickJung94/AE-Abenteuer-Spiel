@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MenuWindow extends JFrame {
 	
@@ -110,6 +111,18 @@ public class MenuWindow extends JFrame {
 			} else {
 				ds.hideDifficultySelection();
 				this.diffWindowOpen = false;
+			}
+		});
+
+		chooseSubject.addActionListener(event -> {
+			JFileChooser chooser = new JFileChooser("./data");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				"JSON Bundle file", "json");
+			chooser.setFileFilter(filter);
+			int returnVal = chooser.showOpenDialog(optionBar);
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				String fileName = chooser.getSelectedFile().getName();
+				gameContext.setActiveBundle(fileName.replaceAll(".json", ""));
 			}
 		});
 

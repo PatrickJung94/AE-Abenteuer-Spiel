@@ -53,4 +53,8 @@ public class AellionaerGame {
 		re.hideEntry();
 		menu.showMenu();
 	}
+
+	public void setActiveBundle(String bundleName) {
+		this.bundle = bundleName;
+	}
 }
