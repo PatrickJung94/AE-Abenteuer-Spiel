@@ -193,13 +193,6 @@ public class CreateQuestion extends JFrame {
 				newQuestion.setAnswers(temp);
 				newQuestion.setTextForPhoneJoker(textForPhoneJokerInput.getText());
 	
-				System.out.println(newQuestion.getCorrectIndex());
-				System.out.println(newQuestion.getText());
-				System.out.println(newQuestion.getTextForPhoneJoker());
-				for (int i = 0; i < newQuestion.getAnswers().length; i++) {
-					System.out.println(newQuestion.getAnswers()[i]);
-				}
-	
 				fileSystem.addQuestionToBundle(bundleNameInput.getText(), newQuestion);
 			} else {
 				JOptionPane.showOptionDialog(null, "Das Bundle ist voll!", "Bundle Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);

@@ -104,13 +104,13 @@ public class SpielPanel extends JFrame {
 
 		switch (difficulty) {
 			case LOW:
-				this.timeMultiplier = 2;
-				break;
-			case MEDIUM:
 				this.timeMultiplier = 1;
 				break;
+			case MEDIUM:
+				this.timeMultiplier = 0.75;
+				break;
 			case HARD:
-				this.timeMultiplier = 0.5;
+				this.timeMultiplier = 0.25;
 				break;
 		}
 
@@ -214,8 +214,6 @@ public class SpielPanel extends JFrame {
 	private void jokerEvents(){
 		joker50.addActionListener((event)->{
 			int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
-			System.out.println(correctIndexes[0]);
-			System.out.println(correctIndexes[1]);
 
 			for(int t=0; t<4;t++ ){
 				buttons[t].setVisible(false);;
@@ -234,7 +232,6 @@ public class SpielPanel extends JFrame {
 			JLabel jokerLabel = new JLabel();
 			jokerLabel.setText(telefonJoker);
 			eventAlert.add(jokerLabel);
-			System.out.println("Telefonjoker: "+telefonJoker);
 			
 			eventAlert.revalidate();
 			eventAlert.repaint();

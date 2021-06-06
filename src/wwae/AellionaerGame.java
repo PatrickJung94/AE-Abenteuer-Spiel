@@ -1,11 +1,11 @@
 package wwae;
 
 public class AellionaerGame {
+	private String bundle = "ae";
 	private MenuWindow menu = new MenuWindow(this);
 	private RankEntry re = new RankEntry(this);
 	private Difficulty d = Difficulty.LOW;
 	private SpielPanel gp = new SpielPanel(this);
-	private String bundle = "output";
 	
 	public static void main(String[] args) {
 		new AellionaerGame();
@@ -57,5 +57,9 @@ public class AellionaerGame {
 
 	public void setActiveBundle(String bundleName) {
 		this.bundle = bundleName;
+	}
+	
+	public String getActiveBundle() {
+		return bundle;
 	}
 }
