@@ -19,6 +19,7 @@ public class SpielPanel extends JFrame {
 
 	private AellionaerGame gameContext;
 	private static final long serialVersionUID = 1L;
+
 	JPanel answers = new JPanel();
 	JPanel infoPanel = new JPanel();
 	JPanel questionPanel = new JPanel();
@@ -28,14 +29,20 @@ public class SpielPanel extends JFrame {
 	JPanel leiterPanel = new JPanel();
 	JPanel menuePanel = new JPanel();
 	JPanel eventAlert = new JPanel();
+
 	JLabel selectedJokerLabel = new JLabel();
-	int questionActiveIndex = 0; 
+
 	JButton[] ladderButtons = new JButton[11]; 
+	JButton joker50 = new JButton("50/50");
+	JButton jokerTelefon = new JButton("Telefonjoker");
+	JButton jokerPublikum = new JButton("Publikumsjoker");
+	//JButton jokerz = new JButton("zjoker");
+
 	int score = 0; 
+	int questionActiveIndex = 0; 
 	
-
-
 	Timer timer = new Timer();
+	
 	private FileSystem fs = new FileSystem();
 	private ArrayList<Question> questionsBundleArray; 
 	private boolean joker50Used = false; 
@@ -47,15 +54,12 @@ public class SpielPanel extends JFrame {
 
 	Font f = new Font(Font.SERIF, Font.BOLD, 50);
 	Font f2 = new Font(Font.SERIF, Font.BOLD, 20);
+
 	BoxLayout boxLayout = new BoxLayout(listenPanel, BoxLayout.Y_AXIS);
 	FlowLayout flowLayoutJoker = new FlowLayout(); 
 	FlowLayout flowLayoutLeiter = new FlowLayout();
 	FlowLayout flowLayoutMenue = new FlowLayout();
 	
-	JButton joker50 = new JButton("50/50");
-	JButton jokerTelefon = new JButton("Telefonjoker");
-	JButton jokerPublikum = new JButton("Publikumsjoker");
-	//JButton jokerz = new JButton("zjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
@@ -64,15 +68,14 @@ public class SpielPanel extends JFrame {
 	}
 
 	private void init() {
-
+		
 		eventAlert.setLayout(new GridBagLayout());
 		eventAlert.add(selectedJokerLabel);
 		selectedJokerLabel.setFont(f2);
-
-		initInfoPanel();
-
-		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
 		
+		initInfoPanel();
+		
+		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
 		setBorderAndSizeOfJokers(border);
 
 		this.questionLabel = new JLabel(question,SwingConstants.CENTER);
@@ -89,38 +92,11 @@ public class SpielPanel extends JFrame {
 		}
 
 
-
-		
 		flowLayoutMenue.setHgap(500);
-		menuePanel.setLayout(flowLayoutMenue);
-		
-		JButton zurueckButton = new JButton("Zurück");
-		JButton beendenButton = new JButton("Beenden");
-		JProgressBar timerProgressBar = new JProgressBar();
+		initMenuePanel();
 
-		menuePanel.add(zurueckButton);
-		menuePanel.add(timerProgressBar);
-		menuePanel.add(beendenButton);
-
-		zurueckButton.addActionListener(event -> {
-			gameContext.gamePanelToMenu();
-		});
-
-		beendenButton.addActionListener(event -> {
-			System.exit(0);
-		});
-
-		
-
-		
-		
 		questionLabel.setFont(f);
-		// infoPanel.setLayout(new BorderLayout());
-		// infoPanel.add(menuePanel, BorderLayout.NORTH);
-		// infoPanel.add(jokerPanel, BorderLayout.WEST);
-		// infoPanel.add(leiterPanel, BorderLayout.EAST);
-		// infoPanel.add(questionPanel, BorderLayout.SOUTH);
-		// infoPanel.add(eventAlert, BorderLayout.CENTER);
+		
 
 		leiterPanel.setLayout(flowLayoutLeiter);
 		leiterPanel.setPreferredSize(new Dimension(400,500));
@@ -136,81 +112,17 @@ public class SpielPanel extends JFrame {
 		}
 
 		
-
-
-		
-		jokerPanel.setPreferredSize(new Dimension(400,500));
-		jokerPanel.setLayout(flowLayoutJoker);
-		jokerPanel.add(joker50);
-		jokerPanel.add(jokerTelefon);
-		jokerPanel.add(jokerPublikum);
-		//jokerPanel.add(jokerz);
+		initJokerPanel();
+		jokerEvents();
 
 		questionPanel.add(questionLabel);
-
-	
 		
-		
-		listenPanel.setLayout(boxLayout);
-		listenPanel.add(Box.createRigidArea(new Dimension(3, 1)));
-		listenPanel.add(infoPanel);
-		listenPanel.add(answers);
+		initListenPanel();
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().add(listenPanel);
 		this.setPreferredSize(new Dimension(1000, 1000));
-		joker50.addActionListener((event)->{
-
-
-			if(!joker50Used){
-				int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
-				System.out.println(correctIndexes[0]);
-				System.out.println(correctIndexes[1]);
-
-				for(int t=0; t<4;t++ ){
-					buttons[t].setVisible(false);;
-				}
-
-				for(int j=0; j<2;j++ ){
-					buttons[correctIndexes[j]].setVisible(true);;
-				}
-				joker50Used = true;
-
-			}
-
-
-
-		});
-
-		jokerTelefon.addActionListener((event)->{
-
-			if(!jokerTelefonUsed){
-				eventAlert.removeAll();
-				String telefonJoker = this.questionsBundleArray.get(questionActiveIndex).getTextForPhoneJoker();
-				JLabel jokerLabel = new JLabel();
-				jokerLabel.setText(telefonJoker);
-				eventAlert.add(jokerLabel);
-				System.out.println("Telefonjoker: "+telefonJoker);
-				
-				eventAlert.revalidate();
-				eventAlert.repaint();
-				jokerTelefonUsed = true; 
-			}
-				
-
-		});
-
-		jokerPublikum.addActionListener((event)->{
-			if(!jokerPublikumUsed){
-				eventAlert.removeAll();
-				eventAlert.add(this.questionsBundleArray.get(questionActiveIndex).generateBargraphForAudienceJoker());
-				eventAlert.revalidate();
-				eventAlert.repaint();
-				jokerPublikumUsed = true;
-			}
-		});
-
-
+		
 		for(int k=0; k<4; k++){
 			final Integer kI = Integer.valueOf(k);
 			buttons[kI].addActionListener((event)->{
@@ -247,6 +159,90 @@ public class SpielPanel extends JFrame {
 		infoPanel.setBackground(new Color(0,0,139));
 	}
 
+	private void initMenuePanel(){
+		
+		JButton zurueckButton = new JButton("Zurück");
+		JButton beendenButton = new JButton("Beenden");
+		JProgressBar timerProgressBar = new JProgressBar();
+
+		menuePanel.setLayout(flowLayoutMenue);
+		menuePanel.add(zurueckButton);
+		menuePanel.add(timerProgressBar);
+		menuePanel.add(beendenButton);
+
+		zurueckButton.addActionListener(event -> {
+			gameContext.gamePanelToMenu();
+		});
+
+		beendenButton.addActionListener(event -> {
+			System.exit(0);
+		});
+	}
+
+	private void initJokerPanel(){		
+		jokerPanel.setPreferredSize(new Dimension(400,500));
+		jokerPanel.setLayout(flowLayoutJoker);
+		jokerPanel.add(joker50);
+		jokerPanel.add(jokerTelefon);
+		jokerPanel.add(jokerPublikum);
+		//jokerPanel.add(jokerz);
+	}
+
+	private void initListenPanel(){
+		listenPanel.setLayout(boxLayout);
+		listenPanel.add(Box.createRigidArea(new Dimension(3, 1)));
+		listenPanel.add(infoPanel);
+		listenPanel.add(answers);
+	}
+
+	private void jokerEvents(){
+		joker50.addActionListener((event)->{
+			if(!joker50Used){
+				int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
+				System.out.println(correctIndexes[0]);
+				System.out.println(correctIndexes[1]);
+
+				for(int t=0; t<4;t++ ){
+					buttons[t].setVisible(false);;
+				}
+
+				for(int j=0; j<2;j++ ){
+					buttons[correctIndexes[j]].setVisible(true);;
+				}
+				joker50Used = true;
+
+			}
+		});
+
+		jokerTelefon.addActionListener((event)->{
+
+			if(!jokerTelefonUsed){
+				eventAlert.removeAll();
+				String telefonJoker = this.questionsBundleArray.get(questionActiveIndex).getTextForPhoneJoker();
+				JLabel jokerLabel = new JLabel();
+				jokerLabel.setText(telefonJoker);
+				eventAlert.add(jokerLabel);
+				System.out.println("Telefonjoker: "+telefonJoker);
+				
+				eventAlert.revalidate();
+				eventAlert.repaint();
+				jokerTelefonUsed = true; 
+			}
+				
+
+		});
+
+		jokerPublikum.addActionListener((event)->{
+			if(!jokerPublikumUsed){
+				eventAlert.removeAll();
+				eventAlert.add(this.questionsBundleArray.get(questionActiveIndex).generateBargraphForAudienceJoker());
+				eventAlert.revalidate();
+				eventAlert.repaint();
+				jokerPublikumUsed = true;
+			}
+		});
+	}
+
 
 
 	private void checkAnswer(int index){
@@ -273,7 +269,7 @@ public class SpielPanel extends JFrame {
 			this.eventAlert.repaint();
 
 			for(int t=0; t<4;t++ ){
-				buttons[t].show();
+				buttons[t].setVisible(true);
 			}
 
 			this.score += this.questionActiveIndex*10;
@@ -329,8 +325,5 @@ public class SpielPanel extends JFrame {
     public void close() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
-
-
-
 
 }
