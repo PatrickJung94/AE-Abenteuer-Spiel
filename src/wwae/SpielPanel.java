@@ -19,8 +19,8 @@ public class SpielPanel extends JFrame {
 
 	private AellionaerGame gameContext;
 	private static final long serialVersionUID = 1L;
-	private JPanel answers = new JPanel();
 	private JPanel infoPanel = new JPanel();
+	private JPanel answers = new JPanel();
 	private JPanel questionPanel = new JPanel();
 	private JLabel questionLabel = new JLabel();
 	private JPanel listenPanel = new JPanel();
@@ -57,7 +57,6 @@ public class SpielPanel extends JFrame {
 	private JButton jokerTelefon = new JButton("Telefonjoker");
 	private JButton jokerPublikum = new JButton("Publikumsjoker");
 	private JProgressBar timerProgressBar = new JProgressBar();;
-	//JButton jokerz = new JButton("zjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
@@ -173,11 +172,9 @@ public class SpielPanel extends JFrame {
 		joker50.setBorder(border);
 		jokerTelefon.setBorder(border);
 		jokerPublikum.setBorder(border);
-		//jokerz.setBorder(border);
 		jokerTelefon.setPreferredSize(new Dimension(300,100));
 		joker50.setPreferredSize(new Dimension(300,100));
 		jokerPublikum.setPreferredSize(new Dimension(300,100));
-		//jokerz.setPreferredSize(new Dimension(300,100));
 	}
 
 
@@ -204,7 +201,6 @@ public class SpielPanel extends JFrame {
 		zurueckButton.addActionListener(event -> {
 			gameContext.gamePanelToMenu();
 		});
-
 		beendenButton.addActionListener(event -> {
 			System.exit(0);
 		});
@@ -216,7 +212,6 @@ public class SpielPanel extends JFrame {
 		jokerPanel.add(joker50);
 		jokerPanel.add(jokerTelefon);
 		jokerPanel.add(jokerPublikum);
-		//jokerPanel.add(jokerz);
 	}
 
 	private void initListenPanel(){
@@ -349,10 +344,6 @@ public class SpielPanel extends JFrame {
 		System.out.println("Before Timer start");
 		this.timer.start();
     }
-
-	// private void loadQuestions(){
-	// }
-
 
     public void hideGamePanel() {
         this.setVisible(false);
