@@ -71,7 +71,11 @@ public class MenuWindow extends JFrame {
 		menuBlockBottom.add(bundle);
 		
 		startBtn.addActionListener(event -> {
-			gameContext.menuToGamePanel();
+			if(fs.isBundleFull(gameContext.getActiveBundle())){
+				gameContext.menuToGamePanel();
+			}else{
+				JOptionPane.showOptionDialog(null, "Es sind weniger als 10 Fragen im Bundle!", "Bundle Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+			}
 		});
 
 		exitBtn.addActionListener(event -> {
