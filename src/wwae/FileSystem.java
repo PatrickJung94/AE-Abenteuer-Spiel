@@ -120,7 +120,6 @@ public class FileSystem {
 
                 jFileArray = (JSONArray) obj;
 
-                // System.out.println(jFileArray);
                 jFileArray.forEach(jquestion -> questionList.add(parseQuestion((JSONObject) jquestion)));
             } 
             catch (FileNotFoundException e) {
