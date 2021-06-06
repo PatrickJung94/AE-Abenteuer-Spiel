@@ -56,5 +56,8 @@ Unser Klassendiagramm
 https://drive.google.com/file/d/13dwi1nQUwPN4eJpYzeAu6P-TuHJw0jh6/view?usp=sharing
 
 
+![Wer wird AE-llionär_](https://user-images.githubusercontent.com/47777807/120941336-5bece780-c722-11eb-9526-879feb980ce2.png)
+
+
 
 ###### von Christian, Markus, Patrick, Max, Till, Omar
