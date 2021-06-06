@@ -119,7 +119,7 @@ public class MenuWindow extends JFrame {
 			FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"JSON Bundle file", "json");
 			chooser.setFileFilter(filter);
-			int returnVal = chooser.showOpenDialog(optionBar);
+			int returnVal = chooser.showOpenDialog(null);
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				String fileName = chooser.getSelectedFile().getName();
 				gameContext.setActiveBundle(fileName.replaceAll(".json", ""));

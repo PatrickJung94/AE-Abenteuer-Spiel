@@ -45,7 +45,7 @@ public class SpielPanel extends JFrame {
 	private String question = new String();
 	private JButton[] buttons = new JButton[4];
 
-	private Font f = new Font(Font.SERIF, Font.BOLD, 50);
+	private Font f = new Font(Font.SERIF, Font.BOLD, 30);
 	private Font f2 = new Font(Font.SERIF, Font.BOLD, 20);
 	private BoxLayout boxLayout = new BoxLayout(listenPanel, BoxLayout.Y_AXIS);
 	private FlowLayout flowLayoutJoker = new FlowLayout(); 
@@ -161,7 +161,7 @@ public class SpielPanel extends JFrame {
 		
 		//JButton zurueckButton = new JButton("Zurück");
 		JButton beendenButton = new JButton("Beenden");
-		flowLayoutMenue.setHgap(500);
+		flowLayoutMenue.setHgap(400);
 		menuePanel.setLayout(flowLayoutMenue);
 		menuePanel.add(new JPanel());
 		//menuePanel.add(zurueckButton);
@@ -209,7 +209,7 @@ public class SpielPanel extends JFrame {
 		int i=10;
 		while (i>0) {
 			ladderButtons[i] = new JButton(String.valueOf(i*10));
-			ladderButtons[i].setPreferredSize(new Dimension(300,60));
+			ladderButtons[i].setPreferredSize(new Dimension(300,40));
 			leiterPanel.add(ladderButtons[i]);
 			ladderButtons[i].setBorder(border);
 			i=i-1;
@@ -320,7 +320,7 @@ public class SpielPanel extends JFrame {
 	
 	public void showGamePanel(String bundleName) {
 
-        this.setSize(1920, 1080);
+        this.setSize(1472, 828);
         this.setVisible(true);
         this.setResizable(false);
 		this.questionsBundleArray = fs.getAllQuestionsFromBundle(bundleName);
@@ -328,7 +328,6 @@ public class SpielPanel extends JFrame {
 		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
 		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
 		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
-		System.out.println("Before Timer start");
 		this.timer.start();
     }
 
