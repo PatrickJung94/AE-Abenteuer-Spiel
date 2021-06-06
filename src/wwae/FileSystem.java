@@ -99,6 +99,16 @@ public class FileSystem {
             e.printStackTrace();
         }
     }
+
+    public boolean isBundleFull(String bundleName) {
+        ArrayList<Question> questions = getAllQuestionsFromBundle(bundleName);
+
+        if (questions.size() == 10) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     public ArrayList<Question> getAllQuestionsFromBundle(String bundleName)
     {
