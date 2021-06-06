@@ -57,9 +57,9 @@ public class SpielPanel extends JFrame {
 	private JButton jokerTelefon = new JButton("Telefonjoker");
 	private JButton jokerPublikum = new JButton("Publikumsjoker");
 	private JProgressBar timerProgressBar = new JProgressBar();;
-
-	ImageIcon achiviement1 = new ImageIcon("achievements1.jpg");
-	ImageIcon achiviement2 = new ImageIcon("achievements2.jpg");
+	String dir = System.getProperty("user.dir");
+	ImageIcon achiviement1 = new ImageIcon(dir+"\\images\\achievements1.jpg");
+	ImageIcon achiviement2 = new ImageIcon(dir+"\\images\\achievements2.jpg");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
