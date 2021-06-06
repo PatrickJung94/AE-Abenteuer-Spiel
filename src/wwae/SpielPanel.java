@@ -65,30 +65,18 @@ public class SpielPanel extends JFrame {
 
 	private void init() {
 
-		//eventAlert.setBackground(new Color(255,0,0));
 		eventAlert.setLayout(new GridBagLayout());
-		selectedJokerLabel.setFont(f2);
 		eventAlert.add(selectedJokerLabel);
+		selectedJokerLabel.setFont(f2);
 
-		infoPanel.setBackground(new Color(0,0,139));
+		initInfoPanel();
 
 		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
 		
-		joker50.setBorder(border);
-		jokerTelefon.setBorder(border);
-		jokerPublikum.setBorder(border);
-		//jokerz.setBorder(border);
-		
-		jokerTelefon.setPreferredSize(new Dimension(300,100));
-		joker50.setPreferredSize(new Dimension(300,100));
-		jokerPublikum.setPreferredSize(new Dimension(300,100));
-		//jokerz.setPreferredSize(new Dimension(300,100));
+		setBorderAndSizeOfJokers(border);
+
 		this.questionLabel = new JLabel(question,SwingConstants.CENTER);
-		setQuestion("sdhjkdshksdjh");
 		
-		
-
-
 		answers.setLayout(new GridLayout(2, 2));
 		answers.setPreferredSize(new Dimension(1280, 220));
 		
@@ -97,12 +85,10 @@ public class SpielPanel extends JFrame {
 			String[] buttonsArray = new String[4];
 			buttons[i] = new JButton(buttonsArray[i]);
 			answers.add(buttons[i]);
+			buttons[i].setBorder(border);
 		}
 
-		buttons[0].setBorder(border);
-		buttons[1].setBorder(border);
-		buttons[2].setBorder(border);
-		buttons[3].setBorder(border);
+
 
 		
 		flowLayoutMenue.setHgap(500);
@@ -129,12 +115,12 @@ public class SpielPanel extends JFrame {
 		
 		
 		questionLabel.setFont(f);
-		infoPanel.setLayout(new BorderLayout());
-		infoPanel.add(menuePanel, BorderLayout.NORTH);
-		infoPanel.add(jokerPanel, BorderLayout.WEST);
-		infoPanel.add(leiterPanel, BorderLayout.EAST);
-		infoPanel.add(questionPanel, BorderLayout.SOUTH);
-		infoPanel.add(eventAlert, BorderLayout.CENTER);
+		// infoPanel.setLayout(new BorderLayout());
+		// infoPanel.add(menuePanel, BorderLayout.NORTH);
+		// infoPanel.add(jokerPanel, BorderLayout.WEST);
+		// infoPanel.add(leiterPanel, BorderLayout.EAST);
+		// infoPanel.add(questionPanel, BorderLayout.SOUTH);
+		// infoPanel.add(eventAlert, BorderLayout.CENTER);
 
 		leiterPanel.setLayout(flowLayoutLeiter);
 		leiterPanel.setPreferredSize(new Dimension(400,500));
@@ -181,26 +167,12 @@ public class SpielPanel extends JFrame {
 				System.out.println(correctIndexes[0]);
 				System.out.println(correctIndexes[1]);
 
-				// ArrayList<Integer> wrongIndexes = new ArrayList<>();
-				// for(int k=0; k<4;k++){
-
-				// 	for(int l=0; l<correctIndexes.length;l++){
-				// 		if(correctIndexes[l] != k){
-
-				// 		}
-				// 	}
-
-				// }
-				
 				for(int t=0; t<4;t++ ){
-	
-					buttons[t].hide();
+					buttons[t].setVisible(false);;
 				}
 
-
 				for(int j=0; j<2;j++ ){
-	
-					buttons[correctIndexes[j]].show();
+					buttons[correctIndexes[j]].setVisible(true);;
 				}
 				joker50Used = true;
 
@@ -239,35 +211,43 @@ public class SpielPanel extends JFrame {
 		});
 
 
-		buttons[0].addActionListener((event)->{
+		for(int k=0; k<4; k++){
+			final Integer kI = Integer.valueOf(k);
+			buttons[kI].addActionListener((event)->{
+				this.checkAnswer(kI);
+			});
+		}
 
-			this.checkAnswer(0);
-			
-
-
-		});
-
-		buttons[1].addActionListener((event)->{
-
-			this.checkAnswer(1);
-
-		});
-
-		buttons[2].addActionListener((event)->{
-
-			this.checkAnswer(2);
-
-		});
-
-		buttons[3].addActionListener((event)->{
-
-			this.checkAnswer(3);
-		});
 
 
 	
 
 	}
+
+
+	private void setBorderAndSizeOfJokers(AbstractBorder border){
+		joker50.setBorder(border);
+		jokerTelefon.setBorder(border);
+		jokerPublikum.setBorder(border);
+		//jokerz.setBorder(border);
+		jokerTelefon.setPreferredSize(new Dimension(300,100));
+		joker50.setPreferredSize(new Dimension(300,100));
+		jokerPublikum.setPreferredSize(new Dimension(300,100));
+		//jokerz.setPreferredSize(new Dimension(300,100));
+	}
+
+
+	private void initInfoPanel(){
+		infoPanel.setLayout(new BorderLayout());
+		infoPanel.add(menuePanel, BorderLayout.NORTH);
+		infoPanel.add(jokerPanel, BorderLayout.WEST);
+		infoPanel.add(leiterPanel, BorderLayout.EAST);
+		infoPanel.add(questionPanel, BorderLayout.SOUTH);
+		infoPanel.add(eventAlert, BorderLayout.CENTER);
+		infoPanel.setBackground(new Color(0,0,139));
+	}
+
+
 
 	private void checkAnswer(int index){
 		if(this.questionsBundleArray.get(questionActiveIndex).getCorrectIndex() == index){
