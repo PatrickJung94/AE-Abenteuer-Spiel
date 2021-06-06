@@ -19,8 +19,8 @@ public class SpielPanel extends JFrame {
 
 	private AellionaerGame gameContext;
 	private static final long serialVersionUID = 1L;
-	private JPanel answers = new JPanel();
 	private JPanel infoPanel = new JPanel();
+	private JPanel answers = new JPanel();
 	private JPanel questionPanel = new JPanel();
 	private JLabel questionLabel = new JLabel();
 	private JPanel listenPanel = new JPanel();
@@ -57,7 +57,6 @@ public class SpielPanel extends JFrame {
 	private JButton jokerTelefon = new JButton("Telefonjoker");
 	private JButton jokerPublikum = new JButton("Publikumsjoker");
 	private JProgressBar timerProgressBar = new JProgressBar();;
-	//JButton jokerz = new JButton("zjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
@@ -66,53 +65,112 @@ public class SpielPanel extends JFrame {
 	}
 
 	private void init() {
-
-		//eventAlert.setBackground(new Color(255,0,0));
-		eventAlert.setLayout(new GridBagLayout());
-		selectedJokerLabel.setFont(f2);
-		eventAlert.add(selectedJokerLabel);
-
-		infoPanel.setBackground(new Color(0,0,139));
-
-		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
 		
+		eventAlert.setLayout(new GridBagLayout());
+		eventAlert.add(selectedJokerLabel);
+		selectedJokerLabel.setFont(f2);
+		
+		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
+
+
+		initInfoPanel();
+		initAnswerPanel(border);
+		initMenuePanel();
+		initLeiterPanel(border);
+		initListenPanel();
+		initJokerPanel();
+		jokerEvents();
+
+		setBorderAndSizeOfJokers(border);
+
+		this.questionLabel = new JLabel(question,SwingConstants.CENTER);
+		questionLabel.setFont(f);
+		questionPanel.add(questionLabel);
+		
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().add(listenPanel);
+		this.setPreferredSize(new Dimension(1000, 1000));
+		
+		for(int k=0; k<4; k++){
+			final Integer kI = Integer.valueOf(k);
+			buttons[kI].addActionListener((event)->{
+				this.checkAnswer(kI);
+			});
+		}
+
+		initDifficulty();
+		
+
+
+	}
+
+	private void initDifficulty(){
+		Difficulty difficulty = gameContext.getDifficulty();
+
+		switch (difficulty) {
+			case LOW:
+				this.timeMultiplier = 2;
+				break;
+			case MEDIUM:
+				this.timeMultiplier = 1;
+				break;
+			case HARD:
+				this.timeMultiplier = 0.5;
+				break;
+		}
+
+		double maxTime = this.timeMultiplier*60*1000;
+
+		this.timerProgressBar.setMinimum(0);
+		this.timerProgressBar.setMaximum((int) maxTime);
+		this.timerProgressBar.setValue((int) maxTime);
+
+		ActionListener taskPerformer = (event) -> {
+			if (this.elapsedTime > maxTime) {
+				System.out.println("Time stopped");
+				this.timer.stop();
+				System.exit(0);
+			}
+			this.timerProgressBar.setValue((int) (maxTime - this.elapsedTime));
+			this.elapsedTime = this.elapsedTime + 1000;
+			System.out.println("Ende ActionListner");
+		};
+		
+		System.out.println("Before TIMER");
+		this.timer = new Timer(1000, taskPerformer);
+		System.out.println("After TIMER");
+	}
+
+
+
+
+	private void setBorderAndSizeOfJokers(AbstractBorder border){
 		joker50.setBorder(border);
 		jokerTelefon.setBorder(border);
 		jokerPublikum.setBorder(border);
-		//jokerz.setBorder(border);
-		
 		jokerTelefon.setPreferredSize(new Dimension(300,100));
 		joker50.setPreferredSize(new Dimension(300,100));
 		jokerPublikum.setPreferredSize(new Dimension(300,100));
-		//jokerz.setPreferredSize(new Dimension(300,100));
-		this.questionLabel = new JLabel(question,SwingConstants.CENTER);
-		setQuestion("sdhjkdshksdjh");
-		
-		
+	}
 
 
-		answers.setLayout(new GridLayout(2, 2));
-		answers.setPreferredSize(new Dimension(1280, 220));
-		
-		
-		for (int i = 0; i < 4; i++) {
-			String[] buttonsArray = new String[4];
-			buttons[i] = new JButton(buttonsArray[i]);
-			answers.add(buttons[i]);
-		}
+	private void initInfoPanel(){
+		infoPanel.setLayout(new BorderLayout());
+		infoPanel.add(menuePanel, BorderLayout.NORTH);
+		infoPanel.add(jokerPanel, BorderLayout.WEST);
+		infoPanel.add(leiterPanel, BorderLayout.EAST);
+		infoPanel.add(questionPanel, BorderLayout.SOUTH);
+		infoPanel.add(eventAlert, BorderLayout.CENTER);
+		infoPanel.setBackground(new Color(0,0,139));
+	}
 
-		buttons[0].setBorder(border);
-		buttons[1].setBorder(border);
-		buttons[2].setBorder(border);
-		buttons[3].setBorder(border);
-
-		
-		flowLayoutMenue.setHgap(500);
-		menuePanel.setLayout(flowLayoutMenue);
+	private void initMenuePanel(){
 		
 		JButton zurueckButton = new JButton("Zurück");
 		JButton beendenButton = new JButton("Beenden");
-
+		flowLayoutMenue.setHgap(500);
+		menuePanel.setLayout(flowLayoutMenue);
 		menuePanel.add(zurueckButton);
 		menuePanel.add(timerProgressBar);
 		menuePanel.add(beendenButton);
@@ -120,24 +178,41 @@ public class SpielPanel extends JFrame {
 		zurueckButton.addActionListener(event -> {
 			gameContext.gamePanelToMenu();
 		});
-
 		beendenButton.addActionListener(event -> {
 			System.exit(0);
 		});
+	}
 
-		questionLabel.setFont(f);
-		infoPanel.setLayout(new BorderLayout());
-		infoPanel.add(menuePanel, BorderLayout.NORTH);
-		infoPanel.add(jokerPanel, BorderLayout.WEST);
-		infoPanel.add(leiterPanel, BorderLayout.EAST);
-		infoPanel.add(questionPanel, BorderLayout.SOUTH);
-		infoPanel.add(eventAlert, BorderLayout.CENTER);
+	private void initJokerPanel(){		
+		jokerPanel.setPreferredSize(new Dimension(400,500));
+		jokerPanel.setLayout(flowLayoutJoker);
+		jokerPanel.add(joker50);
+		jokerPanel.add(jokerTelefon);
+		jokerPanel.add(jokerPublikum);
+	}
 
+	private void initListenPanel(){
+		listenPanel.setLayout(boxLayout);
+		listenPanel.add(Box.createRigidArea(new Dimension(3, 1)));
+		listenPanel.add(infoPanel);
+		listenPanel.add(answers);
+	}
+
+	private void initAnswerPanel(AbstractBorder border){
+		answers.setLayout(new GridLayout(2, 2));
+		answers.setPreferredSize(new Dimension(1280, 220));
+		for (int i = 0; i < 4; i++) {
+			String[] buttonsArray = new String[4];
+			buttons[i] = new JButton(buttonsArray[i]);
+			answers.add(buttons[i]);
+			buttons[i].setBorder(border);
+		}
+	}
+
+	private void initLeiterPanel(AbstractBorder border){
 		leiterPanel.setLayout(flowLayoutLeiter);
 		leiterPanel.setPreferredSize(new Dimension(400,500));
-		
 		int i=10;
-		
 		while (i>0) {
 			ladderButtons[i] = new JButton(String.valueOf(i*10));
 			ladderButtons[i].setPreferredSize(new Dimension(300,60));
@@ -145,66 +220,29 @@ public class SpielPanel extends JFrame {
 			ladderButtons[i].setBorder(border);
 			i=i-1;
 		}
+	}
 
-		
 
 
-		
-		jokerPanel.setPreferredSize(new Dimension(400,500));
-		jokerPanel.setLayout(flowLayoutJoker);
-		jokerPanel.add(joker50);
-		jokerPanel.add(jokerTelefon);
-		jokerPanel.add(jokerPublikum);
-		//jokerPanel.add(jokerz);
 
-		questionPanel.add(questionLabel);
 
-	
-		
-		
-		listenPanel.setLayout(boxLayout);
-		listenPanel.add(Box.createRigidArea(new Dimension(3, 1)));
-		listenPanel.add(infoPanel);
-		listenPanel.add(answers);
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(listenPanel);
-		this.setPreferredSize(new Dimension(1000, 1000));
+	private void jokerEvents(){
 		joker50.addActionListener((event)->{
-
-
 			if(!joker50Used){
 				int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
 				System.out.println(correctIndexes[0]);
 				System.out.println(correctIndexes[1]);
 
-				// ArrayList<Integer> wrongIndexes = new ArrayList<>();
-				// for(int k=0; k<4;k++){
-
-				// 	for(int l=0; l<correctIndexes.length;l++){
-				// 		if(correctIndexes[l] != k){
-
-				// 		}
-				// 	}
-
-				// }
-				
 				for(int t=0; t<4;t++ ){
-	
-					buttons[t].hide();
+					buttons[t].setVisible(false);;
 				}
 
-
 				for(int j=0; j<2;j++ ){
-	
-					buttons[correctIndexes[j]].show();
+					buttons[correctIndexes[j]].setVisible(true);;
 				}
 				joker50Used = true;
 
 			}
-
-
-
 		});
 
 		jokerTelefon.addActionListener((event)->{
@@ -234,70 +272,15 @@ public class SpielPanel extends JFrame {
 				jokerPublikumUsed = true;
 			}
 		});
-
-
-		buttons[0].addActionListener((event)->{
-
-			this.checkAnswer(0);
-			
-
-
-		});
-
-		buttons[1].addActionListener((event)->{
-
-			this.checkAnswer(1);
-
-		});
-
-		buttons[2].addActionListener((event)->{
-
-			this.checkAnswer(2);
-
-		});
-
-		buttons[3].addActionListener((event)->{
-
-			this.checkAnswer(3);
-		});
-
-		Difficulty difficulty = gameContext.getDifficulty();
-
-		switch (difficulty) {
-			case LOW:
-				this.timeMultiplier = 2;
-				break;
-			case MEDIUM:
-				this.timeMultiplier = 1;
-				break;
-			case HARD:
-				this.timeMultiplier = 0.5;
-				break;
-		}
-
-		double maxTime = this.timeMultiplier*60*1000;
-
-		this.timerProgressBar.setMinimum(0);
-		this.timerProgressBar.setMaximum((int) maxTime);
-		this.timerProgressBar.setValue((int) maxTime);
-
-		ActionListener taskPerformer = event -> {
-			if (this.elapsedTime > maxTime) {
-				System.out.println("Time stopped");
-				this.timer.stop();
-				System.exit(0);
-			}
-			this.timerProgressBar.setValue((int) (maxTime - this.elapsedTime));
-			this.elapsedTime = this.elapsedTime + 1000;
-		};
-		this.timer = new Timer(1000, taskPerformer);
 	}
+
 
 	private void checkAnswer(int index){
 		if(this.questionsBundleArray.get(questionActiveIndex).getCorrectIndex() == index){
 			this.nextQuestion();
 			this.elapsedTime = 0L;
 		}else{
+			gameContext.showSaveScore(this.score);
 			System.out.println("Looser");
 			this.timer.stop();
 			System.exit(0);
@@ -320,7 +303,7 @@ public class SpielPanel extends JFrame {
 			this.eventAlert.repaint();
 
 			for(int t=0; t<4;t++ ){
-				buttons[t].show();
+				buttons[t].setVisible(true);
 			}
 
 			this.score += this.questionActiveIndex*10;
@@ -328,6 +311,7 @@ public class SpielPanel extends JFrame {
 
 		}else{
 			ladderButtons[10].setBackground(new Color(89,255,106));
+			gameContext.showSaveScore(this.score);
 			System.out.println("Du bist ein ganz toller Typ Weißenbach ist stolz auf dich!");
 		}
 
@@ -362,14 +346,9 @@ public class SpielPanel extends JFrame {
 		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
 		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
 		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
-		System.out.println("Size: "+ questionsBundleArray.get(questionActiveIndex).getText());
-		System.out.println("Size: "+ questionsBundleArray.get(questionActiveIndex).getAnswers()[0].toString());
+		System.out.println("Before Timer start");
 		this.timer.start();
     }
-
-	// private void loadQuestions(){
-	// }
-
 
     public void hideGamePanel() {
         this.setVisible(false);
@@ -379,8 +358,5 @@ public class SpielPanel extends JFrame {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 				this.timer.stop();
     }
-
-
-
 
 }

@@ -2,6 +2,7 @@ package wwae;
 
 public class AellionaerGame {
 	private MenuWindow menu = new MenuWindow(this);
+	private RankEntry re = new RankEntry(this);
 	private Difficulty d = Difficulty.LOW;
 	private SpielPanel gp = new SpielPanel(this);
 	private String bundle = "output";
@@ -42,5 +43,14 @@ public class AellionaerGame {
 				break;
 		}
 	}
+
+	public void showSaveScore(int score) {
+		gp.hideGamePanel();
+		re.showEntry(score);
+	}
 	
+	public void addRankToMenu() {
+		re.hideEntry();
+		menu.showMenu();
+	}
 }
