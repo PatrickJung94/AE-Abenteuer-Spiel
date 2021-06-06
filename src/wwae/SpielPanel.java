@@ -70,51 +70,23 @@ public class SpielPanel extends JFrame {
 		eventAlert.add(selectedJokerLabel);
 		selectedJokerLabel.setFont(f2);
 		
-		initInfoPanel();
-		
 		AbstractBorder border = new TextBubbleBorder(new Color(0, 0, 0),1,30,0);
-		setBorderAndSizeOfJokers(border);
-
-		this.questionLabel = new JLabel(question,SwingConstants.CENTER);
-		
-		answers.setLayout(new GridLayout(2, 2));
-		answers.setPreferredSize(new Dimension(1280, 220));
-		
-		
-		for (int i = 0; i < 4; i++) {
-			String[] buttonsArray = new String[4];
-			buttons[i] = new JButton(buttonsArray[i]);
-			answers.add(buttons[i]);
-			buttons[i].setBorder(border);
-		}
 
 
-		flowLayoutMenue.setHgap(500);
+		initInfoPanel();
+		initAnswerPanel(border);
 		initMenuePanel();
-
-		questionLabel.setFont(f);
-		
-
-		leiterPanel.setLayout(flowLayoutLeiter);
-		leiterPanel.setPreferredSize(new Dimension(400,500));
-		
-		int i=10;
-		
-		while (i>0) {
-			ladderButtons[i] = new JButton(String.valueOf(i*10));
-			ladderButtons[i].setPreferredSize(new Dimension(300,60));
-			leiterPanel.add(ladderButtons[i]);
-			ladderButtons[i].setBorder(border);
-			i=i-1;
-		}
-
-		
+		initLeiterPanel(border);
+		initListenPanel();
 		initJokerPanel();
 		jokerEvents();
 
+		setBorderAndSizeOfJokers(border);
+
+		this.questionLabel = new JLabel(question,SwingConstants.CENTER);
+		questionLabel.setFont(f);
 		questionPanel.add(questionLabel);
 		
-		initListenPanel();
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().add(listenPanel);
@@ -127,7 +99,13 @@ public class SpielPanel extends JFrame {
 			});
 		}
 
+		initDifficulty();
 		
+
+
+	}
+
+	private void initDifficulty(){
 		Difficulty difficulty = gameContext.getDifficulty();
 
 		switch (difficulty) {
@@ -162,7 +140,6 @@ public class SpielPanel extends JFrame {
 		System.out.println("Before TIMER");
 		this.timer = new Timer(1000, taskPerformer);
 		System.out.println("After TIMER");
-
 	}
 
 
@@ -192,7 +169,7 @@ public class SpielPanel extends JFrame {
 		
 		JButton zurueckButton = new JButton("Zurück");
 		JButton beendenButton = new JButton("Beenden");
-
+		flowLayoutMenue.setHgap(500);
 		menuePanel.setLayout(flowLayoutMenue);
 		menuePanel.add(zurueckButton);
 		menuePanel.add(timerProgressBar);
@@ -220,6 +197,34 @@ public class SpielPanel extends JFrame {
 		listenPanel.add(infoPanel);
 		listenPanel.add(answers);
 	}
+
+	private void initAnswerPanel(AbstractBorder border){
+		answers.setLayout(new GridLayout(2, 2));
+		answers.setPreferredSize(new Dimension(1280, 220));
+		for (int i = 0; i < 4; i++) {
+			String[] buttonsArray = new String[4];
+			buttons[i] = new JButton(buttonsArray[i]);
+			answers.add(buttons[i]);
+			buttons[i].setBorder(border);
+		}
+	}
+
+	private void initLeiterPanel(AbstractBorder border){
+		leiterPanel.setLayout(flowLayoutLeiter);
+		leiterPanel.setPreferredSize(new Dimension(400,500));
+		int i=10;
+		while (i>0) {
+			ladderButtons[i] = new JButton(String.valueOf(i*10));
+			ladderButtons[i].setPreferredSize(new Dimension(300,60));
+			leiterPanel.add(ladderButtons[i]);
+			ladderButtons[i].setBorder(border);
+			i=i-1;
+		}
+	}
+
+
+
+
 
 	private void jokerEvents(){
 		joker50.addActionListener((event)->{
