@@ -130,16 +130,14 @@ public class SpielPanel extends JFrame {
 			if (this.elapsedTime > maxTime) {
 				System.out.println("Time stopped");
 				this.timer.stop();
-				System.exit(0);
+				gameContext.showSaveScore(this.score);
 			}
 			this.timerProgressBar.setValue((int) (maxTime - this.elapsedTime));
 			this.elapsedTime = this.elapsedTime + 1000;
 			System.out.println("Ende ActionListner");
 		};
 		
-		System.out.println("Before TIMER");
 		this.timer = new Timer(1000, taskPerformer);
-		System.out.println("After TIMER");
 	}
 
 
@@ -167,17 +165,18 @@ public class SpielPanel extends JFrame {
 
 	private void initMenuePanel(){
 		
-		JButton zurueckButton = new JButton("Zurück");
+		//JButton zurueckButton = new JButton("Zurück");
 		JButton beendenButton = new JButton("Beenden");
 		flowLayoutMenue.setHgap(500);
 		menuePanel.setLayout(flowLayoutMenue);
-		menuePanel.add(zurueckButton);
+		menuePanel.add(new JPanel());
+		//menuePanel.add(zurueckButton);
 		menuePanel.add(timerProgressBar);
 		menuePanel.add(beendenButton);
 
-		zurueckButton.addActionListener(event -> {
-			gameContext.gamePanelToMenu();
-		});
+		//zurueckButton.addActionListener(event -> {
+		//	gameContext.gamePanelToMenu();
+		//});
 		beendenButton.addActionListener(event -> {
 			System.exit(0);
 		});
@@ -281,9 +280,7 @@ public class SpielPanel extends JFrame {
 			this.elapsedTime = 0L;
 		}else{
 			gameContext.showSaveScore(this.score);
-			System.out.println("Looser");
 			this.timer.stop();
-			System.exit(0);
 		}
 	} 
 
@@ -307,12 +304,10 @@ public class SpielPanel extends JFrame {
 			}
 
 			this.score += this.questionActiveIndex*10;
-			System.out.println("Aktueller Score: "+ this.score); 
 
 		}else{
 			ladderButtons[10].setBackground(new Color(89,255,106));
 			gameContext.showSaveScore(this.score);
-			System.out.println("Du bist ein ganz toller Typ Weißenbach ist stolz auf dich!");
 		}
 
 	}
@@ -356,7 +351,7 @@ public class SpielPanel extends JFrame {
 
     public void close() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-				this.timer.stop();
+		this.timer.stop();
     }
 
 }

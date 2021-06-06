@@ -210,27 +210,31 @@ public class CreateQuestion extends JFrame {
 		// ---------- Create save button action -----------
 
 		saveButton.addActionListener((event) -> {
-			newQuestion.setTime(Double.parseDouble(timeInput.getText()));
-			newQuestion.setText(textInput.getText());
-			newQuestion.setCorrectIndex(Integer.parseInt(correctIndexInput.getText()));
-			String[] temp = {
-				antwort1Input.getText(),
-				antwort2Input.getText(),
-				antwort3Input.getText(),
-				antwort4Input.getText()
-			};
-			newQuestion.setAnswers(temp);
-			newQuestion.setTextForPhoneJoker(textForPhoneJokerInput.getText());
-
-			System.out.println(newQuestion.getCorrectIndex());
-			System.out.println(newQuestion.getTime());
-			System.out.println(newQuestion.getText());
-			System.out.println(newQuestion.getTextForPhoneJoker());
-			for (int i = 0; i < newQuestion.getAnswers().length; i++) {
-				System.out.println(newQuestion.getAnswers()[i]);
+			if (!fileSystem.isBundleFull(bundleNameInput.getText())) {				
+				newQuestion.setTime(Double.parseDouble(timeInput.getText()));
+				newQuestion.setText(textInput.getText());
+				newQuestion.setCorrectIndex(Integer.parseInt(correctIndexInput.getText()));
+				String[] temp = {
+					antwort1Input.getText(),
+					antwort2Input.getText(),
+					antwort3Input.getText(),
+					antwort4Input.getText()
+				};
+				newQuestion.setAnswers(temp);
+				newQuestion.setTextForPhoneJoker(textForPhoneJokerInput.getText());
+	
+				System.out.println(newQuestion.getCorrectIndex());
+				System.out.println(newQuestion.getTime());
+				System.out.println(newQuestion.getText());
+				System.out.println(newQuestion.getTextForPhoneJoker());
+				for (int i = 0; i < newQuestion.getAnswers().length; i++) {
+					System.out.println(newQuestion.getAnswers()[i]);
+				}
+	
+				fileSystem.addQuestionToBundle(bundleNameInput.getText(), newQuestion);
+			} else {
+				JOptionPane.showOptionDialog(null, "Das Bundle ist voll!", "Bundle Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
 			}
-
-			fileSystem.addQuestionToBundle(bundleNameInput.getText(), newQuestion);
 		});
 		
 		
