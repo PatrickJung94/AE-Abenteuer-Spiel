@@ -12,7 +12,6 @@ public class RankEntry extends JFrame {
 
 
     private int score; 
-    private String name; 
     private JLabel highscore = new JLabel(); 
     private JTextField nameInput = new JTextField();
     private JButton save = new JButton("Anlegen");
@@ -37,7 +36,6 @@ public class RankEntry extends JFrame {
         pane.add(save);
 
         save.addActionListener((event) -> {
-            System.out.println(this.score);
             Rank r = new Rank(nameInput.getText(), this.score);
             fs.addRankingEntry(r);
             this.gameContext.addRankToMenu();

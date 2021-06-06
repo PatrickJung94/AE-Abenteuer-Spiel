@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.Timer;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
@@ -39,9 +41,6 @@ public class SpielPanel extends JFrame {
 	private Timer timer;
 	private FileSystem fs = new FileSystem();
 	private ArrayList<Question> questionsBundleArray; 
-	private boolean joker50Used = false; 
-	private boolean jokerTelefonUsed = false; 
-	private boolean jokerPublikumUsed = false; 
 	
 	private String question = new String();
 	private JButton[] buttons = new JButton[4];
@@ -128,20 +127,15 @@ public class SpielPanel extends JFrame {
 
 		ActionListener taskPerformer = (event) -> {
 			if (this.elapsedTime > maxTime) {
-				System.out.println("Time stopped");
 				this.timer.stop();
 				gameContext.showSaveScore(this.score);
 			}
 			this.timerProgressBar.setValue((int) (maxTime - this.elapsedTime));
 			this.elapsedTime = this.elapsedTime + 1000;
-			System.out.println("Ende ActionListner");
 		};
 		
 		this.timer = new Timer(1000, taskPerformer);
 	}
-
-
-
 
 	private void setBorderAndSizeOfJokers(AbstractBorder border){
 		joker50.setBorder(border);
@@ -172,6 +166,7 @@ public class SpielPanel extends JFrame {
 		menuePanel.add(new JPanel());
 		//menuePanel.add(zurueckButton);
 		menuePanel.add(timerProgressBar);
+
 		menuePanel.add(beendenButton);
 
 		//zurueckButton.addActionListener(event -> {
@@ -221,55 +216,45 @@ public class SpielPanel extends JFrame {
 		}
 	}
 
-
-
-
-
 	private void jokerEvents(){
 		joker50.addActionListener((event)->{
-			if(!joker50Used){
-				int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
-				System.out.println(correctIndexes[0]);
-				System.out.println(correctIndexes[1]);
+			int[] correctIndexes = questionsBundleArray.get(questionActiveIndex).generateFiftyFiftyOutcome();
+			System.out.println(correctIndexes[0]);
+			System.out.println(correctIndexes[1]);
 
-				for(int t=0; t<4;t++ ){
-					buttons[t].setVisible(false);;
-				}
-
-				for(int j=0; j<2;j++ ){
-					buttons[correctIndexes[j]].setVisible(true);;
-				}
-				joker50Used = true;
-
+			for(int t=0; t<4;t++ ){
+				buttons[t].setVisible(false);;
 			}
+
+			for(int j=0; j<2;j++ ){
+				buttons[correctIndexes[j]].setVisible(true);;
+			}
+			joker50.setEnabled(false);
 		});
 
 		jokerTelefon.addActionListener((event)->{
 
-			if(!jokerTelefonUsed){
-				eventAlert.removeAll();
-				String telefonJoker = this.questionsBundleArray.get(questionActiveIndex).getTextForPhoneJoker();
-				JLabel jokerLabel = new JLabel();
-				jokerLabel.setText(telefonJoker);
-				eventAlert.add(jokerLabel);
-				System.out.println("Telefonjoker: "+telefonJoker);
-				
-				eventAlert.revalidate();
-				eventAlert.repaint();
-				jokerTelefonUsed = true; 
-			}
-				
+			eventAlert.removeAll();
+			String telefonJoker = this.questionsBundleArray.get(questionActiveIndex).getTextForPhoneJoker();
+			JLabel jokerLabel = new JLabel();
+			jokerLabel.setText(telefonJoker);
+			eventAlert.add(jokerLabel);
+			System.out.println("Telefonjoker: "+telefonJoker);
+			
+			eventAlert.revalidate();
+			eventAlert.repaint();
+			jokerTelefon.setEnabled(false);
 
 		});
 
 		jokerPublikum.addActionListener((event)->{
-			if(!jokerPublikumUsed){
-				eventAlert.removeAll();
-				eventAlert.add(this.questionsBundleArray.get(questionActiveIndex).generateBargraphForAudienceJoker());
-				eventAlert.revalidate();
-				eventAlert.repaint();
-				jokerPublikumUsed = true;
-			}
+
+			eventAlert.removeAll();
+			eventAlert.add(this.questionsBundleArray.get(questionActiveIndex).generateBargraphForAudienceJoker());
+			eventAlert.revalidate();
+			eventAlert.repaint();
+			jokerPublikum.setEnabled(false);
+
 		});
 	}
 
@@ -307,6 +292,7 @@ public class SpielPanel extends JFrame {
 
 		}else{
 			ladderButtons[10].setBackground(new Color(89,255,106));
+			this.timer.stop();
 			gameContext.showSaveScore(this.score);
 		}
 
@@ -338,6 +324,7 @@ public class SpielPanel extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 		this.questionsBundleArray = fs.getAllQuestionsFromBundle(bundleName);
+		Collections.shuffle(this.questionsBundleArray);
 		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
 		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
 		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));

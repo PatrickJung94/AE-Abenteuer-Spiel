@@ -47,6 +47,7 @@ public class AellionaerGame {
 	public void showSaveScore(int score) {
 		gp.hideGamePanel();
 		re.showEntry(score);
+		gp = new SpielPanel(this);
 	}
 	
 	public void addRankToMenu() {
