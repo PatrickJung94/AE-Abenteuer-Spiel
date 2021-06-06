@@ -5,9 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Timer;
+import javax.swing.Timer;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 
@@ -19,47 +19,45 @@ public class SpielPanel extends JFrame {
 
 	private AellionaerGame gameContext;
 	private static final long serialVersionUID = 1L;
-
-	JPanel answers = new JPanel();
-	JPanel infoPanel = new JPanel();
-	JPanel questionPanel = new JPanel();
-	JLabel questionLabel = new JLabel();
-	JPanel listenPanel = new JPanel();
-	JPanel jokerPanel = new JPanel();
-	JPanel leiterPanel = new JPanel();
-	JPanel menuePanel = new JPanel();
-	JPanel eventAlert = new JPanel();
-
-	JLabel selectedJokerLabel = new JLabel();
-
-	JButton[] ladderButtons = new JButton[11]; 
-	JButton joker50 = new JButton("50/50");
-	JButton jokerTelefon = new JButton("Telefonjoker");
-	JButton jokerPublikum = new JButton("Publikumsjoker");
-	//JButton jokerz = new JButton("zjoker");
-
-	int score = 0; 
-	int questionActiveIndex = 0; 
+	private JPanel answers = new JPanel();
+	private JPanel infoPanel = new JPanel();
+	private JPanel questionPanel = new JPanel();
+	private JLabel questionLabel = new JLabel();
+	private JPanel listenPanel = new JPanel();
+	private JPanel jokerPanel = new JPanel();
+	private JPanel leiterPanel = new JPanel();
+	private JPanel menuePanel = new JPanel();
+	private JPanel eventAlert = new JPanel();
+	private JLabel selectedJokerLabel = new JLabel();
+	private int questionActiveIndex = 0; 
+	private JButton[] ladderButtons = new JButton[11]; 
+	private int score = 0; 
 	
-	Timer timer = new Timer();
-	
+	private long elapsedTime = 0L;
+	private double timeMultiplier = 0.25;
+
+	private Timer timer;
 	private FileSystem fs = new FileSystem();
 	private ArrayList<Question> questionsBundleArray; 
 	private boolean joker50Used = false; 
 	private boolean jokerTelefonUsed = false; 
 	private boolean jokerPublikumUsed = false; 
 	
-	String question = new String();
-	JButton[] buttons = new JButton[4];
+	private String question = new String();
+	private JButton[] buttons = new JButton[4];
 
-	Font f = new Font(Font.SERIF, Font.BOLD, 50);
-	Font f2 = new Font(Font.SERIF, Font.BOLD, 20);
-
-	BoxLayout boxLayout = new BoxLayout(listenPanel, BoxLayout.Y_AXIS);
-	FlowLayout flowLayoutJoker = new FlowLayout(); 
-	FlowLayout flowLayoutLeiter = new FlowLayout();
-	FlowLayout flowLayoutMenue = new FlowLayout();
+	private Font f = new Font(Font.SERIF, Font.BOLD, 50);
+	private Font f2 = new Font(Font.SERIF, Font.BOLD, 20);
+	private BoxLayout boxLayout = new BoxLayout(listenPanel, BoxLayout.Y_AXIS);
+	private FlowLayout flowLayoutJoker = new FlowLayout(); 
+	private FlowLayout flowLayoutLeiter = new FlowLayout();
+	private FlowLayout flowLayoutMenue = new FlowLayout();
 	
+	private JButton joker50 = new JButton("50/50");
+	private JButton jokerTelefon = new JButton("Telefonjoker");
+	private JButton jokerPublikum = new JButton("Publikumsjoker");
+	private JProgressBar timerProgressBar = new JProgressBar();;
+	//JButton jokerz = new JButton("zjoker");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
@@ -130,11 +128,45 @@ public class SpielPanel extends JFrame {
 			});
 		}
 
+		
+		Difficulty difficulty = gameContext.getDifficulty();
 
+		switch (difficulty) {
+			case LOW:
+				this.timeMultiplier = 2;
+				break;
+			case MEDIUM:
+				this.timeMultiplier = 1;
+				break;
+			case HARD:
+				this.timeMultiplier = 0.5;
+				break;
+		}
 
-	
+		double maxTime = this.timeMultiplier*60*1000;
+
+		this.timerProgressBar.setMinimum(0);
+		this.timerProgressBar.setMaximum((int) maxTime);
+		this.timerProgressBar.setValue((int) maxTime);
+
+		ActionListener taskPerformer = (event) -> {
+			if (this.elapsedTime > maxTime) {
+				System.out.println("Time stopped");
+				this.timer.stop();
+				System.exit(0);
+			}
+			this.timerProgressBar.setValue((int) (maxTime - this.elapsedTime));
+			this.elapsedTime = this.elapsedTime + 1000;
+			System.out.println("Ende ActionListner");
+		};
+		
+		System.out.println("Before TIMER");
+		this.timer = new Timer(1000, taskPerformer);
+		System.out.println("After TIMER");
 
 	}
+
+
 
 
 	private void setBorderAndSizeOfJokers(AbstractBorder border){
@@ -163,7 +195,6 @@ public class SpielPanel extends JFrame {
 		
 		JButton zurueckButton = new JButton("Zurück");
 		JButton beendenButton = new JButton("Beenden");
-		JProgressBar timerProgressBar = new JProgressBar();
 
 		menuePanel.setLayout(flowLayoutMenue);
 		menuePanel.add(zurueckButton);
@@ -244,12 +275,15 @@ public class SpielPanel extends JFrame {
 	}
 
 
-
 	private void checkAnswer(int index){
 		if(this.questionsBundleArray.get(questionActiveIndex).getCorrectIndex() == index){
 			this.nextQuestion();
+			this.elapsedTime = 0L;
 		}else{
 			gameContext.showSaveScore(this.score);
+			System.out.println("Looser");
+			this.timer.stop();
+			System.exit(0);
 		}
 	} 
 
@@ -312,6 +346,8 @@ public class SpielPanel extends JFrame {
 		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
 		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
 		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
+		System.out.println("Before Timer start");
+		this.timer.start();
     }
 
 	// private void loadQuestions(){
@@ -324,6 +360,7 @@ public class SpielPanel extends JFrame {
 
     public void close() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+				this.timer.stop();
     }
 
 }

@@ -2,9 +2,9 @@ package wwae;
 
 public class AellionaerGame {
 	private MenuWindow menu = new MenuWindow(this);
-	private SpielPanel gp = new SpielPanel(this);
 	private RankEntry re = new RankEntry(this);
 	private Difficulty d = Difficulty.LOW;
+	private SpielPanel gp = new SpielPanel(this);
 	private String bundle = "output";
 	
 	public static void main(String[] args) {
@@ -23,6 +23,10 @@ public class AellionaerGame {
 	public void menuToGamePanel() {
 		menu.hideMenu();
 		gp.showGamePanel(this.bundle);
+	}
+
+	public Difficulty getDifficulty() {
+		return d;
 	}
 
 	public void changeDifficulty(Difficulty _d) {
