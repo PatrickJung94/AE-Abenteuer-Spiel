@@ -19,7 +19,7 @@ public class Question {
 	private String textForPhoneJoker;
 	private String textForAdditionalJoker;
 	
-	public double[] generateAudiencePercentage(Question question) {
+	public double[] generateAudiencePercentage() {
 		Random rand = new Random();
 		double[] percentages = new double[4];
 		double sum = 0;
@@ -39,22 +39,22 @@ public class Question {
 	    }
 
 			if (correctIndex != indexOfMaxValue) {
-				double tempPercentage = percentages[question.correctIndex];
-				percentages[question.correctIndex] = max;
+				double tempPercentage = percentages[this.correctIndex];
+				percentages[this.correctIndex] = max;
 				percentages[indexOfMaxValue] = tempPercentage;
 			}
 
 	    return percentages;
 	}
 
-	public int[] generateFiftyFiftyOutcome (Question question) {
+	public int[] generateFiftyFiftyOutcome () {
 		Random rand = new Random();
 		int[] outcomes = new int[2];
 		int otherIndex = -1;
 
 		do {
 			otherIndex = rand.nextInt(4);
-		} while (otherIndex == question.correctIndex && otherIndex > -1 );
+		} while (otherIndex == this.correctIndex && otherIndex > -1 );
 
 		outcomes[0] = correctIndex;
 		outcomes[1] = otherIndex;
@@ -62,17 +62,15 @@ public class Question {
 		return outcomes;
 	}
 
-	public void generateBargraphForAudienceJoker(Question question) {
-		JFrame frame;
+	public JPanel generateBargraphForAudienceJoker() {
+		JPanel barPanel;
 
-		frame = new JFrame("Bar Graph");
-		frame.setSize(400, 400);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setPreferredSize(frame.getSize());
-		frame.add(new DrawBars(frame.getSize(), this.generateAudiencePercentage(question)));
-		frame.pack();
-		frame.setVisible(true);
+		barPanel = new JPanel();
+		barPanel.setSize(400, 400);
+		barPanel.setPreferredSize(barPanel.getSize());
+		barPanel.add(new DrawBars(barPanel.getSize(), this.generateAudiencePercentage()));
 
+		return barPanel;
 	}
 
 	public static class DrawBars extends JPanel  implements MouseListener {
@@ -143,13 +141,13 @@ public class Question {
 										
 				g2.setColor(purple);
 				g2.setFont (new Font("Arial", Font.PLAIN, 20));
-				g2.drawString("Answer1" ,  10,30);//text to display, x and y coordinates
+				g2.drawString("A" ,  55,30);//text to display, x and y coordinates
 				g2.setColor(green);
-				g2.drawString("Answer2" ,  100,30);
+				g2.drawString("B" ,  145,30);
 				g2.setColor(red);
-				g2.drawString("Answer3" ,  190,30);
+				g2.drawString("C" ,  235,30);
 				g2.setColor(blue);
-				g2.drawString("Answer4" ,  280,30);
+				g2.drawString("D" ,  325,30);
 
 		}
 		public void mousePressed(MouseEvent e) {

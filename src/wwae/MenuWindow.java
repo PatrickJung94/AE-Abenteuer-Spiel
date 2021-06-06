@@ -15,12 +15,17 @@ public class MenuWindow extends JFrame {
 	private CreateQuestion createQuestion;
 	private HighScorePopup highScorePopup;
 	private int numberHiscorePopup = 0;
+	private JLabel diff;
 	private FileSystem fs = new FileSystem();
+	private boolean diffWindowOpen = false;
+	private DifficultySelection ds;
 
 	public MenuWindow(AellionaerGame _gameContext) {
 		super("Men\u00fc - Wer wird AEllion\u00e4r");
 		gameContext = _gameContext;
 		createLayout();
+
+		ds = new DifficultySelection(gameContext, 1005, 480);
 	}
 	
 	private void createLayout() {
@@ -55,6 +60,10 @@ public class MenuWindow extends JFrame {
 		
 		menuBlockButtons.add(startBtn);
 		menuBlockButtons.add(exitBtn);
+
+		diff = new JLabel("Schwierigkeitsgrad: Leicht");
+		diff.setFont(new Font(diff.getFont().getName(), Font.PLAIN, 18));
+		menuBlockBottom.add(diff);
 		
 		startBtn.addActionListener(event -> {
 			gameContext.menuToGamePanel();
@@ -93,6 +102,17 @@ public class MenuWindow extends JFrame {
 			createQuestion = new CreateQuestion();
 			createQuestion.showForm();
 		});
+
+		difficulty.addActionListener(event -> {
+			if (!diffWindowOpen) {
+				ds.showDifficultySelection();
+				this.diffWindowOpen = true;
+			} else {
+				ds.hideDifficultySelection();
+				this.diffWindowOpen = false;
+			}
+		});
+
 		
 		highscore.addActionListener(event -> {
 			if (numberHiscorePopup == 0) {
@@ -124,12 +144,16 @@ public class MenuWindow extends JFrame {
 		highScorePopup = new HighScorePopup(fs.getRankingsSortedByScore(), x, y, locationX, locationY);
 		highScorePopup.setVisible(true);
 	}
+
+	public void updateDiffLabel(String text) {
+		diff.setText(text);
+		diffWindowOpen = false;
+	}
+
 	public void showMenu() {
 		this.setSize(1280, 720);
 		this.setVisible(true);
 		this.setResizable(false);
-		//createpopup();
-		
 	}
 	
 	public void hideMenu() {

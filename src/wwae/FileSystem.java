@@ -25,8 +25,12 @@ public class FileSystem {
     private final Path RANKING_PATH = Paths.get("ranking.json");
 
     public FileSystem() {
+        //getAllQuestionsFromBundle("output");
     }
 
+    // ============================================================
+    // Question Methods
+    // ============================================================
 
     /*
      * @param bundleName Name for the File
@@ -45,11 +49,13 @@ public class FileSystem {
         if(Files.exists(jFileObjPath)) {
             try(FileReader reader = new FileReader("data/"+bundleName+".json"))
             {        
-                Object obj = jParser.parse(reader);
+                if(!reader.toString().isEmpty()) {
+                    Object obj = jParser.parse(reader);
+                    jFileArray = (JSONArray) obj;
+                }
+                
+               
 
-                jFileArray = (JSONArray) obj;
-
-                System.out.println(jFileArray);
             } 
             catch (FileNotFoundException e) {
                 System.out.println("File not Found.");
@@ -78,6 +84,8 @@ public class FileSystem {
 
         jQuestionObj.put("textForPhoneJoker", questionObj.getTextForPhoneJoker());
 
+        jQuestionObj.put("textForAdditionalJoker", questionObj.getTextForAdditionalJoker());
+
         jFileArray.add(jQuestionObj);
 
         byte jObjData[] = jFileArray.toJSONString().getBytes();
@@ -90,6 +98,63 @@ public class FileSystem {
             System.out.println("An error occurred creating the File.");
             e.printStackTrace();
         }
+    }
+    
+    public ArrayList<Question> getAllQuestionsFromBundle(String bundleName)
+    {
+        JSONArray jFileArray = new JSONArray();
+        Path jFileObjPath = Paths.get("data/"+bundleName+".json");
+        ArrayList<Question> questionList = new ArrayList<Question>();
+
+        if(Files.exists(jFileObjPath)) {
+            try(FileReader reader = new FileReader("data/"+bundleName+".json"))
+            {        
+                Object obj = jParser.parse(reader);
+
+                jFileArray = (JSONArray) obj;
+
+                // System.out.println(jFileArray);
+                jFileArray.forEach(jquestion -> questionList.add(parseQuestion((JSONObject) jquestion)));
+            } 
+            catch (FileNotFoundException e) {
+                System.out.println("File not Found.");
+                e.printStackTrace();
+            } 
+            catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            } 
+            catch (ParseException e) {
+                System.out.println("An error occurred parsing the File.");
+                e.printStackTrace();
+            }
+        }
+        System.out.println("in Filesystem:"+questionList );
+        return questionList;
+    }
+
+    public Question parseQuestion(JSONObject jquestion){
+        Question question = new Question();
+
+        question.setTime((double) jquestion.get("time"));
+        question.setText((String) jquestion.get("text"));
+        question.setAnswers(parseAnswers((JSONArray) jquestion.get("answers")));
+        Long temp = (long) jquestion.get("correctIndex");
+        question.setCorrectIndex(temp.intValue());
+        question.setTextForPhoneJoker((String) jquestion.get("textForPhoneJoker"));
+        question.setTextForAdditionalJoker((String) jquestion.get("textForAdditionalJoker"));
+
+        return question;
+    }
+
+    public String[] parseAnswers(JSONArray janswer){
+        String answers[] = new String[4];
+
+        for(int i = 0; i < 4; i++){
+            answers[i] = (String) janswer.get(i);
+        }
+
+        return answers;
     }
 
     // ============================================================
