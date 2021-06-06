@@ -31,6 +31,7 @@ public class SpielPanel extends JFrame {
 	private JPanel menuePanel = new JPanel();
 	private JPanel eventAlert = new JPanel();
 	private JLabel selectedJokerLabel = new JLabel();
+	private JLabel imageIconLabel = new JLabel(); 
 	private int questionActiveIndex = 0; 
 	private JButton[] ladderButtons = new JButton[11]; 
 	private int score = 0; 
@@ -56,6 +57,9 @@ public class SpielPanel extends JFrame {
 	private JButton jokerTelefon = new JButton("Telefonjoker");
 	private JButton jokerPublikum = new JButton("Publikumsjoker");
 	private JProgressBar timerProgressBar = new JProgressBar();;
+
+	ImageIcon achiviement1 = new ImageIcon("achievements1.jpg");
+	ImageIcon achiviement2 = new ImageIcon("achievements2.jpg");
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
@@ -155,6 +159,8 @@ public class SpielPanel extends JFrame {
 		infoPanel.add(questionPanel, BorderLayout.SOUTH);
 		infoPanel.add(eventAlert, BorderLayout.CENTER);
 		infoPanel.setBackground(new Color(0,0,139));
+
+		imageIconLabel.setPreferredSize(new Dimension(400,400));
 	}
 
 	private void initMenuePanel(){
@@ -289,6 +295,17 @@ public class SpielPanel extends JFrame {
 			}
 
 			this.score += this.questionActiveIndex*10;
+
+			switch(this.questionActiveIndex){
+				case 4:
+					imageIconLabel.setIcon(achiviement1);
+					this.eventAlert.add(imageIconLabel);
+					break;
+				case 8:
+					imageIconLabel.setIcon(achiviement2);
+					this.eventAlert.add(imageIconLabel);
+					break;
+				}
 
 		}else{
 			ladderButtons[10].setBackground(new Color(89,255,106));
