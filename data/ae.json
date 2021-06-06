@@ -2,8 +2,8 @@
   {
     "textForPhoneJoker":"Wenn ich eine Exception vergesse wundere ich mich immer wieder wieso das Programm sich beendet.",
     "answers":[
-      "Das Programm läuft weiter",
-      "Das Programm stürzt ab",
+      "Das Programm laeuft weiter",
+      "Das Programm stuerzt ab",
       "Das Programm wird angehalten bis der Fehler behoben wurde",
       "Nichts"
     ],
@@ -29,7 +29,7 @@
       "Single responsibility principle",
       "Service Related Problem"
     ],
-    "text":"Wofür steht SRP (Testen)?",
+    "text":"Wofuer steht SRP (Testen)?",
     "correctIndex":2
   }, 
   {
@@ -44,18 +44,18 @@
     "correctIndex":0
   },
   {
-    "textForPhoneJoker":"Mit abstrakte Klassen kann man dafür sorgen das bestimmte Metoden auf alle Objekt einer Klassen",
+    "textForPhoneJoker":"Mit abstrakte Klassen kann man dafuer sorgen das bestimmte Metoden auf alle Objekt einer Klassen",
     "answers":[
-      "Unterklassen dürfen nicht unterschiedlich sein",
+      "Unterklassen duerfen nicht unterschiedlich sein",
       "Erzwingt das verwenden von bestimmten Methoden auf alle unter Klassen",
-      "Sorgt für Typsicherheit",
+      "Sorgt fuer Typsicherheit",
       "Implementiert Werte bevor ein Objekt erstellt wird"
     ],
     "text":"Wozu sind abstrakte Klassen gut",
     "correctIndex":1
   },
   {
-    "textForPhoneJoker":"Das muss der Quicksort sein, davon habe ich schonmal gehört",
+    "textForPhoneJoker":"Das muss der Quicksort sein, davon habe ich schonmal gehoert",
     "answers":[
       "Bubblesort",
       "Selectionsort",
@@ -71,13 +71,13 @@
       "Automatische Erstellung von einer Dokumentation",
       "Planung des Entwicklungprojekt",
       "Generierung von Quellcode",
-      "Wiederherstellung älterer Zwischenstände der Entwicklung"
+      "Wiederherstellung aelterer Zwischenstaende der Entwicklung"
     ],
     "text":"Welche Aussage trifft auf ein System zur Versionsverwaltung zu?",
     "correctIndex":3
   }, 
   {
-    "textForPhoneJoker":"Von den Antworten kommt nur das Struktogramm in frage für mich",
+    "textForPhoneJoker":"Von den Antworten kommt nur das Struktogramm in frage fuer mich",
     "answers":[
       "Datenflussplan",
       "Interpreter",
@@ -88,12 +88,12 @@
     "correctIndex":2
   },
   {
-    "textForPhoneJoker":"Konstanten können nur vom Entwickler geändert werden",
+    "textForPhoneJoker":"Konstanten koennen nur vom Entwickler geaendert werden",
     "answers":[
       "Enthalten stets eine Gleitkommazahl",
-      "Werden während des Compilierens des Programms ignoriert",
-      "Können zur Laufzeit des Programms verändert werden",
-      "Können während der Entwicklung des Programms verändert werden"
+      "Werden waehrend des Compilierens des Programms ignoriert",
+      "Koennen zur Laufzeit des Programms veraendert werden",
+      "Koennen waehrend der Entwicklung des Programms veraendert werden"
     ],
     "text":"Welche der folgenden Beschreibungen trifft auf Konstanten zu?",
     "correctIndex":3
