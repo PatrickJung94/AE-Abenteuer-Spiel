@@ -233,7 +233,7 @@ public class CreateQuestion extends JFrame {
 	
 				fileSystem.addQuestionToBundle(bundleNameInput.getText(), newQuestion);
 			} else {
-				JOptionPane.showOptionDialog(null, "SNAKE OVER! You lose! \nScore: Snake Over", "Smdsasd", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+				JOptionPane.showOptionDialog(null, "Das Bundle ist voll!", "Bundle Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
 			}
 		});
 		
