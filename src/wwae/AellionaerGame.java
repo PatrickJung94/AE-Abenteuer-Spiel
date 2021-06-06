@@ -1,11 +1,14 @@
 package wwae;
 
+import javax.swing.JOptionPane;
+
 public class AellionaerGame {
 	private MenuWindow menu = new MenuWindow(this);
 	private RankEntry re = new RankEntry(this);
 	private Difficulty d = Difficulty.LOW;
 	private SpielPanel gp = new SpielPanel(this);
 	private String bundle = "output";
+	private FileSystem fs = new FileSystem(); 
 	
 	public static void main(String[] args) {
 		new AellionaerGame();
@@ -20,9 +23,16 @@ public class AellionaerGame {
 		menu.showMenu();
 	}
 	
-	public void menuToGamePanel() {
-		menu.hideMenu();
-		gp.showGamePanel(this.bundle);
+	public void menuToGamePanel() {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+		
+		if(fs.isBundleFull(bundle)){
+			menu.hideMenu();
+			gp.showGamePanel(this.bundle);
+		}else{
+			JOptionPane.showOptionDialog(null, "Es fehlen noch Fragen im Bundle !", "Bundle Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+		}
+
+
 	}
 
 	public Difficulty getDifficulty() {
