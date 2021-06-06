@@ -10,14 +10,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Question {
-	private double time;
 	private String text;
 	private String[] answers;
 	
 	// Joker related
 	private int correctIndex;
 	private String textForPhoneJoker;
-	private String textForAdditionalJoker;
 	
 	public double[] generateAudiencePercentage() {
 		Random rand = new Random();
@@ -104,23 +102,9 @@ public class Question {
 				
 
 				Color purple = new Color(102,0, 102); 
-				Color green = new Color(10,255, 102);
+				Color green = new Color(6,153,61);
 				Color red = new Color(220,20,60); 
 				Color blue = new Color(65,105,225);
-				Color gray = new Color(211,211,211);
-
-				g2.setColor(gray);
-				g2.fillRect(0, 360 - 20, d.width, 1);
-				g2.fillRect(0, 360 - 40, d.width, 1);
-				g2.fillRect(0, 360 - 60, d.width, 1);
-				g2.fillRect(0, 360 - 80, d.width, 1);
-				g2.fillRect(0, 360 - 100, d.width, 1);
-				g2.fillRect(0, 360 - 120, d.width, 1);
-				g2.fillRect(0, 360 - 140, d.width, 1);
-				g2.fillRect(0, 360 - 160, d.width, 1);
-				g2.fillRect(0, 360 - 180, d.width, 1);
-				g2.fillRect(0, 360 - 200, d.width, 1);
-
 
 				g2.setColor(purple);
 				g2.fillRect(30 + 10, 360-(int)(answer1 * 2),48,(int)(answer1 * 200));
@@ -173,14 +157,6 @@ public class Question {
 		this.textForPhoneJoker = textForPhoneJoker;
 	}
 
-	public String getTextForAdditionalJoker() {
-		return textForAdditionalJoker;
-	}
-
-	public void setTextForAdditionalJoker(String textForAdditionalJoker) {
-		this.textForAdditionalJoker = textForAdditionalJoker;
-	}
-
 	public int getCorrectIndex() {
 		return correctIndex;
 	}
@@ -205,16 +181,7 @@ public class Question {
 		this.text = text;
 	}
 
-	public double getTime() {
-		return time;
-	}
-
-	public void setTime(double time) {
-		this.time = time;
-	}
-
 	public Question() {
-		this.setTime(0.0);
 		this.setText("");
 		this.setTextForPhoneJoker("");
 		this.setCorrectIndex(2);

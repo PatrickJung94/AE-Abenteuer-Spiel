@@ -69,21 +69,6 @@ public class CreateQuestion extends JFrame {
 		menuPanel.add(bundleNamePanel);
 		menuPanel.add(bundleNameInputPanel);
 
-		// ---------- Create Row for time Input -----------
-
-		JPanel timePanel = new JPanel();
-		JLabel time = new JLabel("Zeit in Sekunden");
-		time.setPreferredSize(new Dimension(150, 30));
-
-		JPanel timeInputPanel = new JPanel();
-		JTextField timeInput = new JTextField();
-		timeInput.setPreferredSize(new Dimension(300, 30));
-
-		timePanel.add(time);
-		timeInputPanel.add(timeInput);
-		menuPanel.add(timePanel);
-		menuPanel.add(timeInputPanel);
-
 		// ---------- Create Row for question text Input -----------
 
 		JPanel textPanel = new JPanel();
@@ -192,26 +177,11 @@ public class CreateQuestion extends JFrame {
 		menuPanel.add(textForPhoneJokerPanel);
 		menuPanel.add(textForPhoneJokerInputPanel);
 
-		// ---------- Create Row for telephon joker Input -----------
-
-		JPanel textForAdditionalJokerPanel = new JPanel();
-		JLabel textForAdditionalJoker = new JLabel("Text für den Zusatz Joker");
-		textForAdditionalJoker.setPreferredSize(new Dimension(150, 30));
-
-		JPanel textForAdditionalJokerInputPanel = new JPanel();
-		JTextField textForAdditionalJokerInput = new JTextField();
-		textForAdditionalJokerInput.setPreferredSize(new Dimension(300, 30));
-
-		textForAdditionalJokerPanel.add(textForAdditionalJoker);
-		textForAdditionalJokerInputPanel.add(textForAdditionalJokerInput);
-		menuPanel.add(textForAdditionalJokerPanel);
-		menuPanel.add(textForAdditionalJokerInputPanel);
 
 		// ---------- Create save button action -----------
 
 		saveButton.addActionListener((event) -> {
 			if (!fileSystem.isBundleFull(bundleNameInput.getText())) {				
-				newQuestion.setTime(Double.parseDouble(timeInput.getText()));
 				newQuestion.setText(textInput.getText());
 				newQuestion.setCorrectIndex(Integer.parseInt(correctIndexInput.getText()));
 				String[] temp = {
@@ -224,7 +194,6 @@ public class CreateQuestion extends JFrame {
 				newQuestion.setTextForPhoneJoker(textForPhoneJokerInput.getText());
 	
 				System.out.println(newQuestion.getCorrectIndex());
-				System.out.println(newQuestion.getTime());
 				System.out.println(newQuestion.getText());
 				System.out.println(newQuestion.getTextForPhoneJoker());
 				for (int i = 0; i < newQuestion.getAnswers().length; i++) {

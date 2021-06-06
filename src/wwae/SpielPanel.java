@@ -97,11 +97,6 @@ public class SpielPanel extends JFrame {
 				this.checkAnswer(kI);
 			});
 		}
-
-		initDifficulty();
-		
-
-
 	}
 
 	private void initDifficulty(){
@@ -314,30 +309,30 @@ public class SpielPanel extends JFrame {
 	}
 
 	public void setQuestion(String question) {
-	
 		this.questionLabel.setText(question);
 	}
 	
 	public void showGamePanel(String bundleName) {
 
-        this.setSize(1472, 828);
-        this.setVisible(true);
-        this.setResizable(false);
+		this.setSize(1472, 828);
+		this.setVisible(true);
+		this.setResizable(false);
 		this.questionsBundleArray = fs.getAllQuestionsFromBundle(bundleName);
 		Collections.shuffle(this.questionsBundleArray);
 		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
 		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
 		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
+		this.initDifficulty();
 		this.timer.start();
-    }
+	}
 
-    public void hideGamePanel() {
-        this.setVisible(false);
-    }
+	public void hideGamePanel() {
+		this.setVisible(false);
+	}
 
-    public void close() {
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+	public void close() {
+		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		this.timer.stop();
-    }
+	}
 
 }
