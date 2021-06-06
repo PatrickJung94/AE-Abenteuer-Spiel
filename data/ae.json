@@ -1,131 +1,111 @@
 [
   {
     "textForPhoneJoker":"Wenn ich eine Exception vergesse wundere ich mich immer wieder wieso das Programm sich beendet.",
-    "textForAdditionalJoker":null,
     "answers":[
       "Das Programm läuft weiter",
       "Das Programm stürzt ab",
       "Das Programm wird angehalten bis der Fehler behoben wurde",
       "Nichts"
     ],
-    "time":30.0,
     "text":"Was passiert wenn eine Exception nicht aufgefangen wird?",
     "correctIndex":1
   },
   {
     "textForPhoneJoker":"'Post' ist eine Preposition und bedeutet 'nach', daher denke ich das das Bearbeiten am Ende macht",
-    "textForAdditionalJoker":null,
     "answers":[
       "Bearbeiten, Rechts, Links",
       "Bearbeiten, Links, Rechts",
       "Links, Bearbeiten, Rechts",
       "Links, Rechts, Bearbeiten"
     ],
-    "time":30.0,
     "text":"Wie lautet die korrekte Reihenfolge der Postorder Traversierung?",
     "correctIndex":3
   }, 
   {
     "textForPhoneJoker":"Beim Testen sollten Funktionung und Klassen nur eine Sache erledigen, daher Single responsibility principle",
-    "textForAdditionalJoker":null,
     "answers":[
       "Sourced responsibility practice",
       "Segmented repetition paragraphs",
       "Single responsibility principle",
       "Service Related Problem"
     ],
-    "time":30.0,
     "text":"Wofür steht SRP (Testen)?",
     "correctIndex":2
   }, 
   {
     "textForPhoneJoker":"In einer Schlange(Queue) geht immer die erste Person weiter die sich angestellt hat",
-    "textForAdditionalJoker":null,
     "answers":[
       "First In First Out",
       "First In Last Out",
       "Last In First Out",
       "Last Out First Out"
     ],
-    "time":30.0,
     "text":"Welches Prinzip wird bei einer Queue verwendet?",
     "correctIndex":0
   },
   {
     "textForPhoneJoker":"Mit abstrakte Klassen kann man dafür sorgen das bestimmte Metoden auf alle Objekt einer Klassen",
-    "textForAdditionalJoker":null,
     "answers":[
       "Unterklassen dürfen nicht unterschiedlich sein",
       "Erzwingt das verwenden von bestimmten Methoden auf alle unter Klassen",
       "Sorgt für Typsicherheit",
       "Implementiert Werte bevor ein Objekt erstellt wird"
     ],
-    "time":30.0,
     "text":"Wozu sind abstrakte Klassen gut",
     "correctIndex":1
   },
   {
     "textForPhoneJoker":"Das muss der Quicksort sein, davon habe ich schonmal gehört",
-    "textForAdditionalJoker":null,
     "answers":[
       "Bubblesort",
       "Selectionsort",
       "Quicksort",
       "Insertionsort"
     ],
-    "time":30.0,
     "text":"Welcher Sortieralgorithmus kommt ohne Rekursion nicht aus?",
     "correctIndex":2
   },
   {
     "textForPhoneJoker":"Dank der Versionsverwaltung konnten wir einen Großen fehler auf unserere Arbeit verhindern da wir eine Alte Version verwenden konnten",
-    "textForAdditionalJoker":null,
     "answers":[
       "Automatische Erstellung von einer Dokumentation",
       "Planung des Entwicklungprojekt",
       "Generierung von Quellcode",
       "Wiederherstellung älterer Zwischenstände der Entwicklung"
     ],
-    "time":30.0,
     "text":"Welche Aussage trifft auf ein System zur Versionsverwaltung zu?",
     "correctIndex":3
   }, 
   {
     "textForPhoneJoker":"Von den Antworten kommt nur das Struktogramm in frage für mich",
-    "textForAdditionalJoker":null,
     "answers":[
       "Datenflussplan",
       "Interpreter",
       "Struktogramm",
       "Debugger"
     ],
-    "time":30.0,
     "text":"Welches der folgenden Hilfsmittel dient zur Dokumentation einer Programmlogik?",
     "correctIndex":2
   },
   {
     "textForPhoneJoker":"Konstanten können nur vom Entwickler geändert werden",
-    "textForAdditionalJoker":null,
     "answers":[
       "Enthalten stets eine Gleitkommazahl",
       "Werden während des Compilierens des Programms ignoriert",
       "Können zur Laufzeit des Programms verändert werden",
       "Können während der Entwicklung des Programms verändert werden"
     ],
-    "time":30.0,
     "text":"Welche der folgenden Beschreibungen trifft auf Konstanten zu?",
     "correctIndex":3
   },
   {
     "textForPhoneJoker":"Erst planen, dann erstellen, danach testen und am Ende wird das Programm an den Kunden geschickt",
-    "textForAdditionalJoker":null,
     "answers":[
       "Struktogramm erstellen, Quellcode editieren, Programm kompilieren, Programm testen, Programm ausliefern",
       "Quellcode editieren, Struktogramm erstellen, Programm testen, Programm kompilieren, Programm ausliefern",
       "Programm testen, Quellcode editieren, Programm kompilieren, Struktogramm erstellen, Programm ausliefern",
       "Quellcode editieren, Programm kompilieren, Programm ausliefern, Programm testen, Struktogramm erstellen"
     ],
-    "time":30.0,
     "text":"Welche Reihenfolge zur Programmerstellung in sachlogischer Reihenfolge ist korrekt",
     "correctIndex":0
   }  

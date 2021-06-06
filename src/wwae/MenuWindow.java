@@ -2,8 +2,6 @@ package wwae;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
@@ -17,6 +15,7 @@ public class MenuWindow extends JFrame {
 	private HighScorePopup highScorePopup;
 	private int numberHiscorePopup = 0;
 	private JLabel diff;
+	private JLabel bundle;
 	private FileSystem fs = new FileSystem();
 	private boolean diffWindowOpen = false;
 	private DifficultySelection ds;
@@ -62,14 +61,23 @@ public class MenuWindow extends JFrame {
 		menuBlockButtons.add(startBtn);
 		menuBlockButtons.add(exitBtn);
 
-		diff = new JLabel("Schwierigkeitsgrad: Leicht");
+		diff = new JLabel("Schwierigkeitsgrad: Leicht", SwingConstants.CENTER);
 		diff.setFont(new Font(diff.getFont().getName(), Font.PLAIN, 18));
+		diff.setPreferredSize(new Dimension(450, 60));
 		menuBlockBottom.add(diff);
+
+		bundle = new JLabel("Bundle: " + gameContext.getActiveBundle());
+		bundle.setFont(new Font(bundle.getFont().getName(), Font.PLAIN, 18));
+		menuBlockBottom.add(bundle);
 		
 		startBtn.addActionListener(event -> {
 			gameContext.menuToGamePanel();
 		});
-		
+
+		exitBtn.addActionListener(event -> {
+			System.exit(0);
+		});
+
 		JPanel left = new JPanel();
 		left.setPreferredSize(new Dimension(400, 400));
 		JPanel right = new JPanel();
@@ -77,16 +85,16 @@ public class MenuWindow extends JFrame {
 		
 		JPanel optionBar = new JPanel();
 		Color optionPanelColor = new Color(220,220,220);
-		optionBar.setBorder(BorderFactory.createMatteBorder(18, 0, 0, 0, optionPanelColor));
+		optionBar.setBorder(BorderFactory.createMatteBorder(16, 0, 0, 0, optionPanelColor));
 		optionBar.setPreferredSize(new Dimension(getSize().width, 75));
-		optionBar.setLayout(new FlowLayout(FlowLayout.CENTER, 150, 0));
+		optionBar.setLayout(new FlowLayout(FlowLayout.CENTER, 130, 0));
 		JButton highscore = new JButton("Highscore anzeigen");
 		highscore.setPreferredSize(new Dimension(highscore.getPreferredSize().width + 30, 40));
 		highscore.setBorder(border);
 		JButton addQuestions = new JButton("Fragen anlegen");
 		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
 		addQuestions.setBorder(border);
-		JButton chooseSubject = new JButton("Fach ausw\u00e4hlen");
+		JButton chooseSubject = new JButton("Bundle ausw\u00e4hlen");
 		chooseSubject.setPreferredSize(new Dimension(chooseSubject.getPreferredSize().width + 30, 40));
 		chooseSubject.setBorder(border);
 		JButton difficulty = new JButton("Schwierigkeitsgrad");
@@ -119,10 +127,12 @@ public class MenuWindow extends JFrame {
 			FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"JSON Bundle file", "json");
 			chooser.setFileFilter(filter);
-			int returnVal = chooser.showOpenDialog(optionBar);
+			int returnVal = chooser.showOpenDialog(null);
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				String fileName = chooser.getSelectedFile().getName();
-				gameContext.setActiveBundle(fileName.replaceAll(".json", ""));
+				String bundle = fileName.replaceAll(".json", "");
+				gameContext.setActiveBundle(bundle);
+				this.bundle.setText("Bundle: " + bundle);
 			}
 		});
 
