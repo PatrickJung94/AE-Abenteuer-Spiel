@@ -41,6 +41,9 @@ public class QuestionSelectionEdit extends JFrame {
             int selectedIndex = questionList.getSelectedIndex();
             if (selectedIndex != -1 && questions.size() > 1) {
                 Question q = questions.get(questionList.getSelectedIndex());
+                EditQuestion eq = new EditQuestion(q, questions, gameContext);
+                eq.showForm();
+                this.hideQuestionSelection();
             }
         });
 
