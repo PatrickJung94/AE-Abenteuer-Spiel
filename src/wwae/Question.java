@@ -15,6 +15,7 @@ public class Question {
 	
 	// Joker related
 	private int correctIndex;
+	private Difficulty difficulty;
 	private String textForPhoneJoker;
 	
 	public double[] generateAudiencePercentage() {
@@ -163,6 +164,14 @@ public class Question {
 
 	public void setCorrectIndex(int correctIndex) {
 		this.correctIndex = correctIndex;
+	}
+
+	public Difficulty getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 
 	public String[] getAnswers() {

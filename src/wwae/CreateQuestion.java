@@ -21,7 +21,7 @@ public class CreateQuestion extends JFrame {
 		Container pane = this.getContentPane(); 
 
 		JPanel menuPanel = new JPanel();
-		menuPanel.setLayout(new GridLayout(7, 2));
+		menuPanel.setLayout(new GridLayout(8, 2));
 		
 		JPanel menuBlockTop = new JPanel();
 		menuBlockTop.setBackground(new Color(220,220,220));
@@ -54,7 +54,7 @@ public class CreateQuestion extends JFrame {
 		right.setPreferredSize(new Dimension(200, 400));
 		right.setBackground(new Color(220,220,220));
 
-		// ---------- Create Row for time Input -----------
+		// ---------- Create Row for bundle name Input -----------
 
 		JPanel bundleNamePanel = new JPanel();
 		JLabel bundleName = new JLabel("Name des Fragen-Bundles");
@@ -68,6 +68,26 @@ public class CreateQuestion extends JFrame {
 		bundleNameInputPanel.add(bundleNameInput);
 		menuPanel.add(bundleNamePanel);
 		menuPanel.add(bundleNameInputPanel);
+
+		// ---------- Create Row for question text Input -----------
+		String[] difficultyOptions = { "Leicht", "Mittel", "Schwer" };
+
+		JPanel difficultyPanel = new JPanel();
+		JLabel difficulty = new JLabel("Schwierigkeitsgrad auswaehlen: ");
+		difficulty.setPreferredSize(new Dimension(150, 30));
+
+		JPanel difficultyInputPanel = new JPanel();
+		JComboBox difficultyInput = new JComboBox(difficultyOptions);
+		difficultyInput.setPreferredSize(new Dimension(300, 30));
+		difficultyInput.addActionListener((event) -> {
+			JComboBox cb = (JComboBox)event.getSource();
+			this.setQuestionDifficulty(cb);
+		});
+
+		difficultyPanel.add(difficulty);
+		difficultyInputPanel.add(difficultyInput);
+		menuPanel.add(difficultyPanel);
+		menuPanel.add(difficultyInputPanel);
 
 		// ---------- Create Row for question text Input -----------
 
@@ -86,13 +106,18 @@ public class CreateQuestion extends JFrame {
 
 		// ---------- Create Row for correct answer index Input -----------
 
+		String[] correctIndexes = { "Antwort 1", "Antwort 2", "Antwort 3", "Antwort 4" };
 		JPanel correctIndexPanel = new JPanel();
 		JLabel correctIndex = new JLabel("Richtige Antowort Index");
 		correctIndex.setPreferredSize(new Dimension(150, 30));
 		
 		JPanel correctIndexInputPanel = new JPanel();
-		JTextField correctIndexInput = new JTextField();
+		JComboBox correctIndexInput = new JComboBox(correctIndexes);
 		correctIndexInput.setPreferredSize(new Dimension(300, 30));
+		correctIndexInput.addActionListener((event) -> {
+			JComboBox cb = (JComboBox)event.getSource();
+			newQuestion.setCorrectIndex(cb.getSelectedIndex());
+		});
 
 		correctIndexPanel.add(correctIndex);
 		correctIndexInputPanel.add(correctIndexInput);
@@ -181,9 +206,9 @@ public class CreateQuestion extends JFrame {
 		// ---------- Create save button action -----------
 
 		saveButton.addActionListener((event) -> {
-			if (!fileSystem.isBundleFull(bundleNameInput.getText())) {				
+			if (!fileSystem.isBundleFull(bundleNameInput.getText())) {			
 				newQuestion.setText(textInput.getText());
-				newQuestion.setCorrectIndex(Integer.parseInt(correctIndexInput.getText()));
+				newQuestion.setCorrectIndex(correctIndexInput.getSelectedIndex());
 				String[] temp = {
 					antwort1Input.getText(),
 					antwort2Input.getText(),
@@ -205,6 +230,24 @@ public class CreateQuestion extends JFrame {
 		pane.add(BorderLayout.EAST, right);
 		pane.add(BorderLayout.PAGE_END, menuBlockBottom);
 		pane.add(BorderLayout.PAGE_START, menuBlockTop);
+	}
+
+	private void setQuestionDifficulty(JComboBox cb) {
+		switch (cb.getSelectedItem().toString()) {
+			case "Leicht":
+				newQuestion.setDifficulty(Difficulty.LOW);
+				break;
+			case "Mittel":
+				newQuestion.setDifficulty(Difficulty.MEDIUM);
+				break;
+			case "Schwer":
+				newQuestion.setDifficulty(Difficulty.HARD);
+				break;
+		
+			default:
+				newQuestion.setDifficulty(Difficulty.LOW);
+				break;
+		}
 	}
 	
 	public void showForm() {
