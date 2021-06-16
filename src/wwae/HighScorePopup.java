@@ -30,7 +30,7 @@ public class HighScorePopup extends JFrame {
 		Color fontColor = new Color(0, 0, 0);
 		Color arrayColor = new Color(131, 150, 247);
 		String dir = System.getProperty("user.dir");
-		ImageIcon closeIcon = new ImageIcon(dir+"\\src\\images\\close.PNG");
+		ImageIcon closeIcon = new ImageIcon(dir+"\\images\\close.PNG");
 		Image image = closeIcon.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		closeIcon = new ImageIcon(newimg);  // transform it back
