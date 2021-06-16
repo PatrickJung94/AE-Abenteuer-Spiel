@@ -135,7 +135,6 @@ public class FileSystem {
                 e.printStackTrace();
             }
         }
-        System.out.println("in Filesystem:"+questionList );
         return questionList;
     }
 
@@ -159,6 +158,19 @@ public class FileSystem {
         }
 
         return answers;
+    }
+
+    public void rewriteBundle(ArrayList<Question> questions, String bundleName) {
+        Path path = Paths.get("data/"+bundleName+".json");
+
+        if(Files.exists(path)) {
+            File f = path.toFile();
+            f.delete();
+
+            for (Question q : questions) {
+                this.addQuestionToBundle(bundleName, q);
+            }
+        }
     }
 
     // ============================================================
