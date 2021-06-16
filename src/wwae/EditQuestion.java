@@ -2,16 +2,40 @@ package wwae;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 import wwae.Question;
 
-public class CreateQuestion extends JFrame {
+public class EditQuestion extends JFrame {
 	// add import of file
-	Question newQuestion = new Question();
-	FileSystem fileSystem = new FileSystem();
-	public CreateQuestion() {
-		super("Frage erstellen - Wer wird AEllion\u00e4r");
+	private FileSystem fileSystem = new FileSystem();
+	private AellionaerGame gameContext;
+	private ArrayList<Question> bundleQuestions;
+
+	int questionIndex;
+
+	private Question question;
+	private JTextField textInput = new JTextField();
+	private JTextField antwort1Input = new JTextField();
+	private JTextField antwort2Input = new JTextField();
+	private JTextField antwort3Input = new JTextField();
+	private JTextField antwort4Input = new JTextField();
+	private JTextField textForPhoneJokerInput = new JTextField();
+
+	String[] correctIndexes = { "Antwort 1", "Antwort 2", "Antwort 3", "Antwort 4" };
+	JComboBox correctIndexInput = new JComboBox(correctIndexes);
+
+	String[] difficultyOptions = { "Leicht", "Mittel", "Schwer" };
+	JComboBox difficultyInput = new JComboBox(difficultyOptions);
+
+	public EditQuestion(Question _question, ArrayList<Question> _bundleQuestions, AellionaerGame _gameContext) {
+		super("Frage bearbeiten (in Bundle: "+ _gameContext.getActiveBundle() +") - Wer wird AEllion\u00e4r");
+		gameContext = _gameContext;
+		question = _question;
+		bundleQuestions = _bundleQuestions;
+		questionIndex = bundleQuestions.indexOf(question);
 		createForm();
 	}
 	
@@ -21,13 +45,13 @@ public class CreateQuestion extends JFrame {
 		Container pane = this.getContentPane(); 
 
 		JPanel menuPanel = new JPanel();
-		menuPanel.setLayout(new GridLayout(6, 2));
+		menuPanel.setLayout(new GridLayout(5, 2));
 		
 		JPanel menuBlockTop = new JPanel();
 		menuBlockTop.setBackground(new Color(220,220,220));
 		menuBlockTop.setPreferredSize(new Dimension(400, 75));
 
-		JLabel title = new JLabel("Erstellen Sie eine Frage");
+		JLabel title = new JLabel("Frage bearbeiten");
 		Font currentFont = title.getFont();
 		title.setFont(
 			new Font(currentFont.getName(),
@@ -54,30 +78,33 @@ public class CreateQuestion extends JFrame {
 		right.setPreferredSize(new Dimension(200, 400));
 		right.setBackground(new Color(220,220,220));
 
-		// ---------- Create Row for bundle name Input -----------
-
-		JPanel bundleNamePanel = new JPanel();
-		JLabel bundleName = new JLabel("Name des Fragen-Bundles");
-		bundleName.setPreferredSize(new Dimension(150, 30));
-
-		JPanel bundleNameInputPanel = new JPanel();
-		JTextField bundleNameInput = new JTextField();
-		bundleNameInput.setPreferredSize(new Dimension(300, 30));
-
-		bundleNamePanel.add(bundleName);
-		bundleNameInputPanel.add(bundleNameInput);
-		menuPanel.add(bundleNamePanel);
-		menuPanel.add(bundleNameInputPanel);
+		// ---------- Load Question -----------
+		this.textInput.setText(question.getText());
+		this.antwort1Input.setText(question.getAnswers()[0]);
+		this.antwort2Input.setText(question.getAnswers()[1]);
+		this.antwort3Input.setText(question.getAnswers()[2]);
+		this.antwort4Input.setText(question.getAnswers()[3]);
+		this.textForPhoneJokerInput.setText(question.getTextForPhoneJoker());
+		this.correctIndexInput.setSelectedIndex(question.getCorrectIndex());
+		switch (question.getDifficulty()) {
+			case LOW:
+				this.difficultyInput.setSelectedIndex(0);
+				break;
+			case MEDIUM:
+				this.difficultyInput.setSelectedIndex(1);
+				break;
+			case HARD:
+				this.difficultyInput.setSelectedIndex(2);
+				break;
+		}
 
 		// ---------- Create Row for question text Input -----------
-		String[] difficultyOptions = { "Leicht", "Mittel", "Schwer" };
 
 		JPanel difficultyPanel = new JPanel();
 		JLabel difficulty = new JLabel("Schwierigkeitsgrad: ");
 		difficulty.setPreferredSize(new Dimension(150, 30));
 
 		JPanel difficultyInputPanel = new JPanel();
-		JComboBox difficultyInput = new JComboBox(difficultyOptions);
 		difficultyInput.setPreferredSize(new Dimension(300, 30));
 		difficultyInput.addActionListener((event) -> {
 			JComboBox cb = (JComboBox)event.getSource();
@@ -96,7 +123,6 @@ public class CreateQuestion extends JFrame {
 		text.setPreferredSize(new Dimension(150, 30));
 
 		JPanel textInputPanel = new JPanel();
-		JTextField textInput = new JTextField();
 		textInput.setPreferredSize(new Dimension(300, 30));
 
 		textPanel.add(text);
@@ -106,17 +132,16 @@ public class CreateQuestion extends JFrame {
 
 		// ---------- Create Row for correct answer index Input -----------
 
-		String[] correctIndexes = { "Antwort 1", "Antwort 2", "Antwort 3", "Antwort 4" };
+		
 		JPanel correctIndexPanel = new JPanel();
 		JLabel correctIndex = new JLabel("Richtige Antwort Index");
 		correctIndex.setPreferredSize(new Dimension(150, 30));
 		
 		JPanel correctIndexInputPanel = new JPanel();
-		JComboBox correctIndexInput = new JComboBox(correctIndexes);
 		correctIndexInput.setPreferredSize(new Dimension(300, 30));
 		correctIndexInput.addActionListener((event) -> {
 			JComboBox cb = (JComboBox)event.getSource();
-			newQuestion.setCorrectIndex(cb.getSelectedIndex());
+			question.setCorrectIndex(cb.getSelectedIndex());
 		});
 
 		correctIndexPanel.add(correctIndex);
@@ -140,7 +165,6 @@ public class CreateQuestion extends JFrame {
 		
 		antwort1TextPanel.add(antwort1Text);
 		JPanel antwort1Panel = new JPanel();
-		JTextField antwort1Input = new JTextField();
 		antwort1Input.setPreferredSize(new Dimension(200, 15));
 		antwort1Panel.add(antwort1Input);
 		antwortenInputPanel.add(antwort1TextPanel);
@@ -152,7 +176,6 @@ public class CreateQuestion extends JFrame {
 		
 		antwort2TextPanel.add(antwort2Text);
 		JPanel antwort2Panel = new JPanel();
-		JTextField antwort2Input = new JTextField();
 		antwort2Input.setPreferredSize(new Dimension(200, 15));
 		antwort2Panel.add(antwort2Input);
 		antwortenInputPanel.add(antwort2TextPanel);
@@ -164,7 +187,6 @@ public class CreateQuestion extends JFrame {
 		
 		antwort3TextPanel.add(antwort3Text);
 		JPanel antwort3Panel = new JPanel();
-		JTextField antwort3Input = new JTextField();
 		antwort3Input.setPreferredSize(new Dimension(200, 15));
 		antwort3Panel.add(antwort3Input);
 		antwortenInputPanel.add(antwort3TextPanel);
@@ -176,7 +198,6 @@ public class CreateQuestion extends JFrame {
 		
 		antwort4TextPanel.add(antwort4Text);
 		JPanel antwort4Panel = new JPanel();
-		JTextField antwort4Input = new JTextField();
 		antwort4Input.setPreferredSize(new Dimension(200, 15));
 		antwort4Panel.add(antwort4Input);
 		antwortenInputPanel.add(antwort4TextPanel);
@@ -194,7 +215,6 @@ public class CreateQuestion extends JFrame {
 		textForPhoneJoker.setPreferredSize(new Dimension(150, 30));
 
 		JPanel textForPhoneJokerInputPanel = new JPanel();
-		JTextField textForPhoneJokerInput = new JTextField();
 		textForPhoneJokerInput.setPreferredSize(new Dimension(300, 30));
 
 		textForPhoneJokerPanel.add(textForPhoneJoker);
@@ -205,19 +225,22 @@ public class CreateQuestion extends JFrame {
 
 		// ---------- Create save button action -----------
 
-		saveButton.addActionListener((event) -> {	
-			newQuestion.setText(textInput.getText());
-			newQuestion.setCorrectIndex(correctIndexInput.getSelectedIndex());
+		saveButton.addActionListener((event) -> {			
+			question.setText(textInput.getText());
+			question.setCorrectIndex(correctIndexInput.getSelectedIndex());
 			String[] temp = {
 				antwort1Input.getText(),
 				antwort2Input.getText(),
 				antwort3Input.getText(),
 				antwort4Input.getText()
 			};
-			newQuestion.setAnswers(temp);
-			newQuestion.setTextForPhoneJoker(textForPhoneJokerInput.getText());
+			question.setAnswers(temp);
+			question.setTextForPhoneJoker(textForPhoneJokerInput.getText());
 
-			fileSystem.addQuestionToBundle(bundleNameInput.getText(), newQuestion);
+			bundleQuestions.remove(questionIndex);
+			bundleQuestions.add(question);
+
+			fileSystem.rewriteBundle(bundleQuestions, gameContext.getActiveBundle());
 
 			this.hideForm();
 		});
@@ -233,17 +256,17 @@ public class CreateQuestion extends JFrame {
 	private void setQuestionDifficulty(JComboBox cb) {
 		switch (cb.getSelectedItem().toString()) {
 			case "Leicht":
-				newQuestion.setDifficulty(Difficulty.LOW);
+				question.setDifficulty(Difficulty.LOW);
 				break;
 			case "Mittel":
-				newQuestion.setDifficulty(Difficulty.MEDIUM);
+				question.setDifficulty(Difficulty.MEDIUM);
 				break;
 			case "Schwer":
-				newQuestion.setDifficulty(Difficulty.HARD);
+				question.setDifficulty(Difficulty.HARD);
 				break;
 		
 			default:
-				newQuestion.setDifficulty(Difficulty.LOW);
+				question.setDifficulty(Difficulty.LOW);
 				break;
 		}
 	}

@@ -53,8 +53,6 @@ public class FileSystem {
                     Object obj = jParser.parse(reader);
                     jFileArray = (JSONArray) obj;
                 }
-                
-               
 
             } 
             catch (FileNotFoundException e) {
@@ -82,6 +80,8 @@ public class FileSystem {
         jQuestionObj.put("correctIndex", questionObj.getCorrectIndex());
 
         jQuestionObj.put("textForPhoneJoker", questionObj.getTextForPhoneJoker());
+
+        jQuestionObj.put("difficulty", questionObj.getDifficulty().toString());
 
         jFileArray.add(jQuestionObj);
 
@@ -135,7 +135,6 @@ public class FileSystem {
                 e.printStackTrace();
             }
         }
-        System.out.println("in Filesystem:"+questionList );
         return questionList;
     }
 
@@ -147,6 +146,21 @@ public class FileSystem {
         Long temp = (long) jquestion.get("correctIndex");
         question.setCorrectIndex(temp.intValue());
         question.setTextForPhoneJoker((String) jquestion.get("textForPhoneJoker"));
+        if ((String) jquestion.get("difficulty") !=  null) {
+            switch ((String) jquestion.get("difficulty")) {
+                case "LOW":
+                    question.setDifficulty(Difficulty.LOW);
+                    break;
+                case "MEDIUM":
+                    question.setDifficulty(Difficulty.MEDIUM);
+                    break;
+                case "HARD":
+                    question.setDifficulty(Difficulty.HARD);
+                    break;
+                default:
+                    question.setDifficulty(Difficulty.LOW);
+            }
+        }
 
         return question;
     }
@@ -159,6 +173,19 @@ public class FileSystem {
         }
 
         return answers;
+    }
+
+    public void rewriteBundle(ArrayList<Question> questions, String bundleName) {
+        Path path = Paths.get("data/"+bundleName+".json");
+
+        if(Files.exists(path)) {
+            File f = path.toFile();
+            f.delete();
+
+            for (Question q : questions) {
+                this.addQuestionToBundle(bundleName, q);
+            }
+        }
     }
 
     // ============================================================

@@ -18,7 +18,9 @@ public class MenuWindow extends JFrame {
 	private JLabel bundle;
 	private FileSystem fs = new FileSystem();
 	private boolean diffWindowOpen = false;
+	private boolean qesWindowOpen = false;
 	private DifficultySelection ds;
+	private QuestionEditSelection qes;
 
 	public MenuWindow(AellionaerGame _gameContext) {
 		super("Men\u00fc - Wer wird AEllion\u00e4r");
@@ -26,6 +28,7 @@ public class MenuWindow extends JFrame {
 		createLayout();
 
 		ds = new DifficultySelection(gameContext, 1005, 480);
+		qes = new QuestionEditSelection(gameContext, 390, 480);
 	}
 	
 	private void createLayout() {
@@ -95,7 +98,7 @@ public class MenuWindow extends JFrame {
 		JButton highscore = new JButton("Highscore anzeigen");
 		highscore.setPreferredSize(new Dimension(highscore.getPreferredSize().width + 30, 40));
 		highscore.setBorder(border);
-		JButton addQuestions = new JButton("Fragen anlegen");
+		JButton addQuestions = new JButton("Frageneditor");
 		addQuestions.setPreferredSize(new Dimension(addQuestions.getPreferredSize().width + 30, 40));
 		addQuestions.setBorder(border);
 		JButton chooseSubject = new JButton("Bundle ausw\u00e4hlen");
@@ -112,8 +115,13 @@ public class MenuWindow extends JFrame {
 		optionBar.add(difficulty);
 
 		addQuestions.addActionListener(event -> {
-			createQuestion = new CreateQuestion();
-			createQuestion.showForm();
+			if (!qesWindowOpen) {
+				qes.showQESelection();
+				this.qesWindowOpen = true;
+			} else {
+				qes.hideQESelection();
+				this.qesWindowOpen = false;
+			}
 		});
 
 		difficulty.addActionListener(event -> {
@@ -175,6 +183,10 @@ public class MenuWindow extends JFrame {
 	public void updateDiffLabel(String text) {
 		diff.setText(text);
 		diffWindowOpen = false;
+	}
+
+	public void updateQEMenuState() {
+		qesWindowOpen = false;
 	}
 
 	public void showMenu() {

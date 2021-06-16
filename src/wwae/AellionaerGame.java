@@ -43,6 +43,10 @@ public class AellionaerGame {
 				break;
 		}
 	}
+	
+	public void updateQEMenuState() {
+		menu.updateQEMenuState();
+	}
 
 	public void showSaveScore(int score) {
 		gp.hideGamePanel();
