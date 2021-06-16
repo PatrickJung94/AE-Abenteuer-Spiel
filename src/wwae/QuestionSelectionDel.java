@@ -68,7 +68,7 @@ public class QuestionSelectionDel extends JFrame {
     private void renderQuestionList() {
         ArrayList<String> questionTextList = new ArrayList<String>();
         for (Question q : questions) {
-            questionTextList.add(q.getText());
+            questionTextList.add(q.getDifficulty().toString() + ": " + q.getText());
         }
 
         DefaultListModel lm = new DefaultListModel();

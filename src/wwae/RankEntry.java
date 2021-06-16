@@ -38,6 +38,8 @@ public class RankEntry extends JFrame {
 
     private void init(){
         setLocation(200, 200);
+        Container pane = this.getContentPane();
+        this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         this.highscore.setPreferredSize(new Dimension(200, 50));
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
         pane.add(highscore); 

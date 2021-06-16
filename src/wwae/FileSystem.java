@@ -100,7 +100,7 @@ public class FileSystem {
     public boolean isBundleFull(String bundleName) {
         ArrayList<Question> questions = getAllQuestionsFromBundle(bundleName);
 
-        if (questions.size() == 10) {
+        if (questions.size() >= 10) {
             return true;
         } else {
             return false;
