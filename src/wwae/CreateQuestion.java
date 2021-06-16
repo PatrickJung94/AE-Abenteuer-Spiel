@@ -106,13 +106,18 @@ public class CreateQuestion extends JFrame {
 
 		// ---------- Create Row for correct answer index Input -----------
 
+		String[] correctIndexes = { "Antwort 1", "Antwort 2", "Antwort 3", "Antwort 4" };
 		JPanel correctIndexPanel = new JPanel();
 		JLabel correctIndex = new JLabel("Richtige Antowort Index");
 		correctIndex.setPreferredSize(new Dimension(150, 30));
 		
 		JPanel correctIndexInputPanel = new JPanel();
-		JTextField correctIndexInput = new JTextField();
+		JComboBox correctIndexInput = new JComboBox(correctIndexes);
 		correctIndexInput.setPreferredSize(new Dimension(300, 30));
+		correctIndexInput.addActionListener((event) -> {
+			JComboBox cb = (JComboBox)event.getSource();
+			newQuestion.setCorrectIndex(cb.getSelectedIndex());
+		});
 
 		correctIndexPanel.add(correctIndex);
 		correctIndexInputPanel.add(correctIndexInput);
@@ -201,10 +206,9 @@ public class CreateQuestion extends JFrame {
 		// ---------- Create save button action -----------
 
 		saveButton.addActionListener((event) -> {
-			if (!fileSystem.isBundleFull(bundleNameInput.getText())) {				
+			if (!fileSystem.isBundleFull(bundleNameInput.getText())) {			
 				newQuestion.setText(textInput.getText());
-				newQuestion.setCorrectIndex(Integer.parseInt(correctIndexInput.getText()));
-				this.setQuestionDifficulty(difficultyInput);
+				newQuestion.setCorrectIndex(correctIndexInput.getSelectedIndex());
 				String[] temp = {
 					antwort1Input.getText(),
 					antwort2Input.getText(),
