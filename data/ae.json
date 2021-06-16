@@ -122,9 +122,9 @@
   {
     "textForPhoneJoker":"",
     "answers":[
-      "Sie können ein Minus vor sich haben (-)",
+      "Sie koennen ein Minus vor sich haben (-)",
       "Sind nur in Großbuchstaben zu schreiben",
-      "Müssen quer geschrieben werden",
+      "Muessen quer geschrieben werden",
       "Sie sind blau"
     ],
     "text":"Was trifft auf Methoden im Klassendiagramm zu?",
@@ -132,14 +132,14 @@
 	  "difficulty":"MEDIUM"
   },
   {
-    "textForPhoneJoker":"Also bei natürlichen Zahlen muss man zählen können",
+    "textForPhoneJoker":"Also bei natuerlichen Zahlen muss man zaehlen koennen",
     "answers":[
       "Hash",
       "Dog",
       "Boolean",
       "Integer"
     ],
-    "text":"Welcher Datentyp eignet sich am besten für mathematische Funktionen mit natürlichen Zahlen?",
+    "text":"Welcher Datentyp eignet sich am besten fuer mathematische Funktionen mit natuerlichen Zahlen?",
     "correctIndex":3,
 	  "difficulty":"MEDIUM"
   },
@@ -192,11 +192,11 @@
 	  "difficulty":"MEDIUM"
   },
   {
-    "textForPhoneJoker":"Also ich kenne nur die Stacks aus 'Altered Carbon' und die sind da im Rückenstapel.",
+    "textForPhoneJoker":"Also ich kenne nur die Stacks aus 'Altered Carbon' und die sind da im Rueckenstapel.",
     "answers":[
       "Last In Next Out",
       "First In Last Out",
-      "Prinzip des stärkeren",
+      "Prinzip des staerkeren",
       "Marmeladenbrotprinzip"
     ],
     "text":"Welches Prinzip wird bei einem Stack verwendet?",
@@ -220,10 +220,10 @@
     "answers":[
       "Implements NavigableSet",
       "Erbt direkt von Collection",
-      "Elemente können mehrfach vorkommen",
+      "Elemente koennen mehrfach vorkommen",
       "Hat die Methode window()"
     ],
-    "text":"Was ist wahr über die Klasse Treeset?",
+    "text":"Was ist wahr ueber die Klasse Treeset?",
     "correctIndex":0,
 	  "difficulty":"MEDIUM"
   },
@@ -231,11 +231,11 @@
     "textForPhoneJoker":"",
     "answers":[
       "Ist nicht synchronized",
-      "Erhält die Ordnung des Einfügens",
+      "Erhaelt die Ordnung des Einfuegens",
       "Erlaubt null nicht als Element",
       "Erbt von HashSet"
     ],
-    "text":"Was stimmt nicht über die Klasse Linkedhashset?",
+    "text":"Was stimmt nicht ueber die Klasse Linkedhashset?",
     "correctIndex":2,
 	  "difficulty":"MEDIUM"
   },
@@ -259,12 +259,12 @@
       "Thread(Runnable r)",
       "Thread(Runnable r,int name)"
     ],
-    "text":"Was ist ein gültiger Konstruktor der Klasse Thread?",
+    "text":"Was ist ein gueltiger Konstruktor der Klasse Thread?",
     "correctIndex":2,
 	  "difficulty":"HARD"
   },
   {
-    "textForPhoneJoker":"Also ich wüste nicht was stay in dem Zusammenhang tun soll",
+    "textForPhoneJoker":"Also ich wueste nicht was stay in dem Zusammenhang tun soll",
     "answers":[
       "run()",
       "public void stay()",
@@ -276,19 +276,19 @@
 	  "difficulty":"HARD"
   },
   {
-    "textForPhoneJoker":"Ich kenne das als API für GUIs",
+    "textForPhoneJoker":"Ich kenne das als API fuer GUIs",
     "answers":[
-      "Eine Chat Application für Swinger",
-      "Ein Application Programming Interface für Graphical User Interfaces",
+      "Eine Chat Application fuer Swinger",
+      "Ein Application Programming Interface fuer Graphical User Interfaces",
       "Eine Pendel Simulation",
-      "Eine freizügige 68er Party von Programmierern"
+      "Eine freizuegige 68er Party von Programmierern"
     ],
     "text":"Was ist Swing in Java?",
     "correctIndex":1,
 	  "difficulty":"HARD"
   },
   {
-    "textForPhoneJoker":"Ich glaube das Ding ist ganz schön schlau",
+    "textForPhoneJoker":"Ich glaube das Ding ist ganz schoen schlau",
     "answers":[
       "Eine Referenz",
       "Der einzig wahre Pointer",
@@ -326,12 +326,12 @@
   {
     "textForPhoneJoker":"",
     "answers":[
-      "Verkäufer",
+      "Verkaeufer",
       "Entwickler",
       "User",
       "Rentner"
     ],
-    "text":"Wer führt einen Blackboxtest durch?",
+    "text":"Wer fuehrt einen Blackboxtest durch?",
     "correctIndex":0,
 	  "difficulty":"HARD"
   },
@@ -348,14 +348,14 @@
 	  "difficulty":"HARD"
   },
   {
-    "textForPhoneJoker":"Ich glaube Fetch betrifft nur eine Lokalization und mit dem anderen Befehl konnte man darüber hinaus gehen.",
+    "textForPhoneJoker":"Ich glaube Fetch betrifft nur eine Lokalization und mit dem anderen Befehl konnte man darueber hinaus gehen.",
     "answers":[
       "Pull",
       "Push",
       "Add",
       "Fetch"
     ],
-    "text":"Welcher Git-Befehl betrifft zwei Lokalisationen abwärts?",
+    "text":"Welcher Git-Befehl betrifft zwei Lokalisationen abwaerts?",
     "correctIndex":0,
     "difficulty":"HARD"
   }  
