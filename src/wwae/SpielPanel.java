@@ -41,7 +41,7 @@ public class SpielPanel extends JFrame {
 
 	private Timer timer;
 	private FileSystem fs = new FileSystem();
-	private ArrayList<Question> questionsBundleArray; 
+	private ArrayList<Question> questionsBundleArray = new ArrayList<Question>();
 	
 	private String question = new String();
 	private JButton[] buttons = new JButton[4];
@@ -63,6 +63,7 @@ public class SpielPanel extends JFrame {
 	
 	public SpielPanel(AellionaerGame _gameContext) {
 		super("Men\u00fc- Wer wird AEllion\u00e4r");
+
 		gameContext = _gameContext;
 		init();
 	}
@@ -328,16 +329,33 @@ public class SpielPanel extends JFrame {
 	
 	public void showGamePanel(String bundleName) {
 
+		this.questionsBundleArray.clear();
+
 		this.setSize(1472, 828);
 		this.setVisible(true);
 		this.setResizable(false);
-		this.questionsBundleArray = fs.getAllQuestionsFromBundle(bundleName);
-		Collections.shuffle(this.questionsBundleArray);
-		this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
-		this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
-		ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
-		this.initDifficulty();
-		this.timer.start();
+		
+		ArrayList<Question> wholeBundle = fs.getAllQuestionsFromBundle(bundleName);
+		for (Question q : wholeBundle) {
+			if (q.getDifficulty() == gameContext.getDifficulty()) {
+				this.questionsBundleArray.add(q);
+			}
+		}
+
+		if (this.questionsBundleArray.size() >= 10) {
+			Collections.shuffle(this.questionsBundleArray);
+			this.setQuestion(questionsBundleArray.get(questionActiveIndex).getText());
+			this.setAnswerPossibilities(questionsBundleArray.get(questionActiveIndex).getAnswers());
+			ladderButtons[questionActiveIndex+1].setBackground(new Color(89,161,255));
+			this.initDifficulty();
+			this.timer.start();
+		} else {
+			JOptionPane.showOptionDialog(null, 
+			"In diesem Bundle gibt es zu wenige Fragen mit dem gewählten Schwierigkeitsgrad\n"+this.questionsBundleArray.size() +
+			"/10 Fragen fuer diesen Schwierigkeitsgrad",
+			"Bundle Size Error", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+			gameContext.gamePanelToMenu();
+		}
 	}
 
 	public void hideGamePanel() {

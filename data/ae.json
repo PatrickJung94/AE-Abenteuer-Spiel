@@ -1,1 +1,362 @@
-[{"textForPhoneJoker":"Wenn ich eine Exception vergesse wundere ich mich immer wieder wieso das Programm sich beendet.","difficulty":"LOW","answers":["Das Programm laeuft weiter","Das Programm stuerzt ab","Das Programm wird angehalten bis der Fehler behoben wurde","Nichts"],"text":"Was passiert wenn eine Exception nicht aufgefangen wird?","correctIndex":1},{"textForPhoneJoker":"'Post' ist eine Preposition und bedeutet 'nach', daher denke ich das das Bearbeiten am Ende macht","difficulty":"LOW","answers":["Bearbeiten, Rechts, Links","Bearbeiten, Links, Rechts","Links, Bearbeiten, Rechts","Links, Rechts, Bearbeiten"],"text":"Wie lautet die korrekte Reihenfolge der Postorder Traversierung?","correctIndex":3},{"textForPhoneJoker":"Beim Testen sollten Funktionung und Klassen nur eine Sache erledigen, daher Single responsibility principle","difficulty":"LOW","answers":["Sourced responsibility practice","Segmented repetition paragraphs","Single responsibility principle","Service Related Problem"],"text":"Wofuer steht SRP (Testen)?","correctIndex":2},{"textForPhoneJoker":"In einer Schlange(Queue) geht immer die erste Person weiter die sich angestellt hat","difficulty":"LOW","answers":["First In First Out","First In Last Out","Last In First Out","Last Out First Out"],"text":"Welches Prinzip wird bei einer Queue verwendet?","correctIndex":0},{"textForPhoneJoker":"Das muss der Quicksort sein, davon habe ich schonmal gehoert","difficulty":"LOW","answers":["Bubblesort","Selectionsort","Quicksort","Insertionsort"],"text":"Welcher Sortieralgorithmus kommt ohne Rekursion nicht aus?","correctIndex":2},{"textForPhoneJoker":"Dank der Versionsverwaltung konnten wir einen Großen fehler auf unserere Arbeit verhindern da wir eine Alte Version verwenden konnten","difficulty":"LOW","answers":["Automatische Erstellung von einer Dokumentation","Planung des Entwicklungprojekt","Generierung von Quellcode","Wiederherstellung aelterer Zwischenstaende der Entwicklung"],"text":"Welche Aussage trifft auf ein System zur Versionsverwaltung zu?","correctIndex":3},{"textForPhoneJoker":"Von den Antworten kommt nur das Struktogramm in frage fuer mich","difficulty":"LOW","answers":["Datenflussplan","Interpreter","Struktogramm","Debugger"],"text":"Welches der folgenden Hilfsmittel dient zur Dokumentation einer Programmlogik?","correctIndex":2},{"textForPhoneJoker":"Konstanten koennen nur vom Entwickler geaendert werden","difficulty":"LOW","answers":["Enthalten stets eine Gleitkommazahl","Werden waehrend des Compilierens des Programms ignoriert","Koennen zur Laufzeit des Programms veraendert werden","Koennen waehrend der Entwicklung des Programms veraendert werden"],"text":"Welche der folgenden Beschreibungen trifft auf Konstanten zu?","correctIndex":3},{"textForPhoneJoker":"Erst planen, dann erstellen, danach testen und am Ende wird das Programm an den Kunden geschickt","difficulty":"LOW","answers":["Struktogramm erstellen, Quellcode editieren, Programm kompilieren, Programm testen, Programm ausliefern","Quellcode editieren, Struktogramm erstellen, Programm testen, Programm kompilieren, Programm ausliefern","Programm testen, Quellcode editieren, Programm kompilieren, Struktogramm erstellen, Programm ausliefern","Quellcode editieren, Programm kompilieren, Programm ausliefern, Programm testen, Struktogramm erstellen"],"text":"Welche Reihenfolge zur Programmerstellung in sachlogischer Reihenfolge ist korrekt","correctIndex":0},{"textForPhoneJoker":"Mit abstrakte Klassen kann man dafuer sorgen das bestimmte Metoden auf alle Objekt einer Klassen","difficulty":"HARD","answers":["Unterklassen duerfen nicht unterschiedlich sein","Erzwingt das verwenden von bestimmten Methoden auf alle unter Klassen","Sorgt fuer Typsicherheit","Implementiert Werte bevor ein Objekt erstellt wird"],"text":"Wozu sind abstrakte Klassen gut","correctIndex":1}]
+[
+  {
+    "textForPhoneJoker":"Wenn ich eine Exception vergesse wundere ich mich immer wieder wieso das Programm sich beendet.",
+    "answers":[
+      "Das Programm laeuft weiter",
+      "Das Programm stuerzt ab",
+      "Das Programm wird angehalten bis der Fehler behoben wurde",
+      "Nichts"
+    ],
+    "text":"Was passiert wenn eine Exception nicht aufgefangen wird?",
+    "correctIndex":1,
+	"difficulty":"LOW"
+  }, 
+  {
+    "textForPhoneJoker":"Beim Testen sollten Funktionung und Klassen nur eine Sache erledigen, daher Single responsibility principle",
+    "answers":[
+      "Sourced responsibility practice",
+      "Segmented repetition paragraphs",
+      "Single responsibility principle",
+      "Service Related Problem"
+    ],
+    "text":"Wofuer steht SRP (Testen)?",
+    "correctIndex":2,
+	  "difficulty":"LOW"
+  }, 
+  {
+    "textForPhoneJoker":"Mit abstrakte Klassen kann man dafuer sorgen das bestimmte Metoden auf alle Objekt einer Klassen",
+    "answers":[
+      "Unterklassen duerfen nicht unterschiedlich sein",
+      "Erzwingt das verwenden von bestimmten Methoden auf alle unter Klassen",
+      "Sorgt fuer Typsicherheit",
+      "Implementiert Werte bevor ein Objekt erstellt wird"
+    ],
+    "text":"Wozu sind abstrakte Klassen gut?",
+    "correctIndex":1,
+	  "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"Das muss der Quicksort sein, davon habe ich schonmal gehoert",
+    "answers":[
+      "Bubblesort",
+      "Selectionsort",
+      "Quicksort",
+      "Insertionsort"
+    ],
+    "text":"Welcher Sortieralgorithmus kommt ohne Rekursion nicht aus?",
+    "correctIndex":2,
+    "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"Dank der Versionsverwaltung konnten wir einen Großen fehler auf unserere Arbeit verhindern da wir eine Alte Version verwenden konnten",
+    "answers":[
+      "Automatische Erstellung von einer Dokumentation",
+      "Planung des Entwicklungprojekt",
+      "Generierung von Quellcode",
+      "Wiederherstellung aelterer Zwischenstaende der Entwicklung"
+    ],
+    "text":"Welche Aussage trifft auf ein System zur Versionsverwaltung zu?",
+    "correctIndex":3,
+	  "difficulty":"LOW"
+  }, 
+  {
+    "textForPhoneJoker":"Von den Antworten kommt nur das Struktogramm in frage fuer mich",
+    "answers":[
+      "Datenflussplan",
+      "Interpreter",
+      "Struktogramm",
+      "Debugger"
+    ],
+    "text":"Welches der folgenden Hilfsmittel dient zur Dokumentation einer Programmlogik?",
+    "correctIndex":2,
+	  "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"Konstanten koennen nur vom Entwickler geaendert werden",
+    "answers":[
+      "Enthalten stets eine Gleitkommazahl",
+      "Werden waehrend des Compilierens des Programms ignoriert",
+      "Koennen zur Laufzeit des Programms veraendert werden",
+      "Koennen waehrend der Entwicklung des Programms veraendert werden"
+    ],
+    "text":"Welche der folgenden Beschreibungen trifft auf Konstanten zu?",
+    "correctIndex":3,
+	  "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"Erst planen, dann erstellen, danach testen und am Ende wird das Programm an den Kunden geschickt",
+    "answers":[
+      "Struktogramm erstellen, Quellcode editieren, Programm kompilieren, Programm testen, Programm ausliefern",
+      "Quellcode editieren, Struktogramm erstellen, Programm testen, Programm kompilieren, Programm ausliefern",
+      "Programm testen, Quellcode editieren, Programm kompilieren, Struktogramm erstellen, Programm ausliefern",
+      "Quellcode editieren, Programm kompilieren, Programm ausliefern, Programm testen, Struktogramm erstellen"
+    ],
+    "text":"Welche Reihenfolge zur Programmerstellung in sachlogischer Reihenfolge ist korrekt",
+    "correctIndex":0,
+	  "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "Hinter einem Minus (-)",
+      "Auf dem Papier",
+      "In der Box zwischen Klassenname und Methoden",
+      "Im Konstruktor"
+    ],
+    "text":"Wo steht das Attribut im Klassendiagramm?",
+    "correctIndex":2,
+	  "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "Stein",
+      "Schere",
+      "Papier",
+      "long"
+    ],
+    "text":"Was kann ein Parameter sein Parameter?",
+    "correctIndex":3,
+	  "difficulty":"LOW"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "Sie können ein Minus vor sich haben (-)",
+      "Sind nur in Großbuchstaben zu schreiben",
+      "Müssen quer geschrieben werden",
+      "Sie sind blau"
+    ],
+    "text":"Was trifft auf Methoden im Klassendiagramm zu?",
+    "correctIndex":0,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"Also bei natürlichen Zahlen muss man zählen können",
+    "answers":[
+      "Hash",
+      "Dog",
+      "Boolean",
+      "Integer"
+    ],
+    "text":"Welcher Datentyp eignet sich am besten für mathematische Funktionen mit natürlichen Zahlen?",
+    "correctIndex":3,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"Also ich gehe erst immer nach links, aufs Klo und dann erst nach rechts",
+    "answers":[
+      "Bearbeiten, Rechts, Links",
+      "Bearbeiten, Links, Rechts",
+      "Links, Bearbeiten, Rechts",
+      "Links, Rechts, Bearbeiten"
+    ],
+    "text":"Wie lautet die korrekte Reihenfolge der Inorder Traversierung?",
+    "correctIndex":2, 
+    "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"'Pre' ist eine Preposition und bedeutet 'vor', daher denke ich das das Bearbeiten am Anfang macht",
+    "answers":[
+      "Bearbeiten, Rechts, Links",
+      "Bearbeiten, Links, Rechts",
+      "Links, Bearbeiten, Rechts",
+      "Links, Rechts, Bearbeiten"
+    ],
+    "text":"Wie lautet die korrekte Reihenfolge der Preorder Traversierung?",
+    "correctIndex":1,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"'Post' ist eine Preposition und bedeutet 'nach', daher denke ich das das Bearbeiten am Ende macht",
+    "answers":[
+      "Bearbeiten, Rechts, Links",
+      "Bearbeiten, Links, Rechts",
+      "Links, Bearbeiten, Rechts",
+      "Links, Rechts, Bearbeiten"
+    ],
+    "text":"Wie lautet die korrekte Reihenfolge der Postorder Traversierung?",
+    "correctIndex":3,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"In einer Schlange(Queue) geht immer die erste Person weiter die sich angestellt hat",
+    "answers":[
+      "First In First Out",
+      "First In Last Out",
+      "Last In First Out",
+      "Last Out First Out"
+    ],
+    "text":"Welches Prinzip wird bei einer Queue verwendet?",
+    "correctIndex":0,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"Also ich kenne nur die Stacks aus 'Altered Carbon' und die sind da im Rückenstapel.",
+    "answers":[
+      "Last In Next Out",
+      "First In Last Out",
+      "Prinzip des stärkeren",
+      "Marmeladenbrotprinzip"
+    ],
+    "text":"Welches Prinzip wird bei einem Stack verwendet?",
+    "correctIndex":1,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "addItem()",
+      "lastIndexOf()",
+      "nextIndexOf()",
+      "setNullPointer(int)"
+    ],
+    "text":"Welche Methode gibt es bei einer ArrayList in Java?",
+    "correctIndex":1,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "Implements NavigableSet",
+      "Erbt direkt von Collection",
+      "Elemente können mehrfach vorkommen",
+      "Hat die Methode window()"
+    ],
+    "text":"Was ist wahr über die Klasse Treeset?",
+    "correctIndex":0,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "Ist nicht synchronized",
+      "Erhält die Ordnung des Einfügens",
+      "Erlaubt null nicht als Element",
+      "Erbt von HashSet"
+    ],
+    "text":"Was stimmt nicht über die Klasse Linkedhashset?",
+    "correctIndex":2,
+	  "difficulty":"MEDIUM"
+  },
+  {
+    "textForPhoneJoker":"Ich kenne nur Synchro-Monster aus Yu-Gi-Oh",
+    "answers":[
+      "Sortiert",
+      "Erbt von List",
+      "Erlaubt Null nicht als Wert",
+      "Ist nicht synchonisiert"
+    ],
+    "text":"Was trifft auf die Datenstruktur Hashset zu?",
+    "correctIndex":0,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Also ein Thread muss laufen",
+    "answers":[
+      "ThreadMama",
+      "Thread(String hustenanfall, boolean niemals)",
+      "Thread(Runnable r)",
+      "Thread(Runnable r,int name)"
+    ],
+    "text":"Was ist ein gültiger Konstruktor der Klasse Thread?",
+    "correctIndex":2,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Also ich wüste nicht was stay in dem Zusammenhang tun soll",
+    "answers":[
+      "run()",
+      "public void stay()",
+      "stop()",
+      "public int getPriority()"
+    ],
+    "text":"Was ist keine Methode der Klasse Thread?",
+    "correctIndex":0,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Ich kenne das als API für GUIs",
+    "answers":[
+      "Eine Chat Application für Swinger",
+      "Ein Application Programming Interface für Graphical User Interfaces",
+      "Eine Pendel Simulation",
+      "Eine freizügige 68er Party von Programmierern"
+    ],
+    "text":"Was ist Swing in Java?",
+    "correctIndex":1,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Ich glaube das Ding ist ganz schön schlau",
+    "answers":[
+      "Eine Referenz",
+      "Der einzig wahre Pointer",
+      "Ein einzigartiger Pirat",
+      "Ein Smart Pointer der auf ein Objekt zeigt"
+    ],
+    "text":"Was ist ein unique_ptr in C++?",
+    "correctIndex":0,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Ich meine der Herr hat damit sehr gut Plus gemacht",
+    "answers":[
+      "hasskell",
+      "PowerShell",
+      "Java",
+      "C++"
+    ],
+    "text":"Welche Programmiersprache hat Bjarne Stroustrup entwickelt?",
+    "correctIndex":3,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Also das sind ja drei Tiere und nur eine einzige Insel",
+    "answers":[
+      "Biene",
+      "Leguan",
+      "Ailurus fulgens",
+      "Java"
+    ],
+    "text":"Was ist eine Programmiersprache?",
+    "correctIndex":0,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"",
+    "answers":[
+      "Verkäufer",
+      "Entwickler",
+      "User",
+      "Rentner"
+    ],
+    "text":"Wer führt einen Blackboxtest durch?",
+    "correctIndex":0,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Ich glaube, dass der Pfeil immer auf das zeigt was erweitert wird.",
+    "answers":[
+      "Auf die erbende Klasse",
+      "Auf die Klasse von der geerbt wird",
+      "Auf die Eigenschaft in der die Klasse verwendet wird",
+      "Auf die Methode welche die Klasse verwendet"
+    ],
+    "text":"Wohin zeigt die Spitze eines Pfeiles in einem Klassendiagramm?",
+    "correctIndex":1,
+	  "difficulty":"HARD"
+  },
+  {
+    "textForPhoneJoker":"Ich glaube Fetch betrifft nur eine Lokalization und mit dem anderen Befehl konnte man darüber hinaus gehen.",
+    "answers":[
+      "Pull",
+      "Push",
+      "Add",
+      "Fetch"
+    ],
+    "text":"Welcher Git-Befehl betrifft zwei Lokalisationen abwärts?",
+    "correctIndex":0,
+    "difficulty":"HARD"
+  }  
+]
